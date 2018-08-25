@@ -7,13 +7,14 @@ public class MapGenerator : MonoBehaviour {
     int height = Screen.height;
     int width = Screen.width;
 
-    int[,] section;
+    Square[,] section;
 
     string seed;
 
     void Start()
     {
         GenerateMap();
+        
     }
     // Update is called once per frame
     void Update () {
@@ -25,49 +26,98 @@ public class MapGenerator : MonoBehaviour {
 
     void GenerateMap()
     {
-        section = new int[width, height];
-        RandomVoidFill();
+        section = new Square[width, height];
+        HeightGenerator();
 
+        MeshGenerator meshGen = GetComponent<MeshGenerator>();
+        meshGen.GenerateMesh(section);
     }
 
-    void RandomVoidFill()
+    void HeightGenerator()
     {
         System.Random random = new System.Random();
 
+        int nextHeight = random.Next(0, height -1);
+        int targetHeight = random.Next(0, height - 1);
+
+        int previousHeight = nextHeight;
+        
         for (int x = 0; x < width; x++)
         {
-            for(int y = 0; y < height; y++)
+            if(previousHeight == 0)
             {
-                if (x == 0 || x == width - 1)
+                nextHeight = previousHeight + 1;
+            }
+            else if(previousHeight == height - 1)
+            {
+                nextHeight = previousHeight - 1;
+            }
+            else
+            {
+                //   nextHeight = random.Next(previousHeight - 1, previousHeight + 2); //Doesn't return the max value so must do +2 to make it pick 1 up the previous height
+                if (targetHeight <= previousHeight)
                 {
-                    section[x, y] = 1;
+                    int heightFromTarget = previousHeight - targetHeight;
+                    
+                    if (x < width / 2)
+                    {
+                        nextHeight = random.Next(previousHeight - 1, previousHeight + 2);
+                    } else if (x < width / 4)
+                    {
+                        nextHeight = random.Next(0, 100) < 55 ? previousHeight - 1 : previousHeight + 1;
+                    } else if (x < width / 8)
+                    {
+                        nextHeight = random.Next(0, 100) < 65 ? previousHeight - 1 : previousHeight + 1;
+                    } else
+                    {
+                        nextHeight = random.Next(0, 100) < 75 ? previousHeight - 1 : previousHeight + 1;
+                    }
+                } else
+                {
+                    int heightFromTarget = targetHeight - previousHeight;
+
+                    if (x < width / 2)
+                    {
+                        nextHeight = random.Next(previousHeight - 1, previousHeight + 2);
+                    }
+                    else if (x < width / 4)
+                    {
+                        nextHeight = random.Next(0, 100) < 55 ? previousHeight + 1 : previousHeight - 1;
+                    }
+                    else if (x < width / 8)
+                    {
+                        nextHeight = random.Next(0, 100) < 65 ? previousHeight + 1 : previousHeight - 1;
+                    }
+                    else
+                    {
+                        nextHeight = random.Next(0, 100) < 75 ? previousHeight + 1 : previousHeight - 1;
+                    }
                 }
-                else
+
+            }
+            
+            for (int y = 0; y < height; y++)
+            {
+                if (y < nextHeight)
                 {
-                    section[x, y] = random.Next(0, 100) > 50 ? 1 : 0;
+                    section[x, y] = new Square(1);
+                } else if (y == nextHeight)
+                {
+                    section[x, y] = new Square(2);
+                }
+                else if (y >= nextHeight)
+                {
+                    section[x, y] = new Square(0);
                 }
             }
+
+            previousHeight = nextHeight;
         }
         
     }
 
-    void OnDrawGizmos()
+    void FillYAxis(int rowX, int boundaryY)
     {
-        if (section != null)
-        {
-            Gizmos.color = Color.green;
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    if (section[x, y] == 1)
-                    {
-                        Vector3 pos = new Vector3(-width / 2 + x, 0, -height / 2 + y);
-                        Gizmos.DrawCube(pos, Vector3.one);
-                    }
 
-                }
-            }
-        }
     }
 }
