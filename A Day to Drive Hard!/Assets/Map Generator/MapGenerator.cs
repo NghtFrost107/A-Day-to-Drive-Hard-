@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-    int height = Screen.height;
-    int width = Screen.width;
+    int height = 100;
+    int width = 200;
 
     Square[,] section;
 
@@ -27,6 +27,15 @@ public class MapGenerator : MonoBehaviour {
     void GenerateMap()
     {
         section = new Square[width, height];
+
+        for (int x = 0; x < section.GetLength(0); x++)
+        {
+            for (int y = 0; y < section.GetLength(1); y++) {
+                section[x, y] = new Square(x, y);
+            }
+        }
+
+
         HeightGenerator();
 
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
@@ -57,7 +66,7 @@ public class MapGenerator : MonoBehaviour {
                 //   nextHeight = random.Next(previousHeight - 1, previousHeight + 2); //Doesn't return the max value so must do +2 to make it pick 1 up the previous height
                 if (targetHeight <= previousHeight)
                 {
-                    int heightFromTarget = previousHeight - targetHeight;
+                    //int heightFromTarget = previousHeight - targetHeight;
                     
                     if (x < width / 2)
                     {
@@ -74,7 +83,7 @@ public class MapGenerator : MonoBehaviour {
                     }
                 } else
                 {
-                    int heightFromTarget = targetHeight - previousHeight;
+                    //int heightFromTarget = targetHeight - previousHeight;
 
                     if (x < width / 2)
                     {
@@ -100,24 +109,19 @@ public class MapGenerator : MonoBehaviour {
             {
                 if (y < nextHeight)
                 {
-                    section[x, y] = new Square(1);
+                    section[x, y].state = (int)StateTypes.TERRAIN;
                 } else if (y == nextHeight)
                 {
-                    section[x, y] = new Square(2);
+                    section[x, y].state = (int)StateTypes.BOUNDARY;
                 }
                 else if (y >= nextHeight)
                 {
-                    section[x, y] = new Square(0);
+                    section[x, y].state = (int)StateTypes.AIR;
                 }
             }
 
             previousHeight = nextHeight;
         }
         
-    }
-
-    void FillYAxis(int rowX, int boundaryY)
-    {
-
     }
 }

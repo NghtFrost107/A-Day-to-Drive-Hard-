@@ -11,8 +11,6 @@ public class Node {
     {
         position = pos;
     }
-
-    
 }
 
 public class MainNode : Node
