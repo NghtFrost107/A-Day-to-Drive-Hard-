@@ -7,7 +7,10 @@ public class MapGenerator : MonoBehaviour {
     int height = 100;
     int width = 200;
 
+    int lowestPoint;
+
     Square[,] section;
+    Square[] boundarySquares;
 
     string seed;
 
@@ -27,6 +30,7 @@ public class MapGenerator : MonoBehaviour {
     void GenerateMap()
     {
         section = new Square[width, height];
+        boundarySquares = new Square[section.GetLength(0)];
 
         for (int x = 0; x < section.GetLength(0); x++)
         {
@@ -36,20 +40,21 @@ public class MapGenerator : MonoBehaviour {
         }
 
 
-        HeightGenerator();
+        HeightGenerator(out lowestPoint);
 
+        Smoother();
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
-        meshGen.GenerateMesh(section);
+        meshGen.GenerateMesh(section, lowestPoint);
     }
 
-    void HeightGenerator()
+    void HeightGenerator(out int lowestPoint)
     {
         System.Random random = new System.Random();
 
-        int nextHeight = random.Next(0, height -1);
-        int targetHeight = random.Next(0, height - 1);
+        int nextHeight = random.Next(0, height/2);
+        int targetHeight = random.Next(0, height/2);
 
-        int previousHeight = nextHeight;
+        int previousHeight = lowestPoint = nextHeight ;
         
         for (int x = 0; x < width; x++)
         {
@@ -63,7 +68,6 @@ public class MapGenerator : MonoBehaviour {
             }
             else
             {
-                //   nextHeight = random.Next(previousHeight - 1, previousHeight + 2); //Doesn't return the max value so must do +2 to make it pick 1 up the previous height
                 if (targetHeight <= previousHeight)
                 {
                     //int heightFromTarget = previousHeight - targetHeight;
@@ -112,7 +116,12 @@ public class MapGenerator : MonoBehaviour {
                     section[x, y].state = (int)StateTypes.TERRAIN;
                 } else if (y == nextHeight)
                 {
+                    if (lowestPoint > section[x,y].y)
+                    {
+                        lowestPoint = section[x,y].y;
+                    }
                     section[x, y].state = (int)StateTypes.BOUNDARY;
+                    boundarySquares[x] = section[x, y];
                 }
                 else if (y >= nextHeight)
                 {
@@ -123,5 +132,41 @@ public class MapGenerator : MonoBehaviour {
             previousHeight = nextHeight;
         }
         
+    }
+
+    void Smoother()
+    {
+        for (int i = 0; i < boundarySquares.Length - 2; i++)
+        {
+            if (boundarySquares[i].y == boundarySquares[i + 2].y )
+            {
+                Square nextBoundarySquare = FindBoundarySquare(section, i + 1);
+                
+                if (nextBoundarySquare.y < boundarySquares[i].y)
+                {
+                    nextBoundarySquare.state = 1;
+                    boundarySquares[i + 1] = section[i + 1, boundarySquares[i + 1].y + 1];
+                } else if (nextBoundarySquare.y > boundarySquares[i].y)
+                {
+                    nextBoundarySquare.state = 0;
+                    boundarySquares[i + 1] = section[i + 1, boundarySquares[i + 1].y - 1];
+                }
+                boundarySquares[i + 1].state = 2;
+
+            }
+        }
+    }
+
+    public static Square FindBoundarySquare(Square[,] section, int xColumn)
+    {
+        for (int y = 0; y < section.GetLength(1); y++)
+        {
+            if (section[xColumn, y].state == 2)
+            {
+                return section[xColumn, y];
+            }
+        }
+
+        return null;
     }
 }
