@@ -23,6 +23,7 @@ public class MapGenerator : MonoBehaviour {
     void Update () {
 		if(Input.GetMouseButtonDown(0))
         {
+
             GenerateMap();
         }
 	}
@@ -45,6 +46,9 @@ public class MapGenerator : MonoBehaviour {
         Smoother();
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
         meshGen.GenerateMesh(section, lowestPoint);
+
+        SectionCollider addCollider = GetComponent<SectionCollider>();
+        addCollider.addCollider();
     }
 
     void HeightGenerator(out int lowestPoint)

@@ -30,13 +30,21 @@ public class MeshGenerator : MonoBehaviour {
                         Square connectingSquare = MapGenerator.FindBoundarySquare(section, x + 1);
                         if (connectingSquare != null)
                         {
+                            SectionCollider sectionCollider = GetComponent<SectionCollider>();
                             if (connectingSquare.y > section[x, y].y)
                             {
                                 MeshFromPoints(new MainNode[] { section[x, y].topLeft, connectingSquare.topLeft, section[x, y].topRight });
+                                sectionCollider.addPoint(section[x, y].topLeft);
+                                sectionCollider.addPoint(connectingSquare.topLeft);
                             }
                             else if (connectingSquare.y < section[x, y].y)
                             {
                                 MeshFromPoints(new MainNode[] { section[x, y].topRight, connectingSquare.topRight, connectingSquare.topLeft });
+                                sectionCollider.addPoint(section[x, y].topRight);
+                                sectionCollider.addPoint(connectingSquare.topRight);
+                            } else if (connectingSquare.y == section[x,y].y)
+                            {
+                                sectionCollider.addPoint(section[x, y].topRight);
                             }
                         }
                     }
