@@ -34,6 +34,7 @@ public class MeshGenerator : MonoBehaviour {
                             if (connectingSquare.y > section[x, y].y)
                             {
                                 MeshFromPoints(new MainNode[] { section[x, y].topLeft, connectingSquare.topLeft, section[x, y].topRight });
+                                calculateCurve(section[x, y].topLeft, connectingSquare.topRight);
                                 sectionCollider.addPoint(section[x, y].topLeft);
                                 sectionCollider.addPoint(connectingSquare.topLeft);
                             }
@@ -63,6 +64,34 @@ public class MeshGenerator : MonoBehaviour {
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
     }
+
+    Vector2[] calculateCurve(MainNode start, MainNode end)
+    {
+        List<Vector2> points = new List<Vector2>();
+        for (float i = 0; i <= 1; i += 0.10f)
+        {
+            points.Add(QuadraticCurve(SectionCollider.Vector3To2(start.position),new Vector2(SectionCollider.Vector3To2(end.position).x,SectionCollider.Vector3To2(end.position).y + 1), SectionCollider.Vector3To2(end.position),i));
+        }
+        return points.ToArray();
+    }
+
+    Vector2 QuadraticCurve(Vector2 start, Vector2 curvePoint, Vector2 end, float pointPosition)
+    {
+        Vector2 p0 = Lerp(start, curvePoint, pointPosition);
+        Vector2 p1 = Lerp(curvePoint, end, pointPosition);
+        return Lerp(p0, p1, pointPosition);
+    }
+    Vector2 Lerp(Vector2 start, Vector2 end, float pointPosition)
+    {
+        return start + (end - start) * pointPosition;
+    }
+
+    void CurvedMesh(Vector2[] points)
+    {
+
+    }
+
+
     void MeshFromPoints(MainNode[] nodes)
     {
         AssignVertices(nodes);

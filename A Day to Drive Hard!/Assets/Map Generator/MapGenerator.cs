@@ -14,6 +14,8 @@ public class MapGenerator : MonoBehaviour {
 
     string seed;
 
+    public GameObject car;
+
     void Start()
     {
         GenerateMap();
@@ -49,6 +51,8 @@ public class MapGenerator : MonoBehaviour {
 
         SectionCollider addCollider = GetComponent<SectionCollider>();
         addCollider.addCollider();
+
+        Instantiate(car, boundarySquares[1].topRight.position + new Vector3(2,2,0), Quaternion.identity);
     }
 
     void HeightGenerator(out int lowestPoint)

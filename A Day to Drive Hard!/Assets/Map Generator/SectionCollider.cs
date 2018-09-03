@@ -16,7 +16,7 @@ public class SectionCollider : MonoBehaviour {
     public void addCollider()
     {
         points.Add(new Vector2(points[points.Count - 1].x, 0));
-        //points.Add(new Vector2(0, 0));
+        points.Add(new Vector2(0, 0));
         mainCollider.SetPath(0,points.ToArray());
     }
 
