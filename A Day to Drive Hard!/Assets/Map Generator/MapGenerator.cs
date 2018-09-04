@@ -14,6 +14,7 @@ public class MapGenerator : MonoBehaviour {
 
     public string seed;
 
+    public bool useRandomSeed;
     public GameObject car;
 
     void Start()
@@ -26,7 +27,7 @@ public class MapGenerator : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0))
         {
 
-            GenerateMap();
+            //GenerateMap();
         }
 	}
 
@@ -57,7 +58,11 @@ public class MapGenerator : MonoBehaviour {
 
     void HeightGenerator(out int lowestPoint)
     {
-        System.Random random = new System.Random(seed.GetHashCode());
+        if (useRandomSeed)
+        {
+            //seed = 
+        }
+        System.Random random = new System.Random();
 
         int nextHeight = random.Next(0, height/2);
         int targetHeight = random.Next(0, height/2);
