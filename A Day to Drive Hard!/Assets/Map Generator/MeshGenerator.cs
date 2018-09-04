@@ -7,6 +7,9 @@ public class MeshGenerator : MonoBehaviour {
     List<Vector3> vertices;
     List<int> triangles;
 
+
+    int vertIndex = 0;
+
     public void GenerateMesh(Square[,] section, int lowestPoint)
     {
         AssignNodes(section);
@@ -14,6 +17,7 @@ public class MeshGenerator : MonoBehaviour {
         vertices = new List<Vector3>();
         triangles = new List<int>();
     
+        
         for (int x = 0; x < section.GetLength(0); x++)
         {
             for (int y = 0; y < section.GetLength(1); y++)
@@ -22,30 +26,43 @@ public class MeshGenerator : MonoBehaviour {
                 {
                     if (section[x, y].state != 0)
                     {
-                        MeshFromPoints(new MainNode[] { section[x, y].bottomLeft, section[x, y].topLeft, section[x, y].bottomRight });
-                        MeshFromPoints(new MainNode[] { section[x, y].bottomRight, section[x, y].topLeft, section[x, y].topRight });
+                        //MeshFromPoints(new MainNode[] { section[x, y].bottomLeft, section[x, y].topLeft, section[x, y].bottomRight });
+                        //MeshFromPoints(new MainNode[] { section[x, y].bottomRight, section[x, y].topLeft, section[x, y].topRight });
                     }
+                    
+
                     if (section[x, y].state == 2 && x != section.GetLength(0) - 1)
                     {
+                        
                         Square connectingSquare = MapGenerator.FindBoundarySquare(section, x + 1);
                         if (connectingSquare != null)
                         {
                             SectionCollider sectionCollider = GetComponent<SectionCollider>();
                             if (connectingSquare.y > section[x, y].y)
                             {
-                                MeshFromPoints(new MainNode[] { section[x, y].topLeft, connectingSquare.topLeft, section[x, y].topRight });
-                                calculateCurve(section[x, y].topLeft, connectingSquare.topRight);
-                                sectionCollider.addPoint(section[x, y].topLeft);
-                                sectionCollider.addPoint(connectingSquare.topLeft);
+                                AssignSquareMesh(section[x, y]);
+                                //MeshFromPoints(new MainNode[] { section[x, y].topLeft, connectingSquare.topLeft, section[x, y].topRight });
+                                Vector2[] curvePoints = calculateCurve(section[x, y].topLeft, connectingSquare.topLeft);
+                                AssignCurveVertices(curvePoints, connectingSquare.bottomLeft.position);
+
+                                sectionCollider.addPoint(curvePoints);
+                                /*sectionCollider.addPoint(section[x, y].topLeft);
+                                sectionCollider.addPoint(connectingSquare.topLeft);*/
                             }
                             else if (connectingSquare.y < section[x, y].y)
                             {
-                                MeshFromPoints(new MainNode[] { section[x, y].topRight, connectingSquare.topRight, connectingSquare.topLeft });
-                                sectionCollider.addPoint(section[x, y].topRight);
-                                sectionCollider.addPoint(connectingSquare.topRight);
+                                AssignSquareMesh(section[x, y]);
+                                Vector2[] curvePoints = calculateCurve(section[x, y].topRight, connectingSquare.topRight);
+                                AssignCurveVertices(curvePoints, connectingSquare.topLeft.position);
+
+                                sectionCollider.addPoint(curvePoints);
+                                 //MeshFromPoints(new MainNode[] { section[x, y].topRight, connectingSquare.topRight, connectingSquare.topLeft });
+                                 /*sectionCollider.addPoint(section[x, y].topRight);
+                                 sectionCollider.addPoint(connectingSquare.topRight);*/
                             } else if (connectingSquare.y == section[x,y].y)
                             {
-                                sectionCollider.addPoint(section[x, y].topRight);
+                                AssignSquareMesh(section[x, y]);
+                                sectionCollider.addPoint(section[x, y].topRight.position);
                             }
                         }
                     }
@@ -54,8 +71,10 @@ public class MeshGenerator : MonoBehaviour {
 
         }
 
-        MeshFromPoints(new MainNode[] { section[0, 0].bottomLeft, section[0,lowestPoint].topLeft, section[section.GetLength(0) - 1,lowestPoint].topRight  });
-        MeshFromPoints(new MainNode[] { section[0, 0].bottomLeft, section[section.GetLength(0) - 1, lowestPoint].topRight, section[section.GetLength(0) - 1, 0].bottomRight });
+        //MeshFromPoints(new MainNode[] { section[0, 0].bottomLeft, section[0,lowestPoint].topLeft, section[section.GetLength(0) - 1,lowestPoint].topRight  });
+       // MeshFromPoints(new MainNode[] { section[0, 0].bottomLeft, section[section.GetLength(0) - 1, lowestPoint].topRight, section[section.GetLength(0) - 1, 0].bottomRight });
+        
+
 
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -65,12 +84,56 @@ public class MeshGenerator : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
+    void AssignSquareMesh(Square square)
+    {
+        vertices.Add(square.bottomLeft.position);
+        vertices.Add(square.topLeft.position);
+        vertices.Add(square.topRight.position);
+        vertices.Add(square.bottomRight.position);
+
+        for(int i = 0; i < 2; i++)
+        {
+            triangles.Add(vertIndex);
+            triangles.Add(vertIndex + 1 + i);
+            triangles.Add(vertIndex + 2 + i);
+        }
+
+        vertIndex += 4;
+        
+    }
+
+    void AssignCurveVertices(Vector2[] points, Vector2 anchor)
+    {
+        for(int i = 0; i < points.Length; i++)
+        {
+            vertices.Add(points[i]);
+        }
+        vertices.Add(anchor);
+
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            triangles.Add(vertIndex + i);
+            triangles.Add(vertIndex + i + 1);
+            triangles.Add(vertIndex + points.Length);
+        }
+        vertIndex += points.Length + 1;
+    }
+
     Vector2[] calculateCurve(MainNode start, MainNode end)
     {
         List<Vector2> points = new List<Vector2>();
-        for (float i = 0; i <= 1; i += 0.10f)
+        Vector2 curvePoint;
+        if (start.position.y > end.position.y)
         {
-            points.Add(QuadraticCurve(SectionCollider.Vector3To2(start.position),new Vector2(SectionCollider.Vector3To2(end.position).x,SectionCollider.Vector3To2(end.position).y + 1), SectionCollider.Vector3To2(end.position),i));
+            curvePoint = new Vector2(start.position.x, end.position.y);
+        } else
+        {
+            curvePoint = new Vector2(end.position.x, start.position.y);
+        }
+        
+        for (float i = 0; i <= 1.01f; i += 0.1f)
+        {
+            points.Add(QuadraticCurve(start.position,curvePoint, end.position,i));
         }
         return points.ToArray();
     }
@@ -91,7 +154,7 @@ public class MeshGenerator : MonoBehaviour {
 
     }
 
-
+    /*
     void MeshFromPoints(MainNode[] nodes)
     {
         AssignVertices(nodes);
@@ -117,7 +180,7 @@ public class MeshGenerator : MonoBehaviour {
             triangles.Add(nodes[i].verticeIndex);
         }
     }
-
+    */
     
 
     private void AssignNodes(Square[,] section)

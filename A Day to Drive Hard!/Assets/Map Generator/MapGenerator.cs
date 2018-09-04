@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour {
     Square[,] section;
     Square[] boundarySquares;
 
-    string seed;
+    public string seed;
 
     public GameObject car;
 
@@ -57,7 +57,7 @@ public class MapGenerator : MonoBehaviour {
 
     void HeightGenerator(out int lowestPoint)
     {
-        System.Random random = new System.Random();
+        System.Random random = new System.Random(seed.GetHashCode());
 
         int nextHeight = random.Next(0, height/2);
         int targetHeight = random.Next(0, height/2);

@@ -20,14 +20,16 @@ public class SectionCollider : MonoBehaviour {
         mainCollider.SetPath(0,points.ToArray());
     }
 
-    public void addPoint(MainNode point)
+    public void addPoint(Vector2 point)
     {
-        points.Add(Vector3To2(point.position));
+        points.Add(point);
     }
 
-    public static Vector2 Vector3To2(Vector3 vector)
+    public void addPoint(Vector2[] pointArray)
     {
-        return new Vector2(vector.x, vector.y);
+        foreach (Vector2 point in pointArray)
+        {
+            points.Add(point);
+        }
     }
-
 }
