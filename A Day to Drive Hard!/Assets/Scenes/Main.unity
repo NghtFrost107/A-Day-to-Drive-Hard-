@@ -410,7 +410,7 @@ Prefab:
     - target: {fileID: 114402498759205936, guid: d3580d8b448c47442a176f813c3d2efd,
         type: 2}
       propertyPath: seed
-      value: 
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114402498759205936, guid: d3580d8b448c47442a176f813c3d2efd,
         type: 2}
