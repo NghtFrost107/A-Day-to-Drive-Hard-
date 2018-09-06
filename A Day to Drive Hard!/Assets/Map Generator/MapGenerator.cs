@@ -10,7 +10,7 @@ public class MapGenerator : MonoBehaviour {
     int lowestPoint;
 
     Square[,] section;
-    Square[] boundarySquares;
+    public Square[] boundarySquares;
 
     public string seed;
 
@@ -62,7 +62,7 @@ public class MapGenerator : MonoBehaviour {
         {
             //seed = 
         }
-        System.Random random = new System.Random();
+        System.Random random = new System.Random(seed.GetHashCode());
 
         int nextHeight = random.Next(0, height/2);
         int targetHeight = random.Next(0, height/2);
@@ -153,7 +153,7 @@ public class MapGenerator : MonoBehaviour {
         {
             if (boundarySquares[i].y == boundarySquares[i + 2].y )
             {
-                Square nextBoundarySquare = FindBoundarySquare(section, i + 1);
+                Square nextBoundarySquare = FindBoundarySquare(i + 1);
                 
                 if (nextBoundarySquare.y < boundarySquares[i].y)
                 {
@@ -170,7 +170,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    public static Square FindBoundarySquare(Square[,] section, int xColumn)
+    public Square FindBoundarySquare(int xColumn)
     {
         for (int y = 0; y < section.GetLength(1); y++)
         {

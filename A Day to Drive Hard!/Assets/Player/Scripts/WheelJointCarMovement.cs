@@ -15,7 +15,7 @@ public class WheelJointCarMovement : MonoBehaviour {
     //input for rotation of the car
     float torqueDir = 0f;
     //max fwd speed which the car can move at
-    float maxFwdSpeed = -1500;
+    float maxFwdSpeed = -3500;
     //max bwd speed
     float maxBwdSpeed = 1000f;
     //the rate at which the car accelerates

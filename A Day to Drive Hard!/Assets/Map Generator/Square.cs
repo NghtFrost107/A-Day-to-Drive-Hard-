@@ -10,7 +10,7 @@ public enum StateTypes
 
 public class Square {
 
-    public MainNode topLeft, topRight, bottomRight, bottomLeft;
+    public Node topLeft, topRight, bottomRight, bottomLeft;
     public int configuration;
     /*
      * Here holds the state for the current square.
@@ -36,7 +36,7 @@ public class Square {
         this.state = state;
     }
 
-    public void AssignNodes(MainNode topLeft, MainNode topRight, MainNode bottomRight, MainNode bottomLeft)
+    public void AssignNodes(Node topLeft, Node topRight, Node bottomRight, Node bottomLeft)
     {
         this.topLeft = topLeft;
         this.topRight = topRight;
