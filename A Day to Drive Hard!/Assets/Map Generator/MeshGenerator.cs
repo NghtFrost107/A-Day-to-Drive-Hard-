@@ -72,7 +72,20 @@ public class MeshGenerator : MonoBehaviour {
                             AssignTriangleMesh(boundarySquares[x].topLeft.position, nextSquare.topLeft.position, boundarySquares[x].topRight.position);
                             collisionPoints = new Vector2[2] { boundarySquares[x].topLeft.position, nextSquare.topLeft.position };
                         }
-                        /*         _
+                        /*This statement contains two different possible scenarios and creates the mesh accordingly. 
+                         * 
+                         * First Scenario uses the previous square from 2 squares back to determine what curve is needed
+                         *           _
+                         *         _|S|
+                         *    _  _|N|
+                         *  _|P||x|
+                         * |P|
+                         * 
+                         * At a point in a hill that is slightly flat.
+                         * Will create a steep curve to smooth the transition between the curve from the previous square (P) to the next square (N)
+                         * 
+                         * Second Scenario:
+                         *         _
                          *       _|S|
                          *  _  _|N|
                          * |P||x| -- You are here (x)
@@ -82,8 +95,18 @@ public class MeshGenerator : MonoBehaviour {
                          */
                         else 
                         {
-                            collisionPoints = calculateQuadraticCurve(previousSquare.topLeft, new Vector2(previousSquare.topLeft.position.x + 1, nextSquare.y), nextSquare.topLeft);
-                            AssignCurveVertices(collisionPoints, nextSquare.bottomLeft.position);
+                            Square x2PreviousSquare = GetComponent<MapGenerator>().FindBoundarySquare(x - 2);
+
+                            if (x2PreviousSquare.y < previousSquare.y)
+                            {
+                                collisionPoints = calculateQuadraticCurve(boundarySquares[x].topLeft, new Vector2(boundarySquares[x].topLeft.position.x + 0.15f, boundarySquares[x].topLeft.position.y), nextSquare.topLeft);
+                                AssignCurveVertices(collisionPoints, boundarySquares[x].topRight.position);
+                            }
+                            else
+                            {
+                                collisionPoints = calculateQuadraticCurve(previousSquare.topLeft, new Vector2(previousSquare.topLeft.position.x + 1, nextSquare.y), nextSquare.topLeft);
+                                AssignCurveVertices(collisionPoints, nextSquare.bottomLeft.position);
+                            }
                         }
                     }
                      /*    _  _
@@ -93,6 +116,7 @@ public class MeshGenerator : MonoBehaviour {
                      */
                     else
                     {
+                        
                         /*       _  _
                          *     _|N||S|
                          *   _|x| -- You are here (x)
@@ -105,8 +129,11 @@ public class MeshGenerator : MonoBehaviour {
                         {
                             collisionPoints = calculateQuadraticCurve(boundarySquares[x].topLeft, new Vector2(nextSquare.topLeft.position.x - 0.25f, nextSquare.topLeft.position.y), nextSquare.topRight);
                             AssignCurveVertices(collisionPoints, nextSquare.bottomRight.position);
+                            AssignSquareMesh(boundarySquares[x].bottomLeft.position, boundarySquares[x].bottomRight.position, new Vector2(boundarySquares[x].x, 0), new Vector2(boundarySquares[x].bottomRight.position.x, 0));
                             x++; //Skip over next boundary square as mesh has already been drawn for it
+                            
                         }
+
                         /*
                          * When a small elevation change occurs that doesn't match the other criteria (Normally occurs if elevation changes by 1 square but rest is flat terrain)
                          * 
@@ -121,6 +148,7 @@ public class MeshGenerator : MonoBehaviour {
                         { 
                             collisionPoints = calculateCubicCurve(boundarySquares[x].topLeft, new Vector2(boundarySquares[x].topLeft.position.x + 1, boundarySquares[x].topRight.position.y), new Vector2(nextSquare.topRight.position.x - 1, nextSquare.topRight.position.y), nextSquare.topRight);
                             AssignCurveVertices(collisionPoints, nextSquare.bottomRight.position);
+                            AssignSquareMesh(boundarySquares[x].bottomLeft.position, boundarySquares[x].bottomRight.position, new Vector2(boundarySquares[x].x, 0), new Vector2(boundarySquares[x].bottomRight.position.x, 0));
                             x++;
                         }
                         
@@ -209,6 +237,7 @@ public class MeshGenerator : MonoBehaviour {
                             AssignSquareMesh(boundarySquares[x + 1]);
                             collisionPoints = calculateCubicCurve(boundarySquares[x].topLeft, new Vector2(boundarySquares[x].topLeft.position.x + 1, boundarySquares[x].topLeft.position.y), new Vector2(nextSquare.topLeft.position.x, nextSquare.topLeft.position.y), nextSquare.topRight);
                             AssignCurveVertices(collisionPoints, boundarySquares[x].bottomLeft.position);
+                            AssignSquareMesh(boundarySquares[x].bottomLeft.position, boundarySquares[x].bottomRight.position, new Vector2(boundarySquares[x].x, 0), new Vector2(boundarySquares[x].bottomRight.position.x, 0));
                             x++;
                         }
                     }
@@ -224,7 +253,9 @@ public class MeshGenerator : MonoBehaviour {
                 {
                     AssignSquareMesh(boundarySquares[x]);
                     sectionCollider.addPoint(boundarySquares[x].topRight.position);
+
                 }
+                AssignSquareMesh(boundarySquares[x].bottomLeft.position, boundarySquares[x].bottomRight.position, new Vector2(boundarySquares[x].x, 0), new Vector2(boundarySquares[x].bottomRight.position.x, 0));
             }
         }
 
@@ -249,14 +280,27 @@ public class MeshGenerator : MonoBehaviour {
         vertIndex += 3;
     }
 
+    /*
+     * Simplified method to create a square mesh for a specific square. Calls the other AssignSquareMesh method and passes in this squares node coordinates.
+     */
     void AssignSquareMesh(Square square)
     {
-        vertices.Add(square.bottomLeft.position);
-        vertices.Add(square.topLeft.position);
-        vertices.Add(square.topRight.position);
-        vertices.Add(square.bottomRight.position);
+        AssignSquareMesh(square.topLeft.position, square.topRight.position, square.bottomLeft.position, square.bottomRight.position);
+    }
 
-        for(int i = 0; i < 2; i++)
+    /*
+     * Create a square mesh. This method uses four coordinates to determine the square shape and add the vertices and triangles appropriately.
+     * 
+     * This method can also be used to make rectangles, is not specific to squares.
+     */ 
+    void AssignSquareMesh(Vector2 topLeft, Vector2 topRight, Vector2 bottomLeft, Vector2 bottomRight)
+    {
+        vertices.Add(bottomLeft);
+        vertices.Add(topLeft);
+        vertices.Add(topRight);
+        vertices.Add(bottomRight);
+
+        for (int i = 0; i < 2; i++)
         {
             triangles.Add(vertIndex);
             triangles.Add(vertIndex + 1 + i);
@@ -264,7 +308,7 @@ public class MeshGenerator : MonoBehaviour {
         }
 
         vertIndex += 4;
-        
+
     }
 
     void AssignCurveVertices(Vector2[] points, Vector2 anchor)

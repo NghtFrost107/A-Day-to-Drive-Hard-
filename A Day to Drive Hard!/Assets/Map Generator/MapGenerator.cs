@@ -16,6 +16,7 @@ public class MapGenerator : MonoBehaviour {
 
     public bool useRandomSeed;
     public GameObject car;
+    public GameObject carCamera;
 
     void Start()
     {
@@ -53,7 +54,8 @@ public class MapGenerator : MonoBehaviour {
         SectionCollider addCollider = GetComponent<SectionCollider>();
         addCollider.addCollider();
 
-        Instantiate(car, boundarySquares[1].topRight.position + new Vector3(2,2,0), Quaternion.identity);
+        car = Instantiate(car, boundarySquares[1].topRight.position + new Vector3(2,2,0), Quaternion.identity);
+        carCamera.GetComponent<CameraFollow>().target = car.transform.GetChild(0);
     }
 
     void HeightGenerator(out int lowestPoint)
@@ -62,7 +64,7 @@ public class MapGenerator : MonoBehaviour {
         {
             //seed = 
         }
-        System.Random random = new System.Random(seed.GetHashCode());
+        System.Random random = new System.Random();
 
         int nextHeight = random.Next(0, height/2);
         int targetHeight = random.Next(0, height/2);

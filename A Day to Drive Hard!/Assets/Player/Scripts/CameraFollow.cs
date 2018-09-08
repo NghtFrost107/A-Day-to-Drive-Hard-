@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmoothFollow2D : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     private Vector3 velocity = Vector3.zero;
     public Transform target;
