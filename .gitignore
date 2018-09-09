@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+A Day to Drive Hard!/Assets/Obstacles/Scripts/spikeCollision.cs.meta
+A Day to Drive Hard!/Assets/Player/Scripts/CameraFollow.cs.meta
+*.meta
+A Day to Drive Hard!/Assets/Scenes/Car Test.unity
+*.meta~HEAD
+A Day to Drive Hard!/Assets/Player/Scripts/SmoothFollow2D.cs.meta~883aa73bbb74be5a02f4960517acec0f1461d666
