@@ -267,6 +267,7 @@ public class MeshGenerator : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
+
     void AssignTriangleMesh(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         vertices.Add(pointA);

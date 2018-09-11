@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-    int height = 100;
-    int width = 200;
+    public const int height = 100;
+    public const int width = 200;
 
     int lowestPoint;
 
@@ -13,26 +13,9 @@ public class MapGenerator : MonoBehaviour {
     public Square[] boundarySquares;
 
     public string seed;
-
     public bool useRandomSeed;
-    public GameObject car;
-    public GameObject carCamera;
 
-    void Start()
-    {
-        GenerateMap();
-        
-    }
-    // Update is called once per frame
-    void Update () {
-		if(Input.GetMouseButtonDown(0))
-        {
-
-            //GenerateMap();
-        }
-	}
-
-    void GenerateMap()
+    public void GenerateMap(int nextHeight, int xStart)
     {
         section = new Square[width, height];
         boundarySquares = new Square[section.GetLength(0)];
@@ -40,25 +23,22 @@ public class MapGenerator : MonoBehaviour {
         for (int x = 0; x < section.GetLength(0); x++)
         {
             for (int y = 0; y < section.GetLength(1); y++) {
-                section[x, y] = new Square(x, y);
+                section[x, y] = new Square(x + xStart, y);
             }
         }
 
-
-        HeightGenerator(out lowestPoint);
+        HeightGenerator(lowestPoint = nextHeight);
 
         Smoother();
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
         meshGen.GenerateMesh(section, lowestPoint);
 
         SectionCollider addCollider = GetComponent<SectionCollider>();
-        addCollider.addCollider();
+        addCollider.addCollider(xStart);
 
-        car = Instantiate(car, boundarySquares[1].topRight.position + new Vector3(2,2,0), Quaternion.identity);
-        carCamera.GetComponent<CameraFollow>().target = car.transform.GetChild(0);
     }
 
-    void HeightGenerator(out int lowestPoint)
+    void HeightGenerator(int lowestPoint)
     {
         if (useRandomSeed)
         {
@@ -66,10 +46,10 @@ public class MapGenerator : MonoBehaviour {
         }
         System.Random random = new System.Random();
 
-        int nextHeight = random.Next(0, height/2);
+        int nextHeight = lowestPoint;
         int targetHeight = random.Next(0, height/2);
 
-        int previousHeight = lowestPoint = nextHeight ;
+        int previousHeight = nextHeight;
         
         for (int x = 0; x < width; x++)
         {
