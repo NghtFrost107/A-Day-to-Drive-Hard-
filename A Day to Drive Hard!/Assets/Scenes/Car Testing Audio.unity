@@ -155,6 +155,16 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c88b70be6535f04889de65d988b0176, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &151009357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1255621957579898, guid: 87c64120ba66f9b46b4809ca121e2f07,
+    type: 2}
+  m_PrefabInternal: {fileID: 1363665627}
+--- !u!4 &151009358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4730761265859964, guid: 87c64120ba66f9b46b4809ca121e2f07,
+    type: 2}
+  m_PrefabInternal: {fileID: 1363665627}
 --- !u!1001 &227176177
 Prefab:
   m_ObjectHideFlags: 0
@@ -381,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa5f763c636f8645a58515cf9fe2fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 151009358}
 --- !u!1 &866016981
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceCounter: {fileID: 0}
-  player: {fileID: 1255621957579898, guid: 87c64120ba66f9b46b4809ca121e2f07, type: 2}
+  player: {fileID: 151009357}
   beginningPos: 0
   currentPos: 0
   multiplier: 0.1
