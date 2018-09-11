@@ -13,10 +13,10 @@ public class SectionCollider : MonoBehaviour {
         points = new List<Vector2>();
     }
 
-    public void addCollider(int xStart)
+    public void addCollider()
     {
         points.Add(new Vector2(points[points.Count - 1].x, 0));
-        points.Add(new Vector2(xStart, 0));
+        points.Add(new Vector2(0, 0));
         mainCollider.SetPath(0,points.ToArray());
     }
 

@@ -7,10 +7,11 @@ public class MeshGenerator : MonoBehaviour {
     List<Vector3> vertices;
     List<int> triangles;
 
+    Mesh mesh;
 
     int vertIndex = 0;
 
-    public void GenerateMesh(Square[,] section, int lowestPoint)
+    public void GenerateMesh(Square[,] section, int lowestPoint, Square connectingSquare)
     {
         AssignNodes(section);
 
@@ -30,11 +31,17 @@ public class MeshGenerator : MonoBehaviour {
          * N = Next Square
          * S = Next Next Square
          */
-        for (int x = 1; x < boundarySquares.Length - 2; x++)
+        for (int x = 0; x < boundarySquares.Length - 2; x++)
         {
-            Square previousSquare = GetComponent<MapGenerator>().FindBoundarySquare(x - 1); 
-            Square nextSquare = GetComponent<MapGenerator>().FindBoundarySquare(x + 1);
-            Square nextNextSquare = GetComponent<MapGenerator>().FindBoundarySquare(x + 2);
+            Square previousSquare;
+            if (x == 0) {
+                previousSquare = connectingSquare;
+            } else {
+                previousSquare = boundarySquares[x - 1];
+            }
+            
+            Square nextSquare = boundarySquares[x + 1];
+            Square nextNextSquare = boundarySquares[x + 2];
             if (nextSquare != null && nextNextSquare != null)
             {
                 SectionCollider sectionCollider = GetComponent<SectionCollider>();
@@ -95,7 +102,15 @@ public class MeshGenerator : MonoBehaviour {
                          */
                         else 
                         {
-                            Square x2PreviousSquare = GetComponent<MapGenerator>().FindBoundarySquare(x - 2);
+                            Square x2PreviousSquare;
+                            if (x < 2)
+                            {
+                                x2PreviousSquare = previousSquare;
+                            }
+                            else
+                            {
+                                x2PreviousSquare = GetComponent<MapGenerator>().FindBoundarySquare(x - 2);
+                            }
 
                             if (x2PreviousSquare.y < previousSquare.y)
                             {
@@ -259,7 +274,7 @@ public class MeshGenerator : MonoBehaviour {
             }
         }
 
-        Mesh mesh = new Mesh();
+        mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
         mesh.vertices = vertices.ToArray(); //Assigns the vertices and triangles to the mesh to be generated
@@ -267,7 +282,12 @@ public class MeshGenerator : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
-
+    public void ClearMesh()
+    {
+        mesh.Clear();
+        triangles.Clear();
+        vertices.Clear();
+    }
     void AssignTriangleMesh(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         vertices.Add(pointA);

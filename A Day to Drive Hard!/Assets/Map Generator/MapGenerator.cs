@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour {
     public string seed;
     public bool useRandomSeed;
 
-    public void GenerateMap(int nextHeight, int xStart)
+    public void GenerateMap(Square connectingSquare)
     {
         section = new Square[width, height];
         boundarySquares = new Square[section.GetLength(0)];
@@ -23,18 +23,24 @@ public class MapGenerator : MonoBehaviour {
         for (int x = 0; x < section.GetLength(0); x++)
         {
             for (int y = 0; y < section.GetLength(1); y++) {
-                section[x, y] = new Square(x + xStart, y);
+                section[x, y] = new Square(x, y);
             }
         }
 
-        HeightGenerator(lowestPoint = nextHeight);
-
+        if (connectingSquare == null)
+        {
+            HeightGenerator(lowestPoint = 20);
+            connectingSquare = boundarySquares[0];
+        } else
+        {
+            HeightGenerator(lowestPoint = connectingSquare.y);
+        }
         Smoother();
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
-        meshGen.GenerateMesh(section, lowestPoint);
+        meshGen.GenerateMesh(section, lowestPoint, connectingSquare);
 
         SectionCollider addCollider = GetComponent<SectionCollider>();
-        addCollider.addCollider(xStart);
+        addCollider.addCollider();
 
     }
 

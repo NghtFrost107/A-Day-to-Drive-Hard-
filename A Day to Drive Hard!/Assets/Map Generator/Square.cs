@@ -11,7 +11,6 @@ public enum StateTypes
 public class Square {
 
     public Node topLeft, topRight, bottomRight, bottomLeft;
-    public int configuration;
     /*
      * Here holds the state for the current square.
      * 
@@ -36,11 +35,4 @@ public class Square {
         this.state = state;
     }
 
-    public void AssignNodes(Node topLeft, Node topRight, Node bottomRight, Node bottomLeft)
-    {
-        this.topLeft = topLeft;
-        this.topRight = topRight;
-        this.bottomLeft = bottomLeft;
-        this.bottomRight = bottomRight;
-    }
 }
