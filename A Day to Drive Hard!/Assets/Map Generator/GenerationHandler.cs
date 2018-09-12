@@ -25,7 +25,7 @@ public class GenerationHandler : MonoBehaviour {
 
         if (car != null)
         {
-            car = Instantiate(car, section1.boundarySquares[1].topRight.position + new Vector3(2, 2, 0), Quaternion.identity);
+            car = Instantiate(car, section1.boundarySquares[10].topRight.position + new Vector3(2, 3, 0), Quaternion.identity);
             carCamera.GetComponent<CameraFollow>().target = car.transform.GetChild(0);
         }
     }
