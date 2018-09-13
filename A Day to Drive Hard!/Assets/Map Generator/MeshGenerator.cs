@@ -37,7 +37,7 @@ public class MeshGenerator : MonoBehaviour {
             } else {
                 previousSquare = boundary[x - 1];
             }
-            
+
             Square nextSquare = boundary[x + 1];
             Square nextNextSquare = boundary[x + 2];
             if (nextSquare != null && nextNextSquare != null)
@@ -84,7 +84,7 @@ public class MeshGenerator : MonoBehaviour {
                          *         _|S|
                          *    _  _|N|
                          *  _|P||x|
-                         * |P|
+                         * |2|
                          * 
                          * At a point in a hill that is slightly flat.
                          * Will create a steep curve to smooth the transition between the curve from the previous square (P) to the next square (N)
@@ -98,7 +98,7 @@ public class MeshGenerator : MonoBehaviour {
                          * At the bottom of a hill starting to go up (First square to change elevation from flat terrain)
                          * Will curve the mesh from the start of the previous square (P) to the end of the current square (x).
                          */
-                        else 
+                        else
                         {
                             Square x2PreviousSquare;
                             if (x < 2)
@@ -122,14 +122,14 @@ public class MeshGenerator : MonoBehaviour {
                             }
                         }
                     }
-                     /*    _  _
-                     *   _|N||S|
-                     *  |x|^ 
-                     * When the elevation will only be going up for the next square
-                     */
+                    /*    _  _
+                    *   _|N||S|
+                    *  |x|^ 
+                    * When the elevation will only be going up for the next square
+                    */
                     else
                     {
-                        
+
                         /*       _  _
                          *     _|N||S|
                          *   _|x| -- You are here (x)
@@ -144,7 +144,7 @@ public class MeshGenerator : MonoBehaviour {
                             AssignCurveVertices(collisionPoints, nextSquare.bottomRight.position);
                             AssignSquareMesh(boundary[x].bottomLeft.position, boundary[x].bottomRight.position, new Vector2(boundary[x].x, 0), new Vector2(boundary[x].bottomRight.position.x, 0));
                             x++; //Skip over next boundary square as mesh has already been drawn for it
-                            
+
                         }
 
                         /*
@@ -158,13 +158,13 @@ public class MeshGenerator : MonoBehaviour {
                          *  Will curve the mesh from the start of the current square (x) to the end of the next square (N)
                          */
                         else
-                        { 
+                        {
                             collisionPoints = calculateCubicCurve(boundary[x].topLeft, new Vector2(boundary[x].topLeft.position.x + 1, boundary[x].topRight.position.y), new Vector2(nextSquare.topRight.position.x - 1, nextSquare.topRight.position.y), nextSquare.topRight);
                             AssignCurveVertices(collisionPoints, nextSquare.bottomRight.position);
                             AssignSquareMesh(boundary[x].bottomLeft.position, boundary[x].bottomRight.position, new Vector2(boundary[x].x, 0), new Vector2(boundary[x].bottomRight.position.x, 0));
                             x++;
                         }
-                        
+
                     }
 
                     sectionCollider.addPoint(collisionPoints);
@@ -222,7 +222,20 @@ public class MeshGenerator : MonoBehaviour {
                      */
                     else
                     {
-                        /*   _
+                        /*This statement contains two different possible scenarios and creates the mesh accordingly. 
+                         * 
+                         * First scenario uses a square 3 steps forward to determine the curve
+                         *   _
+                         *  |P|_
+                         *    |x|_  _
+                         *      |N||S|_
+                         *           |3|
+                         *    
+                         * There is a flat point in the hill
+                         * Will curve the mesh between the current square (x) and the end of the next square (S)
+                         * 
+                         * Second Scenario:
+                         *   _        
                          *  |P|_
                          *    |x|_  _
                          *      |N||S|
@@ -233,8 +246,26 @@ public class MeshGenerator : MonoBehaviour {
                         if (previousSquare.y > boundary[x].y)
                         {
                             AssignSquareMesh(boundary[x]);
-                            collisionPoints = calculateQuadraticCurve(boundary[x].topRight, new Vector2(nextSquare.topRight.position.x - 0.25f, nextSquare.topRight.position.y), nextNextSquare.topRight);
-                            AssignCurveVertices(collisionPoints, boundary[x].bottomRight.position);
+                            Square x3NextSquare;
+                            if (x > boundary.Length - 3)
+                            {
+                                x3NextSquare = nextNextSquare;
+                            }
+                            else
+                            {
+                                x3NextSquare = boundary[x + 3];
+                            }
+                            if (x3NextSquare.y < nextNextSquare.y)
+                            {
+                                collisionPoints = calculateQuadraticCurve(boundary[x].topRight, new Vector2(nextSquare.topRight.position.x - 0.2f, nextSquare.topRight.position.y), nextSquare.topRight);
+                                AssignCurveVertices(collisionPoints, nextSquare.topLeft.position);
+                            }
+                            else
+                            {
+                                
+                                collisionPoints = calculateQuadraticCurve(boundary[x].topRight, new Vector2(nextSquare.topRight.position.x - 0.25f, nextSquare.topRight.position.y), nextNextSquare.topRight);
+                                AssignCurveVertices(collisionPoints, boundary[x].bottomRight.position);
+                            }
                         }
                         /*
                         * When a small elevation change occurs that doesn't match the other criteria (Normally occurs if elevation changes by 1 square but rest is flat terrain)
@@ -272,6 +303,13 @@ public class MeshGenerator : MonoBehaviour {
             }
         }
 
+        //Add the last two squares to the section as the nextSquare variables don't apply to these last squares
+        for (int i = boundary.Length - 2; i < boundary.Length; i++)
+        {
+            AssignSquareMesh(boundary[i]);
+            AssignSquareMesh(boundary[i].bottomLeft.position, boundary[i].bottomRight.position, new Vector2(boundary[i].x, 0), new Vector2(boundary[i].bottomRight.position.x, 0));
+            GetComponent<SectionCollider>().addPoint(boundary[i].topRight.position);
+        }
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
@@ -280,12 +318,18 @@ public class MeshGenerator : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
+    /*
+     * Clear all mesh vertices, triangles & collider points associated with this object
+     */
     public void ClearMesh()
     {
         mesh.Clear();
         triangles.Clear();
         vertices.Clear();
+        vertIndex = 0;
+        GetComponent<SectionCollider>().removePoints();
     }
+
     void AssignTriangleMesh(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         vertices.Add(pointA);
@@ -410,6 +454,12 @@ public class MeshGenerator : MonoBehaviour {
                     boundary[x - 1].topRight = boundary[x].bottomLeft;
                     boundary[x - 1].bottomRight = new Node(new Vector3(boundary[x-1].x + 1, boundary[x-1].y, 0));
                 }
+            }
+
+            if (x == boundary.Length - 1)
+            {
+                boundary[x].topRight = new Node(new Vector3(boundary[x].x + 1, boundary[x].y + 1, 0));
+                boundary[x].bottomRight = new Node(new Vector3(boundary[x].x + 1, boundary[x].y, 0));
             }
         }
     }

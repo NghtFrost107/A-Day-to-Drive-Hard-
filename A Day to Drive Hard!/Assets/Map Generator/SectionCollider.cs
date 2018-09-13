@@ -6,7 +6,7 @@ public class SectionCollider : MonoBehaviour {
 
     public PolygonCollider2D mainCollider;
 
-    private List<Vector2> points;
+    List<Vector2> points;
 
     public SectionCollider()
     {
@@ -31,5 +31,10 @@ public class SectionCollider : MonoBehaviour {
         {
             points.Add(point);
         }
+    }
+
+    public void removePoints()
+    {
+        points.Clear();
     }
 }

@@ -9,27 +9,26 @@ public class MapGenerator : MonoBehaviour {
 
     int lowestPoint;
 
-    public Square[] boundarySquares;
+    public Square[] boundary;
 
     public string seed;
     public bool useRandomSeed;
 
     public void GenerateMap(Square connectingSquare)
     {
-        boundarySquares = new Square[width];
-
+        boundary = new Square[width];
 
         if (connectingSquare == null)
         {
             HeightGenerator(lowestPoint = 20);
-            connectingSquare = boundarySquares[0];
+            connectingSquare = boundary[0];
         } else
         {
             HeightGenerator(lowestPoint = connectingSquare.y);
         }
         Smoother();
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
-        meshGen.GenerateMesh(boundarySquares, lowestPoint, connectingSquare);
+        meshGen.GenerateMesh(boundary, lowestPoint, connectingSquare);
 
         SectionCollider addCollider = GetComponent<SectionCollider>();
         addCollider.addCollider();
@@ -49,7 +48,7 @@ public class MapGenerator : MonoBehaviour {
 
         int previousHeight = nextHeight;
         
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < boundary.Length; x++)
         {
             if(previousHeight == 0)
             {
@@ -58,13 +57,14 @@ public class MapGenerator : MonoBehaviour {
             else if(previousHeight == height - 1)
             {
                 nextHeight = previousHeight - 1;
+            }else if (x == 0 || x >= boundary.Length - 2)
+            {
+                nextHeight = previousHeight;
             }
             else
             {
                 if (targetHeight <= previousHeight)
-                {
-                    //int heightFromTarget = previousHeight - targetHeight;
-                    
+                {                    
                     if (x < width / 2)
                     {
                         nextHeight = random.Next(previousHeight - 1, previousHeight + 2);
@@ -80,8 +80,6 @@ public class MapGenerator : MonoBehaviour {
                     }
                 } else
                 {
-                    //int heightFromTarget = targetHeight - previousHeight;
-
                     if (x < width / 2)
                     {
                         nextHeight = random.Next(previousHeight - 1, previousHeight + 2);
@@ -102,24 +100,23 @@ public class MapGenerator : MonoBehaviour {
 
             }
 
-            boundarySquares[x] = new Square(x, nextHeight);
+            boundary[x] = new Square(x, nextHeight);
             previousHeight = nextHeight;
-        }
-        
+        }        
     }
 
     void Smoother()
     {
-        for (int i = 0; i < boundarySquares.Length - 2; i++)
+        for (int i = 0; i < boundary.Length - 2; i++)
         {
-            if (boundarySquares[i].y == boundarySquares[i + 2].y )
+            if (boundary[i].y == boundary[i + 2].y )
             {                
-                if (boundarySquares[i + 1].y < boundarySquares[i].y)
+                if (boundary[i + 1].y < boundary[i].y)
                 {
-                    boundarySquares[i + 1].y += 1;
-                } else if (boundarySquares[i + 1].y > boundarySquares[i].y)
+                    boundary[i + 1].y += 1;
+                } else if (boundary[i + 1].y > boundary[i].y)
                 {
-                    boundarySquares[i + 1].y -= 1;
+                    boundary[i + 1].y -= 1;
                 }
 
             }
