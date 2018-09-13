@@ -11,6 +11,7 @@ public class MeshGenerator : MonoBehaviour {
 
     int vertIndex = 0;
 
+    //Generates the mesh for the terrain
     public void GenerateMesh(Square[] boundary, int lowestPoint, Square connectingSquare)
     {
         AssignNodes(boundary);
@@ -34,6 +35,7 @@ public class MeshGenerator : MonoBehaviour {
             Square previousSquare;
             if (x == 0) {
                 previousSquare = connectingSquare;
+                connectingSquare.topLeft.position.x = -1; //topleft is the only node accessed that belongs to the previous section with its x value being the last value before the section ends. Setting it to -1 fixes any issues that occur with collision points
             } else {
                 previousSquare = boundary[x - 1];
             }
@@ -330,6 +332,9 @@ public class MeshGenerator : MonoBehaviour {
         GetComponent<SectionCollider>().removePoints();
     }
 
+    /*
+     * Creates a simple triangle mesh from 3 Vector3 points
+     */
     void AssignTriangleMesh(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         vertices.Add(pointA);
@@ -374,11 +379,16 @@ public class MeshGenerator : MonoBehaviour {
 
     }
 
+    /*
+     * Creates a curved mesh shape. Using an array of Vector2 points it creates triangles from each point in the curve to an anchor point directly visible by all points.
+     * 
+     * Any kind of simple curve shape (Quadratic, Cubic) can be drawn using this method provided that the anchor point is visible by all points in the curve.
+     */
     void AssignCurveVertices(Vector2[] points, Vector2 anchor)
     {
         for(int i = 0; i < points.Length; i++)
         {
-            vertices.Add(points[i]);
+            vertices.Add(points[i]); //Add each point to the vertices
         }
         vertices.Add(anchor);
 
@@ -386,21 +396,31 @@ public class MeshGenerator : MonoBehaviour {
         {
             triangles.Add(vertIndex + i);
             triangles.Add(vertIndex + i + 1);
-            triangles.Add(vertIndex + points.Length);
+            triangles.Add(vertIndex + points.Length); //Last point for all triangles in the mesh is the anchor point, which was the last vertice put into the vertices array
         }
-        vertIndex += points.Length + 1;
+        vertIndex += points.Length + 1; 
     }
 
+    /*
+     * Creates a cubic curve from the start node to the end node using two reference points to create the curve
+     * 
+     * Returns a Vector2 array containing all points in the cubic curve
+     */
     Vector2[] calculateCubicCurve(Node curveStart, Vector2 curvePoint1, Vector2 curvePoint2, Node curveEnd)
     {
         List<Vector2> points = new List<Vector2>();
-        for (float i = 0; i <= 1.01f; i += 0.1f)
+        for (float i = 0; i <= 1.01f; i += 0.1f) //Changing the i increment value will decrease the smoothness of the terrain but improve performance (>0.6 causes missing meshes making terrain look broken)
         {
             points.Add(CubicCurve(curveStart.position,curvePoint1, curvePoint2, curveEnd.position,i));
         }
         return points.ToArray();
     }
 
+    /*
+     * Creates a quadratic curve from the start node to the end node using one reference point to create the curve
+     * 
+     * Returns a Vector2 array containing all points in the cubic curve
+     */
     Vector2[] calculateQuadraticCurve(Node start, Vector2 curvePoint, Node end)
     {
         List<Vector2> points = new List<Vector2>();
@@ -412,8 +432,8 @@ public class MeshGenerator : MonoBehaviour {
         return points.ToArray();
     }
 
-    /**
-     * Allows for the creation of a cubic curve using 4 points of reference
+    /*
+     * Allows for the creation of a cubic curve using 2 points of reference + start and end points. This method constantly calls the quadratic and lerp function to establish the points
      */
     Vector2 CubicCurve(Vector2 start, Vector2 curvePoint1, Vector2 curvePoint2, Vector2 end, float pointPosition)
     {
@@ -421,17 +441,37 @@ public class MeshGenerator : MonoBehaviour {
         Vector2 p1 = QuadraticCurve(curvePoint1, curvePoint2, end, pointPosition);
         return Lerp(p0, p1, pointPosition);
     }
+
+    /* 
+     * Allows for the creation of a quadratic curve using 1 point of reference + start and end points. This method constantly calls the lerp function to establish the points between the lines
+     */
     Vector2 QuadraticCurve(Vector2 start, Vector2 curvePoint, Vector2 end, float pointPosition)
     {
         Vector2 p0 = Lerp(start, curvePoint, pointPosition);
         Vector2 p1 = Lerp(curvePoint, end, pointPosition);
         return Lerp(p0, p1, pointPosition);
     }
+
+    /*
+     * Calculates a point between two points in a straight line depending on the pointPosition value 
+     * 
+     * Pointposition is always a decimal value between 0 & 1 (0 Being start point, 1 being end. 0 < PointPosition < 1
+     */
     Vector2 Lerp(Vector2 start, Vector2 end, float pointPosition)
     {
         return start + (end - start) * pointPosition;
     }
 
+    /*
+     * Assigns all the nodes for the squares passed into it.
+     * 
+     * Some squares may share nodes as their points are in the same place
+     *  _
+     * |x|_ 
+     *   |N|
+     *   
+     * e.g. Bottom right node of x is shared with the top left node of N. They both reference the same node object in their respective square objects.
+     */
     private void AssignNodes(Square[] boundary)
     {
         for (int x = 0; x < boundary.Length; x++)

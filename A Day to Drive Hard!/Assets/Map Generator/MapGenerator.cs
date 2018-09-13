@@ -14,6 +14,9 @@ public class MapGenerator : MonoBehaviour {
     public string seed;
     public bool useRandomSeed;
 
+    /*
+     * Handles the creation of the terrain. Including determining the terrain shape, creating meshes and applying collision points
+     */
     public void GenerateMap(Square connectingSquare)
     {
         boundary = new Square[width];
@@ -35,6 +38,11 @@ public class MapGenerator : MonoBehaviour {
 
     }
 
+    /*
+     * Determines the height for each boundary square that makes up the surface of the terrain
+     * 
+     * Takes into account the previous squares height to determine and appropriate height for the next square
+     */
     void HeightGenerator(int lowestPoint)
     {
         if (useRandomSeed)
@@ -104,7 +112,10 @@ public class MapGenerator : MonoBehaviour {
             previousHeight = nextHeight;
         }        
     }
-
+    
+    /*
+     * Smooths the terrain to get rid of small jagged points
+     */
     void Smoother()
     {
         for (int i = 0; i < boundary.Length - 2; i++)
