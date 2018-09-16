@@ -484,7 +484,7 @@ MonoBehaviour:
   rearWheel: {fileID: 4588520164305876}
   frontWheel: {fileID: 4646728327121888}
   rb2d: {fileID: 0}
-  accelerateIsPressed: 0
+  decelerateIsPressed: 0
   brakeIsPressed: 0
 --- !u!114 &114469996066710562
 MonoBehaviour:
