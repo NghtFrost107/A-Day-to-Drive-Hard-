@@ -11,7 +11,7 @@ public class WheelJointCarMovement : MonoBehaviour {
     //reference tot he motor joint
     JointMotor2D motorBack;
     //horizontal movement keyboard input
-    float dir = 0f;
+    public float dir = 0f;
     //input for rotation of the car
     float torqueDir = 0f;
     //max fwd speed which the car can move at
@@ -53,7 +53,7 @@ public class WheelJointCarMovement : MonoBehaviour {
         torqueDir = Input.GetAxis("Horizontal");
         if (torqueDir != 0)
         {
-            rb2d.AddTorque(3 * Mathf.PI * torqueDir, ForceMode2D.Force);
+            rb2d.AddTorque(-3 * Mathf.PI * torqueDir, ForceMode2D.Force);
         }
         else
         {

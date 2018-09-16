@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 235441217530468532}
   - component: {fileID: 235172897163850730}
   - component: {fileID: 114490480434336328}
+  - component: {fileID: 114362790727855204}
   - component: {fileID: 82175578844851802}
   - component: {fileID: 114469996066710562}
   m_Layer: 0
@@ -467,6 +468,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114362790727855204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255621957579898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b2cc80b9ad0a846a62ac24a6f1059e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerOfMass: {fileID: 4473289046923896}
+  dir: 0
+  rearWheel: {fileID: 4588520164305876}
+  frontWheel: {fileID: 4646728327121888}
+  rb2d: {fileID: 0}
+  accelerateIsPressed: 0
+  brakeIsPressed: 0
 --- !u!114 &114469996066710562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,15 +503,16 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255621957579898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05a6638f22a6a8a46af616a07a472985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 4473289046923896}
+  dir: 0
   rearWheel: {fileID: 4588520164305876}
   frontWheel: {fileID: 4646728327121888}
-  rb2d: {fileID: 50835071332830308}
+  rb2d: {fileID: 0}
 --- !u!212 &212338386525461336
 SpriteRenderer:
   m_ObjectHideFlags: 1

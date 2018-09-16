@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fa997860093ba4e8a0469dca5b14a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 1349641568371446, guid: 305f07bc6222ddb4d910ba49ca725e37, type: 2}
+  car: {fileID: 1349641568371446, guid: 87c64120ba66f9b46b4809ca121e2f07, type: 2}
   carCamera: {fileID: 351162774}
 --- !u!4 &148212177
 Transform:
