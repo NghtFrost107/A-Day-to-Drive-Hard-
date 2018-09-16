@@ -23,7 +23,7 @@ public class GenerationHandler : MonoBehaviour {
 
         if (car != null)
         {
-            car = Instantiate(car, section1.boundary[10].topRight.position + new Vector3(2, 3, 0), Quaternion.identity);
+            car.transform.position = section1.boundary[10].topRight.position + new Vector3(2, 3, 0);
             //car = Instantiate(car, new Vector3(5,-13,0), Quaternion.identity); //- USE FOR CONTINUOUS GENERATION TESTING PURPOSES
             carCamera.GetComponent<CameraFollow>().target = car.transform.GetChild(0);
         }
