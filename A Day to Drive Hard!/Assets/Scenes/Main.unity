@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fa997860093ba4e8a0469dca5b14a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 1337976155}
+  car: {fileID: 1318049673}
   carCamera: {fileID: 351162774}
 --- !u!4 &148212177
 Transform:
@@ -902,7 +902,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4143539558340222, guid: d3580d8b448c47442a176f813c3d2efd,
     type: 2}
   m_PrefabInternal: {fileID: 1490148983}
---- !u!1 &1337976155 stripped
+--- !u!1 &1318049673 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1349641568371446, guid: 87c64120ba66f9b46b4809ca121e2f07,
     type: 2}
@@ -1328,8 +1328,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85, y: -45}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 155, y: -45}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017200032
 MonoBehaviour:
