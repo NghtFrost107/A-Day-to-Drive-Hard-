@@ -86,7 +86,7 @@ public class WheelJointCarMovementMobile : MonoBehaviour
         //torqueDir = Input.GetAxis("Horizontal");
         if (torqueDir != 0)
         {
-            rb2d.AddTorque(-15 * Mathf.PI * torqueDir, ForceMode2D.Force);
+            rb2d.AddTorque(-10 * Mathf.PI * torqueDir, ForceMode2D.Force);
         }
         else
         {
