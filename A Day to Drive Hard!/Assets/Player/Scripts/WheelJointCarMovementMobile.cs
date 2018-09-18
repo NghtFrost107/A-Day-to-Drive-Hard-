@@ -34,7 +34,7 @@ public class WheelJointCarMovementMobile : MonoBehaviour
     public Transform frontWheel;
     public Rigidbody2D rb2d;
 
-    private bool accelerateIsPressed;
+    public bool accelerateIsPressed;
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
