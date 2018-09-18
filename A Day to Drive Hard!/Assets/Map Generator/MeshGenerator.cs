@@ -406,7 +406,7 @@ public class MeshGenerator : MonoBehaviour {
      * 
      * Returns a Vector2 array containing all points in the cubic curve
      */
-    Vector2[] calculateCubicCurve(Node curveStart, Vector2 curvePoint1, Vector2 curvePoint2, Node curveEnd)
+    public Vector2[] calculateCubicCurve(Node curveStart, Vector2 curvePoint1, Vector2 curvePoint2, Node curveEnd)
     {
         List<Vector2> points = new List<Vector2>();
         for (float i = 0; i <= 1.01f; i += 0.1f) //Changing the i increment value will decrease the smoothness of the terrain but improve performance (>0.6 causes missing meshes making terrain look broken)
@@ -421,7 +421,7 @@ public class MeshGenerator : MonoBehaviour {
      * 
      * Returns a Vector2 array containing all points in the cubic curve
      */
-    Vector2[] calculateQuadraticCurve(Node start, Vector2 curvePoint, Node end)
+    public Vector2[] calculateQuadraticCurve(Node start, Vector2 curvePoint, Node end)
     {
         List<Vector2> points = new List<Vector2>();
 
@@ -435,7 +435,7 @@ public class MeshGenerator : MonoBehaviour {
     /*
      * Allows for the creation of a cubic curve using 2 points of reference + start and end points. This method constantly calls the quadratic and lerp function to establish the points
      */
-    Vector2 CubicCurve(Vector2 start, Vector2 curvePoint1, Vector2 curvePoint2, Vector2 end, float pointPosition)
+    public Vector2 CubicCurve(Vector2 start, Vector2 curvePoint1, Vector2 curvePoint2, Vector2 end, float pointPosition)
     {
         Vector2 p0 = QuadraticCurve(start, curvePoint1, curvePoint2, pointPosition);
         Vector2 p1 = QuadraticCurve(curvePoint1, curvePoint2, end, pointPosition);
@@ -445,7 +445,7 @@ public class MeshGenerator : MonoBehaviour {
     /* 
      * Allows for the creation of a quadratic curve using 1 point of reference + start and end points. This method constantly calls the lerp function to establish the points between the lines
      */
-    Vector2 QuadraticCurve(Vector2 start, Vector2 curvePoint, Vector2 end, float pointPosition)
+    public Vector2 QuadraticCurve(Vector2 start, Vector2 curvePoint, Vector2 end, float pointPosition)
     {
         Vector2 p0 = Lerp(start, curvePoint, pointPosition);
         Vector2 p1 = Lerp(curvePoint, end, pointPosition);
@@ -457,7 +457,7 @@ public class MeshGenerator : MonoBehaviour {
      * 
      * Pointposition is always a decimal value between 0 & 1 (0 Being start point, 1 being end. 0 < PointPosition < 1
      */
-    Vector2 Lerp(Vector2 start, Vector2 end, float pointPosition)
+    public Vector2 Lerp(Vector2 start, Vector2 end, float pointPosition)
     {
         return start + (end - start) * pointPosition;
     }
