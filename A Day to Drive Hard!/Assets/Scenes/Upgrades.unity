@@ -2012,7 +2012,7 @@ RectTransform:
   m_Father: {fileID: 474809272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.43841547}
+  m_AnchorMin: {x: 0, y: 0.4385473}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -2384,6 +2384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthText: {fileID: 2141917860}
+  costText: {fileID: 1624217211}
 --- !u!1 &1285971996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,7 +2773,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1067312602}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.56158453
+  m_Size: 0.5614527
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2811,6 +2813,81 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555841244}
+  m_CullTransparentMesh: 0
+--- !u!1 &1624217209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624217210}
+  - component: {fileID: 1624217212}
+  - component: {fileID: 1624217211}
+  m_Layer: 5
+  m_Name: costText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1624217210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624217209}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
+  m_Children: []
+  m_Father: {fileID: 1651724002}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 176.00002, y: -34.79998}
+  m_SizeDelta: {x: 407, y: 69.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1624217211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624217209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Cost: 100'
+--- !u!222 &1624217212
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624217209}
   m_CullTransparentMesh: 0
 --- !u!1 &1644170603
 GameObject:
@@ -2886,6 +2963,7 @@ GameObject:
   - component: {fileID: 1651724005}
   - component: {fileID: 1651724004}
   - component: {fileID: 1651724003}
+  - component: {fileID: 1651724007}
   m_Layer: 5
   m_Name: Health Upgrade
   m_TagString: Untagged
@@ -2905,6 +2983,7 @@ RectTransform:
   m_Children:
   - {fileID: 2071833113}
   - {fileID: 2141917859}
+  - {fileID: 1624217210}
   m_Father: {fileID: 1691487330}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2971,12 +3050,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 1651724007}
+        m_MethodName: UpgradeHealth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3018,6 +3097,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1651724001}
   m_CullTransparentMesh: 0
+--- !u!114 &1651724007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1651724001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 2141917860}
+  costText: {fileID: 1624217211}
 --- !u!1 &1666917233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,7 +3226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 587, y: -626.7999}
+  m_AnchoredPosition: {x: 587, y: -626.8}
   m_SizeDelta: {x: 1174, y: 1253.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691487331
@@ -4012,7 +4104,7 @@ GameObject:
   - component: {fileID: 2141917861}
   - component: {fileID: 2141917860}
   m_Layer: 5
-  m_Name: Description
+  m_Name: healthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4033,8 +4125,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 194.3, y: 6.5}
-  m_SizeDelta: {x: 785.3, y: 126.2}
+  m_AnchoredPosition: {x: 176, y: 34.8}
+  m_SizeDelta: {x: 407, y: 69.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141917860
 MonoBehaviour:
@@ -4068,7 +4160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increases the amount of health the player has
+  m_Text: 'Health: 3'
 --- !u!222 &2141917861
 CanvasRenderer:
   m_ObjectHideFlags: 0
