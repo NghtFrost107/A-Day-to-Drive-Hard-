@@ -88,6 +88,19 @@ public class CombinedMovementScript : MonoBehaviour
         {
             torqueDir = Input.GetAxis("Horizontal");
             dir = Input.GetAxis("Horizontal");
+
+            if (Input.GetKey(KeyCode.Space) && motorBack.motorSpeed > 0)
+            {
+                motorBack.motorSpeed = Mathf.Clamp(motorBack.motorSpeed - brakeSpeed * Time.deltaTime, 0, maxBwdSpeed);
+                dir = 0;
+                torqueDir = 0;
+            }
+            else if (Input.GetKey(KeyCode.Space) && motorBack.motorSpeed < 0)
+            {
+                motorBack.motorSpeed = Mathf.Clamp(motorBack.motorSpeed + brakeSpeed * Time.deltaTime, maxFwdSpeed, 0);
+                dir = 0;
+                torqueDir = 0;
+            }
         }
 
 
@@ -107,12 +120,7 @@ public class CombinedMovementScript : MonoBehaviour
         //convert the slope values greater than 180 to a negative value so as to add motor speed 
         //based on the slope angle
         if (slope >= 180)
-            slope = slope - 360;
-
-        //horizontal movement input. same as torqueDir. Could have avoided it, but decided to 
-        //use it since some of you might want to use the Vertical axis for the torqueDir
-
-        
+            slope = slope - 360;        
 
         if (dir != 0)
             //add speed accordingly
@@ -131,16 +139,6 @@ public class CombinedMovementScript : MonoBehaviour
             motorBack.motorSpeed = Mathf.Clamp(motorBack.motorSpeed - (-decelerationRate - gravity * Mathf.Sin((slope * Mathf.PI) / 180) * 80) * Time.deltaTime, 0, maxBwdSpeed);
         }
 
-        //apply brakes to the car
-        //if (brakeIsPressed && motorBack.motorSpeed > 0)
-        //{
-        //    motorBack.motorSpeed = Mathf.Clamp(motorBack.motorSpeed - brakeSpeed * Time.deltaTime, 0, maxBwdSpeed);
-        //}
-        //else if (brakeIsPressed && motorBack.motorSpeed < 0)
-        //{
-        //    motorBack.motorSpeed = Mathf.Clamp(motorBack.motorSpeed + brakeSpeed * Time.deltaTime, maxFwdSpeed, 0);
-        //}
-        //connect the motor to the joint
         wheelJoints[0].motor = motorBack;
         wheelJoints[1].motor = motorBack;
     }
