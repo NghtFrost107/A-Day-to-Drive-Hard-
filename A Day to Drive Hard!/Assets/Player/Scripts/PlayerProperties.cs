@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerProperites : MonoBehaviour {
+public class PlayerProperties : MonoBehaviour {
     public int playerHealth = 3;
     public Text playerHealthCounter;
     public int playerCoinBalance = 100;
@@ -19,9 +19,10 @@ public class PlayerProperites : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        while (playerHealth <= 0)
+        if (playerHealth <= 0)
         {
-            //endgame here
+            Debug.Log("Player has run out of lives!");
+            //TODO: Add endgame logic whe the player runs out of lives
         }
 	}
 

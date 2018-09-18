@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public PlayerProperites playerProperties;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public PlayerProperties playerProperties;
 
     // What initially happens when the player collides with an object
     private void OnTriggerEnter2D(Collider2D other)
