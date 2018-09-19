@@ -34,7 +34,7 @@ public class UpgradeMenu : MonoBehaviour
     }
 
     //Update the savestate file with the new values
-    void UpdateSaveState()
+    public void UpdateSaveState()
     {
         string savePath = Application.dataPath + @"/SaveState.txt";
         string[] saveData = { playerHealth.ToString(), playerCoinBalance.ToString() };
