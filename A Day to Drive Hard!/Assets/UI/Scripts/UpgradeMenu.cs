@@ -13,15 +13,34 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField]
     private Text costText;
 
+    [SerializeField]
+    private Text playerCoinsText;
+
+
+    void grabHealth()
+    {
+        
+
+
+    }
     void UpdateValues()
     {
         healthText.text = "Health: " + stats.playerHealth.ToString();
+        playerCoinsText.text = "Coins: " + stats.playerCoinBalance.ToString();
+    }
+
+    void UpgradeCost(int upgradeCost)
+    {
+        stats.playerCoinBalance = stats.playerCoinBalance - upgradeCost;
     }
 
     public void UpgradeHealth()
     {
         //get the player stats for health and add 1
-        stats.playerHealth = stats.playerHealth + 1;
+        PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
+
+        player.playerHealth = player.playerHealth + 1;
+        UpgradeCost(100);
         UpdateValues();
     }
 
