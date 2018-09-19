@@ -1255,10 +1255,10 @@ RectTransform:
   m_Father: {fileID: 1280770128}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -668, y: 415.8}
-  m_SizeDelta: {x: 281.9, y: 65.6}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 253, y: -66}
+  m_SizeDelta: {x: 281.90002, y: 65.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &758262962
 GameObject:
@@ -2087,7 +2087,7 @@ RectTransform:
   m_Father: {fileID: 474809272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.4380648}
+  m_AnchorMin: {x: 0, y: 0.14720945}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -2460,9 +2460,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
   healthText: {fileID: 2141917860}
   costText: {fileID: 1624217211}
-  playerCoinsText: {fileID: 0}
+  playerCoinsText: {fileID: 609772401}
 --- !u!1 &1285971996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,7 +2851,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1067312602}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5619351
+  m_Size: 0.85279065
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3185,6 +3186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
   healthText: {fileID: 2141917860}
   costText: {fileID: 1624217211}
   playerCoinsText: {fileID: 609772401}

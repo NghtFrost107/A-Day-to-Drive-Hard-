@@ -2727,10 +2727,10 @@ RectTransform:
   m_Father: {fileID: 810701913}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 356.8, y: 176.5}
-  m_SizeDelta: {x: 84.7, y: 87.7}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -47.650024, y: -78.850006}
+  m_SizeDelta: {x: 84.70001, y: 87.70001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2029815761
 MonoBehaviour:
@@ -2867,6 +2867,16 @@ Prefab:
       propertyPath: playerCoinCounter
       value: 
       objectReference: {fileID: 641732122}
+    - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
+        type: 2}
+      propertyPath: saveState
+      value: 
+      objectReference: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
+    - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
+        type: 2}
+      propertyPath: playerInvincible
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c64120ba66f9b46b4809ca121e2f07, type: 2}
   m_IsPrefabAsset: 0

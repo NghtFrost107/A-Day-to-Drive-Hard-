@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
-    private PlayerProperties stats;
+    public TextAsset saveState;
+    private int playerHealth;
+    private int playerCoinBalance;
 
     [SerializeField]
     private Text healthText;
@@ -17,30 +19,46 @@ public class UpgradeMenu : MonoBehaviour
     private Text playerCoinsText;
 
 
-    void grabHealth()
+    private void Start()
     {
-        
-
-
+        ReadSaveState();
+        UpdateValues();
     }
+
+    //Read the savestate to find out how much health and how many coins the player has
+    void ReadSaveState()
+    {
+        string[] saveData = saveState.text.Split('\n');
+        int.TryParse(saveData[0], out playerHealth);
+        int.TryParse(saveData[1], out playerCoinBalance);
+    }
+
+    //Update the savestate file with the new values
+    void UpdateSaveState()
+    {
+        string savePath = Application.dataPath + @"/SaveState.txt";
+        string[] saveData = { playerHealth.ToString(), playerCoinBalance.ToString() };
+        System.IO.File.WriteAllLines(savePath, saveData);
+    }
+    
+    //Update the values on the HUD
     void UpdateValues()
     {
-        healthText.text = "Health: " + stats.playerHealth.ToString();
-        playerCoinsText.text = "Coins: " + stats.playerCoinBalance.ToString();
+        healthText.text = "Health: " + playerHealth.ToString();
+        playerCoinsText.text = "Coins: " + playerCoinBalance.ToString();
     }
 
-    void UpgradeCost(int upgradeCost)
+    void UpdateCoinBalance(int upgradeCost)
     {
-        stats.playerCoinBalance = stats.playerCoinBalance - upgradeCost;
+        playerCoinBalance = playerCoinBalance - upgradeCost;
     }
 
     public void UpgradeHealth()
     {
         //get the player stats for health and add 1
         PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
-
-        player.playerHealth = player.playerHealth + 1;
-        UpgradeCost(100);
+        playerHealth++;
+        UpdateCoinBalance(100);
         UpdateValues();
     }
 
@@ -53,7 +71,5 @@ public class UpgradeMenu : MonoBehaviour
     {
         //get player stats for the grip and increase
     }
-
-
 
 }
