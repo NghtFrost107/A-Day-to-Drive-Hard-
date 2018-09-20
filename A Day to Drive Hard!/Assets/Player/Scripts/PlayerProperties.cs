@@ -84,36 +84,36 @@ public class PlayerProperties : MonoBehaviour {
     // Health Counter
     void SetHealthCounter()
     {
-        playerHealthCounter.text = "Health: " + currentPlayerHealth.ToString();
+        playerHealthCounter.text = "Health: " + currentPlayerHealth;
     }
 
     // Coin Counter
     void SetCoinCounter()
     {
-        playerCoinCounter.text = "Coins: " + playerCoinBalance.ToString();
+        playerCoinCounter.text = "Coins: " + playerCoinBalance;
     }
 
     // Get Health
-    public int getPlayerHealth()
-    {
-        return currentPlayerHealth;
-    }
+    //public int getPlayerHealth()
+    //{
+    //    return currentPlayerHealth;
+    //}
 
     // Set Health
-    public void setPlayerHealth(int i)
-    {
-        currentPlayerHealth = i;
-    }
+    //public void setPlayerHealth(int i)
+    //{
+    //    currentPlayerHealth = i;
+    //}
 
     // Get Coin Balance
-    public int getPlayerCoinBalance()
-    {
-        return playerCoinBalance;
-    }
+    //public int getPlayerCoinBalance()
+    //{
+    //    return playerCoinBalance;
+    //}
 
     // Set Coin Balance
-    public void setPlayerCoinBalance(int i)
-    {
-        playerCoinBalance = i;
-    }
+    //public void setPlayerCoinBalance(int i)
+    //{
+    //    playerCoinBalance = i;
+    //}
 }

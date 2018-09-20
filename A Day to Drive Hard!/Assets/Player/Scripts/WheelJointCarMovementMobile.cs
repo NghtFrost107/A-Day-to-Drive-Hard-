@@ -38,17 +38,20 @@ public class WheelJointCarMovementMobile : MonoBehaviour
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
+    // Jadan
     //public TextAsset saveState;
     //int carSpeed;
+    // Jadan End
 
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
 
+        // Jadan
         //Read in the max speed of the car
         //ReadSaveState();
-        
+        // Jadan End
         
         //set the center of mass of the car
         rb2d.centerOfMass = centerOfMass.transform.localPosition;
@@ -175,9 +178,11 @@ public class WheelJointCarMovementMobile : MonoBehaviour
         brakeIsPressed = false;
     }
 
+    // Jadan
    /* void ReadSaveState()
     {
         string[] saveData = saveState.text.Split('\n');
         int.TryParse(saveData[2], out carSpeed);
     }*/
+    // Jadan End
 }
