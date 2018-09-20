@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 public class PlayerProperties : MonoBehaviour {
@@ -11,12 +12,16 @@ public class PlayerProperties : MonoBehaviour {
     public Text playerCoinCounter;
     public bool playerInvincible;
     public TextAsset saveState;
+    public Text gameOverMessage;
 
 	// Use this for initialization
 	void Start () {
         ReadSaveState();
         SetHealthCounter();
         SetCoinCounter();
+
+        //Setting the gameover message to blank so it appears hidden untill the player runs out of lives
+        gameOverMessage.text = "";
 	}
 	
 	// Update is called once per frame
@@ -24,7 +29,8 @@ public class PlayerProperties : MonoBehaviour {
         if (currentPlayerHealth <= 0)
         {
             Debug.Log("Player has run out of lives!");
-            //TODO: Add endgame logic whe the player runs out of lives
+            gameOverMessage.text = "Out of Lives!\n" + "Game Over!\n" + "Returning To Main Menu!";
+            Invoke("ReturnToMenu", 5);
         }
 	}
 
@@ -56,6 +62,12 @@ public class PlayerProperties : MonoBehaviour {
         string[] saveData = saveState.text.Split('\n');
         int.TryParse(saveData[0], out currentPlayerHealth);
         int.TryParse(saveData[1], out playerCoinBalance);
+    }
+
+    //Returns Player to main menu
+    void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
     void PlayerSetDamageable()
