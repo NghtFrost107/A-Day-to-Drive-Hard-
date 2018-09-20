@@ -8,6 +8,11 @@ public class UpgradeMenu : MonoBehaviour
     public TextAsset saveState;
     private int playerHealth;
     private int playerCoinBalance;
+    private int playerSpeed;
+
+    [SerializeField]
+    private float speedMultiplier = 1.2f;
+
 
     [SerializeField]
     private Text healthText;
@@ -16,13 +21,17 @@ public class UpgradeMenu : MonoBehaviour
     private Text costText;
 
     [SerializeField]
+    private Text speedText;
+
+    [SerializeField]
     private Text playerCoinsText;
 
 
     private void Start()
     {
         ReadSaveState();
-        UpdateValues();
+        UpdateValuesHealth();
+        UpdateValuesSpeed();
     }
 
     //Read the savestate to find out how much health and how many coins the player has
@@ -31,20 +40,27 @@ public class UpgradeMenu : MonoBehaviour
         string[] saveData = saveState.text.Split('\n');
         int.TryParse(saveData[0], out playerHealth);
         int.TryParse(saveData[1], out playerCoinBalance);
+        int.TryParse(saveData[2], out playerSpeed);
     }
 
     //Update the savestate file with the new values
     public void UpdateSaveState()
     {
         string savePath = Application.dataPath + @"/SaveState.txt";
-        string[] saveData = { playerHealth.ToString(), playerCoinBalance.ToString() };
+        string[] saveData = { playerHealth.ToString(), playerCoinBalance.ToString(),playerSpeed.ToString() };
         System.IO.File.WriteAllLines(savePath, saveData);
     }
     
     //Update the values on the HUD
-    void UpdateValues()
+    void UpdateValuesHealth()
     {
         healthText.text = "Health: " + playerHealth.ToString();
+        playerCoinsText.text = "Coins: " + playerCoinBalance.ToString();
+    }
+
+    void UpdateValuesSpeed()
+    {
+        speedText.text = "Speed: " + playerSpeed.ToString();
         playerCoinsText.text = "Coins: " + playerCoinBalance.ToString();
     }
 
@@ -59,12 +75,18 @@ public class UpgradeMenu : MonoBehaviour
         PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
         playerHealth++;
         UpdateCoinBalance(100);
-        UpdateValues();
+        UpdateValuesHealth();
     }
 
     public void UpgradeSpeed()
     {
         //get player speed and add to the speed to increase
+        PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
+        playerSpeed = (int)(playerSpeed * speedMultiplier);
+        UpdateCoinBalance(75);
+        UpdateValuesSpeed();
+
+
     }
 
     public void UpgradeGrip()

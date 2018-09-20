@@ -38,17 +38,26 @@ public class WheelJointCarMovementMobile : MonoBehaviour
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
+    //public TextAsset saveState;
+    //int carSpeed;
+
     // Use this for initialization
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
 
+        //Read in the max speed of the car
+        //ReadSaveState();
+        
+        
         //set the center of mass of the car
         rb2d.centerOfMass = centerOfMass.transform.localPosition;
         //get the wheeljoint components
         wheelJoints = gameObject.GetComponents<WheelJoint2D>();
         //get the reference to the motor of rear wheels joint
         motorBack = wheelJoints[0].motor;
+
+
     }
 
     void Update()
@@ -165,4 +174,10 @@ public class WheelJointCarMovementMobile : MonoBehaviour
     {
         brakeIsPressed = false;
     }
+
+   /* void ReadSaveState()
+    {
+        string[] saveData = saveState.text.Split('\n');
+        int.TryParse(saveData[2], out carSpeed);
+    }*/
 }
