@@ -10,7 +10,7 @@ public class MeshGeneratorTest {
     [Test]
     public void MeshGenerator_Lerp_ValidValue() {
 
-        Vector2 expected = new Vector2(0.5f, 0.5f);
+        Vector2 expected = new Vector2(0.4f, 0.5f);
         Vector2 actual = meshGeneratorTest.Lerp(new Vector2(0, 0), new Vector2(1, 1), 0.5f);
 
         Assert.AreEqual(expected, actual);

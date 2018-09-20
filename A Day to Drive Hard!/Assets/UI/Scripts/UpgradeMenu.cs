@@ -8,7 +8,7 @@ public class UpgradeMenu : MonoBehaviour
     public TextAsset saveState;
     private int playerHealth;
     private int playerCoinBalance;
-    private int playerSpeed;
+    private int playerSpeed = 8000;
 
     [SerializeField]
     private float speedMultiplier = 1.2f;
