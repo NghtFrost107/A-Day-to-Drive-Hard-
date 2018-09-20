@@ -8,10 +8,14 @@ using System.IO;
 public class PlayerProperties : MonoBehaviour {
     public static int currentPlayerHealth;
     public Text playerHealthCounter;
+
     public static int playerCoinBalance;
     public Text playerCoinCounter;
+
     public bool playerInvincible;
+
     public TextAsset saveState;
+
     public Text gameOverMessage;
 
 	// Use this for initialization
@@ -47,6 +51,7 @@ public class PlayerProperties : MonoBehaviour {
         Invoke("PlayerSetDamageable", 3); 
     }
 
+    // What to do if the player has collided with a Pickup
     public void PickupCollision(Collider2D col)
     {
         playerCoinBalance++;
@@ -70,36 +75,43 @@ public class PlayerProperties : MonoBehaviour {
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
+    // Invincibility Bool
     void PlayerSetDamageable()
     {
         playerInvincible = false;
     }
 
+    // Health Counter
     void SetHealthCounter()
     {
         playerHealthCounter.text = "Health: " + currentPlayerHealth.ToString();
     }
 
+    // Coin Counter
     void SetCoinCounter()
     {
         playerCoinCounter.text = "Coins: " + playerCoinBalance.ToString();
     }
 
+    // Get Health
     public int getPlayerHealth()
     {
         return currentPlayerHealth;
     }
 
+    // Set Health
     public void setPlayerHealth(int i)
     {
         currentPlayerHealth = i;
     }
 
+    // Get Coin Balance
     public int getPlayerCoinBalance()
     {
         return playerCoinBalance;
     }
 
+    // Set Coin Balance
     public void setPlayerCoinBalance(int i)
     {
         playerCoinBalance = i;

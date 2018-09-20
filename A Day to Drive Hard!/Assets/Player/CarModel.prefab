@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4730761265859964}
   - component: {fileID: 114654855927269146}
+  - component: {fileID: 114746101164103226}
   - component: {fileID: 212768065238267784}
   - component: {fileID: 60697853686571492}
   - component: {fileID: 50408297396293770}
@@ -61,7 +62,6 @@ GameObject:
   - component: {fileID: 235172897163850730}
   - component: {fileID: 82175578844851802}
   - component: {fileID: 114469996066710562}
-  - component: {fileID: 114746101164103226}
   m_Layer: 0
   m_Name: CarBody
   m_TagString: Untagged
