@@ -9,6 +9,8 @@ public class UpgradeMenu : MonoBehaviour
     private int playerHealth;
     private int playerCoinBalance;
     private int playerSpeed = 8000;
+    public GameObject notEnoughCoinsPanel;
+    int counter = 1;
 
     [SerializeField]
     private float speedMultiplier = 1.2f;
@@ -16,6 +18,7 @@ public class UpgradeMenu : MonoBehaviour
 
     [SerializeField]
     private Text healthText;
+    private Text notEnoughCoins;
 
     [SerializeField]
     private Text costText;
@@ -51,6 +54,19 @@ public class UpgradeMenu : MonoBehaviour
         System.IO.File.WriteAllLines(savePath, saveData);
     }
     
+    public void showHidePanel()
+    {
+        counter++;
+        if (counter % 2 ==1)
+        {
+            notEnoughCoinsPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            notEnoughCoinsPanel.gameObject.SetActive(true);
+        }
+    }
+   
     //Update the values on the HUD
     void UpdateValuesHealth()
     {
@@ -67,26 +83,38 @@ public class UpgradeMenu : MonoBehaviour
     void UpdateCoinBalance(int upgradeCost)
     {
         playerCoinBalance = playerCoinBalance - upgradeCost;
+        
+        if (playerCoinBalance < 0)
+        {
+            showHidePanel();
+        }
+        
     }
 
     public void UpgradeHealth()
     {
         //get the player stats for health and add 1
         PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
+
         playerHealth++;
         UpdateCoinBalance(100);
         UpdateValuesHealth();
+        UpdateSaveState();
+
+        
     }
 
     public void UpgradeSpeed()
     {
         //get player speed and add to the speed to increase
         PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
+
         playerSpeed = (int)(playerSpeed * speedMultiplier);
         UpdateCoinBalance(75);
         UpdateValuesSpeed();
+        UpdateSaveState();
 
-
+       
     }
 
     public void UpgradeGrip()
