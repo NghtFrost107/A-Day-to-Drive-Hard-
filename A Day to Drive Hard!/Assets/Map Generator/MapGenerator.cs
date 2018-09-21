@@ -8,8 +8,10 @@ public class MapGenerator : MonoBehaviour {
     public const int width = 200;
 
     int lowestPoint;
+    int xOffset = 0;
 
     public Square[] boundary;
+    public List<GameObject> obstaclesSpawned;
 
     public string seed;
     public bool useRandomSeed;
@@ -27,6 +29,7 @@ public class MapGenerator : MonoBehaviour {
             connectingSquare = boundary[0];
         } else
         {
+            xOffset = connectingSquare.x + 1;
             HeightGenerator(lowestPoint = connectingSquare.y);
         }
         Smoother();
@@ -108,8 +111,9 @@ public class MapGenerator : MonoBehaviour {
 
             }
 
-            boundary[x] = new Square(x, nextHeight);
+            boundary[x] = new Square(x + xOffset, nextHeight);
             previousHeight = nextHeight;
+            
         }        
     }
     
@@ -131,6 +135,30 @@ public class MapGenerator : MonoBehaviour {
                 }
 
             }
+        }
+    }
+
+    public void addObstacles(GameObject[] obstacles)
+    {
+        System.Random random = new System.Random();
+        GameObject obstacleToSpawn = obstacles[random.Next(obstacles.Length)];
+
+        obstaclesSpawned = new List<GameObject>();
+        for (int i = 0; i < 10; i++) {
+            int squareIndex = random.Next(1, boundary.Length - 1);
+            if (boundary[squareIndex - 1].y == boundary[squareIndex + 1].y)
+            {
+                obstaclesSpawned.Add(Instantiate(obstacleToSpawn, boundary[squareIndex].topLeft.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity));
+            }
+            
+        }
+    }
+
+    public void removeAllObstacles()
+    {
+        foreach(GameObject obstacle in obstaclesSpawned)
+        {
+            GameObject.Destroy(obstacle);
         }
     }
 }

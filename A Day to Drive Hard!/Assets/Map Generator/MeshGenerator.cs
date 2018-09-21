@@ -35,7 +35,7 @@ public class MeshGenerator : MonoBehaviour {
             Square previousSquare;
             if (x == 0) {
                 previousSquare = connectingSquare;
-                connectingSquare.topLeft.position.x = -1; //topleft is the only node accessed that belongs to the previous section with its x value being the last value before the section ends. Setting it to -1 fixes any issues that occur with collision points
+                //connectingSquare.topLeft.position.x = -1; //topleft is the only node accessed that belongs to the previous section with its x value being the last value before the section ends. Setting it to -1 fixes any issues that occur with collision points
             } else {
                 previousSquare = boundary[x - 1];
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerationHandler : MonoBehaviour {
 
-    static int sectionNumber = 1; //Increments as each new section is generated
+    int sectionNumber = 0; //Increments as each new section is generated
 
     bool s2Generated = false;
 
@@ -13,12 +13,14 @@ public class GenerationHandler : MonoBehaviour {
 
     public GameObject car;
     public GameObject carCamera;
+    public GameObject[] obstacles;
 
     // Use this for initialization
     void Start () {
         section1 = transform.GetChild(0).gameObject.GetComponent<MapGenerator>();
         section2 = transform.GetChild(1).gameObject.GetComponent<MapGenerator>();
         section1.GenerateMap(null);
+        section1.addObstacles(obstacles);
 
 
         if (car != null)
@@ -34,23 +36,25 @@ public class GenerationHandler : MonoBehaviour {
 	void Update () {
         if (s2Generated == false) //If the new section hasn't been generated yet (Player is on the first section object and it needs to generate the second section)
         {
-            if (car.transform.GetChild(0).transform.position.x > section1.transform.position.x + 75) //When the player has moved 75 squares into the current section
+            if (car.transform.GetChild(0).transform.position.x > MapGenerator.width * sectionNumber + 75) //When the player has moved 75 squares into the current section
             {
-                if (sectionNumber != 1) {
+                if (sectionNumber != 0) {
                     section2.GetComponent<MeshGenerator>().ClearMesh(); //Delete old section
+                    section2.removeAllObstacles();
                 }
-                section2.transform.position = new Vector3(MapGenerator.width * sectionNumber, 0, 0);
                 section2.GenerateMap(section1.boundary[section1.boundary.Length - 1]); //Create new section 
+                section2.addObstacles(obstacles);
                 s2Generated = true;
                 sectionNumber += 1;
             }
         } else //If the player is on the second section object and it needs to generate the next section
         {
-            if (car.transform.GetChild(0).transform.position.x > section2.transform.position.x + 75)
+            if (car.transform.GetChild(0).transform.position.x > MapGenerator.width * sectionNumber + 75)
             {
                 section1.GetComponent<MeshGenerator>().ClearMesh();
-                section1.transform.position = new Vector3(MapGenerator.width * sectionNumber, 0, 0);
+                section1.removeAllObstacles();
                 section1.GenerateMap(section2.boundary[section2.boundary.Length - 1]);
+                section1.addObstacles(obstacles);
                 s2Generated = false;
                 sectionNumber += 1;
             }

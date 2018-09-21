@@ -349,6 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 554517773}
   carCamera: {fileID: 351162774}
+  obstacles:
+  - {fileID: 1638839054246282, guid: 153a0e84b812a204492f75a94fd19469, type: 2}
 --- !u!4 &148212177
 Transform:
   m_ObjectHideFlags: 0
@@ -622,10 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisName: Vertical
-  axisValue: 1
-  responseSpeed: 999
-  returnToCentreSpeed: 3
 --- !u!114 &288096100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,10 +1136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisName: Vertical
-  axisValue: -1
-  responseSpeed: 999
-  returnToCentreSpeed: 3
 --- !u!114 &731031680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2174,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 148212177}
     m_Modifications:
+    - target: {fileID: 114402498759205936, guid: d3580d8b448c47442a176f813c3d2efd,
+        type: 2}
+      propertyPath: obstacles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4143539558340222, guid: d3580d8b448c47442a176f813c3d2efd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2468,10 +2467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab98b66288df7b4fa182075f2f12bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisName: Vertical
-  axisValue: 1
-  responseSpeed: 999
-  returnToCentreSpeed: 3
 --- !u!114 &1591694235
 MonoBehaviour:
   m_ObjectHideFlags: 0
