@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour {
 
-    List<Vector3> vertices;
-    List<int> triangles;
+    List<Vector3> vertices = new List<Vector3>();
+    List<int> triangles = new List<int>();
 
     Mesh mesh;
 
@@ -15,9 +15,6 @@ public class MeshGenerator : MonoBehaviour {
     public void GenerateMesh(Square[] boundary, int lowestPoint, Square connectingSquare)
     {
         AssignNodes(boundary);
-
-        vertices = new List<Vector3>();
-        triangles = new List<int>();
 
         /* Runs through all boundary squares in the section of the map
          * 
@@ -351,7 +348,7 @@ public class MeshGenerator : MonoBehaviour {
     /*
      * Simplified method to create a square mesh for a specific square. Calls the other AssignSquareMesh method and passes in this squares node coordinates.
      */
-    void AssignSquareMesh(Square square)
+    public void AssignSquareMesh(Square square)
     {
         AssignSquareMesh(square.topLeft.position, square.topRight.position, square.bottomLeft.position, square.bottomRight.position);
     }
@@ -472,7 +469,7 @@ public class MeshGenerator : MonoBehaviour {
      *   
      * e.g. Bottom right node of x is shared with the top left node of N. They both reference the same node object in their respective square objects.
      */
-    private void AssignNodes(Square[] boundary)
+    public void AssignNodes(Square[] boundary)
     {
         for (int x = 0; x < boundary.Length; x++)
         {
@@ -502,5 +499,15 @@ public class MeshGenerator : MonoBehaviour {
                 boundary[x].bottomRight = new Node(new Vector3(boundary[x].x + 1, boundary[x].y, 0));
             }
         }
+    }
+
+    public List<Vector3> GetVertices
+    {
+        get { return vertices; }
+    }
+
+    public List<int> GetTriangles
+    {
+        get { return triangles; }
     }
 }

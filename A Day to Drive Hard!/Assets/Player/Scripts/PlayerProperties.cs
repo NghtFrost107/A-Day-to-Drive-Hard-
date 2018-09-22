@@ -62,7 +62,7 @@ public class PlayerProperties : MonoBehaviour {
     }
 
     //Read health and coin balance from text file and apply values found to the player
-    void ReadSaveState()
+    public void ReadSaveState()
     {
         string[] saveData = saveState.text.Split('\n');
         int.TryParse(saveData[0], out currentPlayerHealth);

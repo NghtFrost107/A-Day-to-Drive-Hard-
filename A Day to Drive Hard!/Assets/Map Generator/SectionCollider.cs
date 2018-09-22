@@ -6,7 +6,7 @@ public class SectionCollider : MonoBehaviour {
 
     public PolygonCollider2D mainCollider;
 
-    List<Vector2> points;
+    public List<Vector2> points;
 
     public SectionCollider()
     {
