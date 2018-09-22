@@ -67,21 +67,11 @@ public class UpgradeMenu : MonoBehaviour
         playerCoinsText.text = "Coins: " + playerCoins;
     }
 
-    //void UpdateCoinBalance()
-    //{
-    //    // playerCoins -= upgradeCost;
-     
-    //    if (playerCoins < 0)
-    //    {
-    //        showNotEnoughCoinsPanel();
-    //    }
-      
-    //}
 
     // When pressed will check coins, deduct coins and apply upgrade, write out to save
     public void HealthUpgrade()
     {
-        // Anton
+  
         if (playerCoins >= 100)
         {
             playerCoins -= 100;
@@ -93,20 +83,13 @@ public class UpgradeMenu : MonoBehaviour
         {
             showNotEnoughCoinsPanel();
         }
-        // Anton End
 
-        //get the player stats for health and add 1
-        // PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
-        //playerHealth++;
-        //UpdateCoinBalance(100);
-        //UpdateValuesHealth();
-        //UpdateSaveState();
     }
 
     // When pressed will check coins, deduct coins and apply upgrade, write out to save
     public void SpeedUpgrade()
     {
-        // Anton
+       
         if (playerCoins >= 75)
         {
             playerCoins -= 75;
@@ -118,14 +101,8 @@ public class UpgradeMenu : MonoBehaviour
         {
             showNotEnoughCoinsPanel();
         }
-        // Anton End
+      
 
-        // get player speed and add to the speed to increase
-        // PlayerProperties player = gameObject.GetComponent<PlayerProperties>();
-        //playerSpeed = (int)(playerSpeed * speedMultiplier);
-        //UpdateCoinBalance(75);
-        //UpdateValuesSpeed();
-        //UpdateSaveState();
     }
 
     // Placeholder function for Grip Upgrade
