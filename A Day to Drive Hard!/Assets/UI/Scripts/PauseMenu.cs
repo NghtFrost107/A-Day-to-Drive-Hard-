@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
 
-    public GameObject Panel;
+    public GameObject panel;
 
     
     int counter = 1;
@@ -17,11 +17,11 @@ public class PauseMenu : MonoBehaviour
         counter++;
         if (counter % 2 == 1)
         {
-            Panel.gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
         }
         else
         {
-            Panel.gameObject.SetActive(true);
+            panel.gameObject.SetActive(true);
         }
     }
 

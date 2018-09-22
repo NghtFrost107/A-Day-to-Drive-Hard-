@@ -65,8 +65,8 @@ public class PlayerProperties : MonoBehaviour {
     public void ReadSaveState()
     {
         string[] saveData = saveState.text.Split('\n');
-        int.TryParse(saveData[0], out currentPlayerHealth);
-        int.TryParse(saveData[1], out playerCoinBalance);
+        int.TryParse(saveData[0], out playerCoinBalance);
+        int.TryParse(saveData[1], out currentPlayerHealth);
     }
 
     //Returns Player to main menu

@@ -685,7 +685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<i>Coins: 200</i>'
+  m_Text: '<i>Coins: </i>'
 --- !u!222 &609772402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,7 @@ RectTransform:
   m_Father: {fileID: 474809272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.3932281}
+  m_AnchorMin: {x: 0, y: 0.42668283}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -1372,7 +1372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -33.390137}
+  m_AnchoredPosition: {x: 0, y: -33.390076}
   m_SizeDelta: {x: -746.1, y: -308.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101167334
@@ -1539,9 +1539,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
+  savePath: 
+  playerCoins: 0
+  playerHealth: 0
+  playerSpeed: 0
+  speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
-  speedMultiplier: 1.2
   healthText: {fileID: 2141917860}
+  notEnoughCoins: {fileID: 0}
   costText: {fileID: 1624217211}
   speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
@@ -1729,7 +1734,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1490651491}
-        m_MethodName: UpdateSaveState
+        m_MethodName: WriteSaveState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1798,11 +1803,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  notEnoughCoinsPanel: {fileID: 0}
-  speedMultiplier: 1.2
+  savePath: 
+  playerCoins: 0
+  playerHealth: 0
+  playerSpeed: 0
+  speedUpgradeAmount: 2000
+  notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
+  notEnoughCoins: {fileID: 0}
   costText: {fileID: 1624217211}
-  speedText: {fileID: 0}
+  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &1555841244
 GameObject:
@@ -1880,7 +1890,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1067312602}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6067719
+  m_Size: 0.57331717
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2158,7 +2168,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1280770131}
-        m_MethodName: UpgradeHealth
+        m_MethodName: HealthUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1651724007}
+        m_MethodName: HealthUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1920566355}
+        m_MethodName: HealthUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2216,11 +2248,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  notEnoughCoinsPanel: {fileID: 0}
-  speedMultiplier: 1.2
+  savePath: 
+  playerCoins: 0
+  playerHealth: 0
+  playerSpeed: 0
+  speedUpgradeAmount: 2000
+  notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
+  notEnoughCoins: {fileID: 0}
   costText: {fileID: 1624217211}
-  speedText: {fileID: 0}
+  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &1658333403
 GameObject:
@@ -2410,7 +2447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 587, y: -635.1501}
+  m_AnchoredPosition: {x: 587, y: -635.1502}
   m_SizeDelta: {x: 1174, y: 1270.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691487331
@@ -2644,7 +2681,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1280770131}
-        m_MethodName: UpgradeSpeed
+        m_MethodName: SpeedUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1651724007}
+        m_MethodName: SpeedUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1920566355}
+        m_MethodName: SpeedUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2702,9 +2761,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  notEnoughCoinsPanel: {fileID: 0}
-  speedMultiplier: 1.2
+  savePath: 
+  playerCoins: 0
+  playerHealth: 0
+  playerSpeed: 0
+  speedUpgradeAmount: 2000
+  notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
+  notEnoughCoins: {fileID: 0}
   costText: {fileID: 1658333405}
   speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
@@ -3048,7 +3112,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Health: 3'
+  m_Text: 'Health:'
 --- !u!222 &2141917861
 CanvasRenderer:
   m_ObjectHideFlags: 0
