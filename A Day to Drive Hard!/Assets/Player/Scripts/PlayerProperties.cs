@@ -41,14 +41,18 @@ public class PlayerProperties : MonoBehaviour {
     //What to do if the player has collided with an obstacle
     public void ObstacleCollision()
     {
-        currentPlayerHealth--;
-        SetHealthCounter();
-        Debug.Log("Player health:" + currentPlayerHealth);
+        if (playerInvincible == false)
+        {
+            currentPlayerHealth--;
+            SetHealthCounter();
+            Debug.Log("Player health:" + currentPlayerHealth);
 
-        playerInvincible = true;
+            playerInvincible = true;
         
-        //Calling PlayerSetDamageable after a 3 second delay
-        Invoke("PlayerSetDamageable", 3); 
+            //Calling PlayerSetDamageable after a 3 second delay
+            Invoke("PlayerSetDamageable", 3); 
+        }
+        
     }
 
     // What to do if the player has collided with a Pickup

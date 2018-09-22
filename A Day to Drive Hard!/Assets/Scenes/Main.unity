@@ -351,6 +351,8 @@ MonoBehaviour:
   carCamera: {fileID: 351162774}
   obstacles:
   - {fileID: 1638839054246282, guid: 153a0e84b812a204492f75a94fd19469, type: 2}
+  - {fileID: 1343272618643802, guid: 2a19e6493eb760d48b8ad0616a7f1297, type: 2}
+  - {fileID: 1986331493038772, guid: 96cbcbc20f0817e4d923e72b514a098b, type: 2}
 --- !u!4 &148212177
 Transform:
   m_ObjectHideFlags: 0
