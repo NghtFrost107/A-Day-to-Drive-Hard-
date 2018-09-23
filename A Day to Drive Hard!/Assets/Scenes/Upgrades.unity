@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  savePath: 
+  savePath: /SaveState.txt
   playerCoins: 0
   playerHealth: 0
   playerSpeed: 0

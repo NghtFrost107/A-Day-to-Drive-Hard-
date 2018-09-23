@@ -3,7 +3,14 @@ guid: 6a5b7bb02ec12b443a045d10639aad9e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - saveState: {instanceID: 0}
+  - notEnoughCoinsPanel: {instanceID: 0}
+  - healthText: {instanceID: 0}
+  - notEnoughCoins: {instanceID: 0}
+  - costText: {instanceID: 0}
+  - speedText: {instanceID: 0}
+  - playerCoinsText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
