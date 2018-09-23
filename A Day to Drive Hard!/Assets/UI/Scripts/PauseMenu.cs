@@ -7,13 +7,13 @@ public class PauseMenu : MonoBehaviour
 {
 
     public GameObject panel;
-
+    
     
     int counter = 1;
 
     public void showHidePanel()
     {
-
+        
         counter++;
         if (counter % 2 == 1)
         {
