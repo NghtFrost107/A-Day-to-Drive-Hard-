@@ -141,10 +141,11 @@ public class MapGenerator : MonoBehaviour {
     public void addObstacles(GameObject[] obstacles)
     {
         System.Random random = new System.Random();
-        GameObject obstacleToSpawn = obstacles[random.Next(obstacles.Length)];
+        
 
         obstaclesSpawned = new List<GameObject>();
         for (int i = 0; i < 10; i++) {
+            GameObject obstacleToSpawn = obstacles[random.Next(obstacles.Length)];
             int squareIndex = random.Next(1, boundary.Length - 1);
             if (boundary[squareIndex - 1].y == boundary[squareIndex + 1].y)
             {
