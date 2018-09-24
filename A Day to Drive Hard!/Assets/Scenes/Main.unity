@@ -353,6 +353,7 @@ MonoBehaviour:
   - {fileID: 1638839054246282, guid: 153a0e84b812a204492f75a94fd19469, type: 2}
   - {fileID: 1343272618643802, guid: 2a19e6493eb760d48b8ad0616a7f1297, type: 2}
   - {fileID: 1986331493038772, guid: 96cbcbc20f0817e4d923e72b514a098b, type: 2}
+  - {fileID: 1187152936786334, guid: 5c88b70be6535f04889de65d988b0176, type: 2}
 --- !u!4 &148212177
 Transform:
   m_ObjectHideFlags: 0
@@ -2893,14 +2894,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
         type: 2}
-      propertyPath: playerHealthCounter
-      value: 
-      objectReference: {fileID: 773776289}
-    - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
-        type: 2}
       propertyPath: playerCoinCounter
       value: 
       objectReference: {fileID: 641732122}
+    - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
+        type: 2}
+      propertyPath: playerHealthCounter
+      value: 
+      objectReference: {fileID: 773776289}
     - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
         type: 2}
       propertyPath: gameOverMessage

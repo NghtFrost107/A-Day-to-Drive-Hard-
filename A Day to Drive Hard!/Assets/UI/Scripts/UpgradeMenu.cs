@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class UpgradeMenu : MonoBehaviour
 {
@@ -40,18 +41,54 @@ public class UpgradeMenu : MonoBehaviour
     // Read in from Save State - Coins, Health, Speed
     public void ReadSaveState()
     {
-        string[] saveData = saveState.text.Split('\n');
-        int.TryParse(saveData[0], out playerCoins);
-        int.TryParse(saveData[1], out playerHealth);
-        int.TryParse(saveData[2], out playerSpeed);
+        try
+        {
+            StreamReader sr = new StreamReader(Application.dataPath + @"/SaveState.txt");
+
+            int.TryParse(sr.ReadLine(), out playerCoins);
+            int.TryParse(sr.ReadLine(), out playerHealth);
+            int.TryParse(sr.ReadLine(), out playerSpeed);
+
+            //Creating a save file with default values if there is no existing save
+            if(playerSpeed == 0)
+            {
+                playerSpeed = 8000;
+            }
+            
+
+            sr.Dispose();
+        }
+        catch (FileNotFoundException)
+        {
+            Debug.Log("The file was not found!, New Save file will be created");
+
+            //Setting all values to the base value, in case the player has no save file
+            playerCoins = 900; //For testing the default number of coins is 900 (Would normally be 0)
+            playerHealth = 3;
+            playerSpeed = 8000;
+        }
+        catch (IOException)
+        {
+            Debug.Log("There was an error in the file");
+        }
     }
 
     // Write out to Save State - Coins, Health, Speed
     public void WriteSaveState()
     {
-        savePath = Application.dataPath + @"/SaveState.txt";
-        string[] saveData = { playerCoins.ToString(), playerHealth.ToString(),playerSpeed.ToString()};
-        System.IO.File.WriteAllLines(savePath, saveData);
+        try
+        {
+            StreamWriter sw = new StreamWriter(Application.dataPath + "/SaveState.txt");
+            sw.WriteLine(playerCoins);
+            sw.WriteLine(playerHealth);
+            sw.WriteLine(playerSpeed);
+
+            sw.Dispose();
+        }
+        catch (IOException)
+        {
+            Debug.Log("There was a problem writing to the file");
+        }
     }
    
     //Update the values on the HUD

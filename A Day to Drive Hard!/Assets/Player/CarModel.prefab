@@ -491,10 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85004b9a783e811429696e71eb6a8ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthCounter: {fileID: 0}
-  playerCoinCounter: {fileID: 0}
   playerInvincible: 0
-  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
+  playerCoinCounter: {fileID: 0}
+  playerHealthCounter: {fileID: 0}
   gameOverMessage: {fileID: 0}
 --- !u!114 &114654855927269146
 MonoBehaviour:

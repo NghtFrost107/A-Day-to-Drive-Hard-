@@ -7,15 +7,12 @@ using System.IO;
 
 public class PlayerProperties : MonoBehaviour {
     public static int currentPlayerHealth;
-    public Text playerHealthCounter;
-
     public static int playerCoinBalance;
-    public Text playerCoinCounter;
-
     public bool playerInvincible;
+    private static int maxPlayerHealth;
 
-    public TextAsset saveState;
-
+    public Text playerCoinCounter;
+    public Text playerHealthCounter;
     public Text gameOverMessage;
 
 	// Use this for initialization
@@ -32,8 +29,9 @@ public class PlayerProperties : MonoBehaviour {
 	void Update () {
         if (currentPlayerHealth <= 0)
         {
-            Debug.Log("Player has run out of lives!");
             gameOverMessage.text = "Out of Lives!\n" + "Game Over!\n" + "Returning To Main Menu!";
+
+            //Return to main menu after a 5 second delay
             Invoke("ReturnToMenu", 5);
         }
 	}
@@ -60,22 +58,58 @@ public class PlayerProperties : MonoBehaviour {
     {
         playerCoinBalance++;
         SetCoinCounter();
-        Debug.Log("Coins: " + playerCoinBalance);
-       
         Destroy(col.gameObject);
     }
 
     //Read health and coin balance from text file and apply values found to the player
     public void ReadSaveState()
     {
-        string[] saveData = saveState.text.Split('\n');
-        int.TryParse(saveData[0], out playerCoinBalance);
-        int.TryParse(saveData[1], out currentPlayerHealth);
+        try
+        {
+            StreamReader sr = new StreamReader(Application.dataPath + @"/SaveState.txt");
+            int.TryParse(sr.ReadLine(), out playerCoinBalance);
+            int.TryParse(sr.ReadLine(), out maxPlayerHealth);
+
+            sr.Dispose();
+
+            currentPlayerHealth = maxPlayerHealth;
+        }
+        catch (FileNotFoundException)
+        {
+            Debug.Log("The file was not found!, New Save file will be created");
+
+            //Setting all values to the base value, in case the player has no save file
+            playerCoinBalance = 900; //For testing the default number of coins is 900 (Would normally be 0)
+            maxPlayerHealth = 3;
+            currentPlayerHealth = 3;
+        }
+        catch (IOException)
+        {
+            Debug.Log("There was an error in the file");
+        }
+    }
+    
+    //Updating the savestate with any new coins collected
+    public void WriteSaveState()
+    {
+        try
+        {
+            StreamWriter sw = new StreamWriter(Application.dataPath + @"/SaveState.txt");
+            sw.WriteLine(playerCoinBalance);
+            sw.WriteLine(maxPlayerHealth);
+
+            sw.Dispose();
+        }
+        catch (IOException)
+        {
+            Debug.Log("There was an error writing the save state");
+        }
     }
 
     //Returns Player to main menu
     void ReturnToMenu()
     {
+        WriteSaveState();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
@@ -96,28 +130,4 @@ public class PlayerProperties : MonoBehaviour {
     {
         playerCoinCounter.text = "Coins: " + playerCoinBalance;
     }
-
-    // Get Health
-    //public int getPlayerHealth()
-    //{
-    //    return currentPlayerHealth;
-    //}
-
-    // Set Health
-    //public void setPlayerHealth(int i)
-    //{
-    //    currentPlayerHealth = i;
-    //}
-
-    // Get Coin Balance
-    //public int getPlayerCoinBalance()
-    //{
-    //    return playerCoinBalance;
-    //}
-
-    // Set Coin Balance
-    //public void setPlayerCoinBalance(int i)
-    //{
-    //    playerCoinBalance = i;
-    //}
 }
