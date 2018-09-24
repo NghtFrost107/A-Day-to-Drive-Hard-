@@ -62,14 +62,20 @@ public class UpgradeMenu : MonoBehaviour
         {
             Debug.Log("The file was not found!, New Save file will be created");
 
-            //Setting all values to the base value, in case the player has no save file
-            playerCoins = 900; //For testing the default number of coins is 900 (Would normally be 0)
-            playerHealth = 3;
-            playerSpeed = 8000;
+            
         }
         catch (IOException)
         {
             Debug.Log("There was an error in the file");
+        } finally
+        {
+            if (playerHealth == 0)
+            {
+                //Setting all values to the base value, in case the player has no save file
+                playerCoins = 900; //For testing the default number of coins is 900 (Would normally be 0)
+                playerHealth = 3;
+                playerSpeed = 8000;
+            }
         }
     }
 

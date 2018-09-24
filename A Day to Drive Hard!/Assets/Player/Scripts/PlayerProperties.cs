@@ -78,14 +78,20 @@ public class PlayerProperties : MonoBehaviour {
         {
             Debug.Log("The file was not found!, New Save file will be created");
 
-            //Setting all values to the base value, in case the player has no save file
-            playerCoinBalance = 900; //For testing the default number of coins is 900 (Would normally be 0)
-            maxPlayerHealth = 3;
-            currentPlayerHealth = 3;
+            
         }
         catch (IOException)
         {
             Debug.Log("There was an error in the file");
+        } finally
+        {
+            if (maxPlayerHealth == 0)
+            {
+                //Setting all values to the base value, in case the player has no save file
+                playerCoinBalance = 900; //For testing the default number of coins is 900 (Would normally be 0)
+                maxPlayerHealth = 3;
+                currentPlayerHealth = 3;
+            }
         }
     }
     
