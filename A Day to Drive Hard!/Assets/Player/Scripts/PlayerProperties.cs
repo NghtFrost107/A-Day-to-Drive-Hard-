@@ -66,7 +66,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         try
         {
-            StreamReader sr = new StreamReader(Application.dataPath + @"/SaveState.txt");
+            StreamReader sr = new StreamReader(Application.persistentDataPath + @"/SaveState.txt");
             int.TryParse(sr.ReadLine(), out playerCoinBalance);
             int.TryParse(sr.ReadLine(), out maxPlayerHealth);
 
@@ -94,7 +94,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         try
         {
-            StreamWriter sw = new StreamWriter(Application.dataPath + @"/SaveState.txt");
+            StreamWriter sw = new StreamWriter(Application.persistentDataPath + @"/SaveState.txt");
             sw.WriteLine(playerCoinBalance);
             sw.WriteLine(maxPlayerHealth);
 

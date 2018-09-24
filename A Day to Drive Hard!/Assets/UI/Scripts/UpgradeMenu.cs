@@ -43,7 +43,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         try
         {
-            StreamReader sr = new StreamReader(Application.dataPath + @"/SaveState.txt");
+            StreamReader sr = new StreamReader(Application.persistentDataPath + @"/SaveState.txt");
 
             int.TryParse(sr.ReadLine(), out playerCoins);
             int.TryParse(sr.ReadLine(), out playerHealth);
@@ -78,7 +78,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         try
         {
-            StreamWriter sw = new StreamWriter(Application.dataPath + "/SaveState.txt");
+            StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/SaveState.txt");
             sw.WriteLine(playerCoins);
             sw.WriteLine(playerHealth);
             sw.WriteLine(playerSpeed);
