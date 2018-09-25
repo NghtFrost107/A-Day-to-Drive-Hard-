@@ -20,7 +20,7 @@ public class GenerationHandler : MonoBehaviour {
         section1 = transform.GetChild(0).gameObject.GetComponent<MapGenerator>();
         section2 = transform.GetChild(1).gameObject.GetComponent<MapGenerator>();
         section1.GenerateMap(null);
-        //section1.addObstacles(obstacles);
+        section1.addObstacles(obstacles);
 
 
         if (car != null)

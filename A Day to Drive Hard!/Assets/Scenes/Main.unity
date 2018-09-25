@@ -210,7 +210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55.25, y: -200}
+  m_AnchoredPosition: {x: 313.75, y: -200}
   m_SizeDelta: {x: 280, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &77010148
@@ -909,6 +909,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1349641568371446, guid: 87c64120ba66f9b46b4809ca121e2f07,
     type: 2}
   m_PrefabInternal: {fileID: 2126037635}
+--- !u!114 &554517774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
+    type: 2}
+  m_PrefabInternal: {fileID: 2126037635}
+  m_Script: {fileID: 11500000, guid: 85004b9a783e811429696e71eb6a8ad8, type: 3}
 --- !u!1 &641732120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55.25, y: -30}
+  m_AnchoredPosition: {x: 313.75, y: -30}
   m_SizeDelta: {x: 280, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081668011
@@ -1759,7 +1765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55.25, y: -285}
+  m_AnchoredPosition: {x: 313.75, y: -285}
   m_SizeDelta: {x: 280, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170105708
@@ -2001,7 +2007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.1a Beta
+  m_Text: 0.1b Beta
 --- !u!222 &1340850928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2044,7 +2050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55.25, y: -115}
+  m_AnchoredPosition: {x: 313.75, y: -115}
   m_SizeDelta: {x: 280, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393629605
@@ -2907,6 +2913,11 @@ Prefab:
       propertyPath: gameOverMessage
       value: 
       objectReference: {fileID: 308838935}
+    - target: {fileID: 114746101164103226, guid: 87c64120ba66f9b46b4809ca121e2f07,
+        type: 2}
+      propertyPath: playerProperties
+      value: 
+      objectReference: {fileID: 554517774}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c64120ba66f9b46b4809ca121e2f07, type: 2}
   m_IsPrefabAsset: 0

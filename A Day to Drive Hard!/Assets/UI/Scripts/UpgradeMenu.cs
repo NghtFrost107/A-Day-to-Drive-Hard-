@@ -6,13 +6,6 @@ using System.IO;
 
 public class UpgradeMenu : MonoBehaviour
 {
-    public TextAsset saveState;
-    public string savePath;
-
-    public int playerCoins;
-    public int playerHealth;
-    public int playerSpeed;
-
     public int speedUpgradeAmount = 2000;
 
     public GameObject notEnoughCoinsPanel;
@@ -27,87 +20,22 @@ public class UpgradeMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ReadSaveState();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
+        PlayerData.ReadSaveState();
         UpdateValuesHealth();
         UpdateValuesSpeed();
-        WriteSaveState();
-    }
-
-    // Read in from Save State - Coins, Health, Speed
-    public void ReadSaveState()
-    {
-        try
-        {
-            StreamReader sr = new StreamReader(Application.persistentDataPath + @"/SaveState.txt");
-
-            int.TryParse(sr.ReadLine(), out playerCoins);
-            int.TryParse(sr.ReadLine(), out playerHealth);
-            int.TryParse(sr.ReadLine(), out playerSpeed);
-
-            //Creating a save file with default values if there is no existing save
-            if(playerSpeed == 0)
-            {
-                playerSpeed = 8000;
-            }
-            
-
-            sr.Dispose();
-        }
-        catch (FileNotFoundException)
-        {
-            Debug.Log("The file was not found!, New Save file will be created");
-
-            
-        }
-        catch (IOException)
-        {
-            Debug.Log("There was an error in the file");
-        } finally
-        {
-            if (playerHealth == 0)
-            {
-                //Setting all values to the base value, in case the player has no save file
-                playerCoins = 900; //For testing the default number of coins is 900 (Would normally be 0)
-                playerHealth = 3;
-                playerSpeed = 8000;
-            }
-        }
-    }
-
-    // Write out to Save State - Coins, Health, Speed
-    public void WriteSaveState()
-    {
-        try
-        {
-            StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/SaveState.txt");
-            sw.WriteLine(playerCoins);
-            sw.WriteLine(playerHealth);
-            sw.WriteLine(playerSpeed);
-
-            sw.Dispose();
-        }
-        catch (IOException)
-        {
-            Debug.Log("There was a problem writing to the file");
-        }
     }
    
     //Update the values on the HUD
     public void UpdateValuesHealth()
     {
-        healthText.text = "Health: " + playerHealth;
-        playerCoinsText.text = "Coins: " + playerCoins;
+        healthText.text = "Max Health: " + PlayerData.MAX_PLAYER_HEALTH;
+        playerCoinsText.text = "Coins: " + PlayerData.playerCoins;
     }
 
     public void UpdateValuesSpeed()
     {
-        speedText.text = "Speed: " + playerSpeed;
-        playerCoinsText.text = "Coins: " + playerCoins;
+        speedText.text = "Speed: " + PlayerData.playerSpeed;
+        playerCoinsText.text = "Coins: " + PlayerData.playerCoins;
     }
 
 
@@ -115,12 +43,13 @@ public class UpgradeMenu : MonoBehaviour
     public void HealthUpgrade()
     {
   
-        if (playerCoins >= 100)
+        if (PlayerData.playerCoins >= 100)
         {
-            playerCoins -= 100;
-            playerHealth++;
+            PlayerData.playerCoins -= 100;
+            PlayerData.MAX_PLAYER_HEALTH++;
+            PlayerData.playerHealth = PlayerData.MAX_PLAYER_HEALTH;
             UpdateValuesHealth();
-            WriteSaveState();
+            PlayerData.WriteSaveState();
         }
         else
         {
@@ -133,12 +62,12 @@ public class UpgradeMenu : MonoBehaviour
     public void SpeedUpgrade()
     {
        
-        if (playerCoins >= 75)
+        if (PlayerData.playerCoins >= 75)
         {
-            playerCoins -= 75;
-            playerSpeed += speedUpgradeAmount;
+            PlayerData.playerCoins -= 75;
+            PlayerData.playerSpeed += speedUpgradeAmount;
             UpdateValuesSpeed();
-            WriteSaveState();
+            PlayerData.WriteSaveState();
         }
         else
         {

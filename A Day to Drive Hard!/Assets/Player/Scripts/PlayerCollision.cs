@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public PlayerProperties playerProperties;
+    public Player playerProperties;
 
     // What initially happens when the player collides with an object
     private void OnTriggerEnter2D(Collider2D other)
