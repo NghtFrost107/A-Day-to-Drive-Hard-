@@ -54,7 +54,10 @@ public class CombinedMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        
+        //if (gameObject.transform.rotation.z < 10)
+       // {
+       //     Debug.Log("Car is at: " + gameObject.transform.rotation.z);
+       // }
     }
 
     //all physics based assignment done here

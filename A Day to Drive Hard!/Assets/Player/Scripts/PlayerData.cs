@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.IO;
 
-static class PlayerData
+using SQLite4Unity3d;
+
+public class PlayerData
 {
+
     public static int playerCoins;
     public static int playerHealth;
     public static int playerSpeed = 2000;

@@ -29,10 +29,26 @@ public class Database : MonoBehaviour {
 #else 
         connection = new SQLiteConnection(@"Assets/StreamingAssets/" + databaseName);
 #endif
+
+        createDB();
     }
 
     void createDB()
     {
-       // connection.DropTable<PlayerData>();
+        //connection.DropTable<PlayerData>();
+        connection.CreateTable<PlayerData>();
+
+       // connection.Query()
+
+
+        //Class1 test = connection.Table<Class1>().Where(x => x.Name = "Test").First
+        List<PlayerData> list = connection.Query<PlayerData>("SELECT * FROM Class1", new object[0]);
+
+        foreach (PlayerData test in list)
+        {
+            Debug.Log(test.ToString());
+        }
+        
     }
 }
+
