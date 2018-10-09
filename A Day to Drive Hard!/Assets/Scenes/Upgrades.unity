@@ -1297,7 +1297,7 @@ RectTransform:
   m_Father: {fileID: 474809272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.54732156}
+  m_AnchorMin: {x: 0, y: 0.3932281}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -1538,8 +1538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  savePath: /SaveState.txt
   speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
@@ -1799,8 +1797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  savePath: 
   speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
@@ -1884,7 +1880,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1067312602}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.4526785
+  m_Size: 0.6067719
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2230,8 +2226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  savePath: 
   speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
@@ -2729,8 +2723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveState: {fileID: 4900000, guid: f74bade780991f64794aba5fdfc0342b, type: 3}
-  savePath: 
   speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
   healthText: {fileID: 2141917860}
