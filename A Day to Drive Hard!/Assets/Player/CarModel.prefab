@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4730761265859964}
-  - component: {fileID: 114333043471415020}
+  - component: {fileID: 114012153767788364}
   - component: {fileID: 114654855927269146}
   - component: {fileID: 114746101164103226}
   - component: {fileID: 212768065238267784}
@@ -470,7 +470,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114333043471415020
+--- !u!114 &114012153767788364
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
