@@ -17,10 +17,15 @@ public class UpgradeMenu : MonoBehaviour
     public Text speedText;
     public Text playerCoinsText;
 
+    private Database database;
+    void Awake()
+    {
+        database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+    }
     // Use this for initialization
     void Start()
     {
-        PlayerData.ReadSaveState();
+       // PlayerData.ReadSaveState();
         UpdateValuesHealth();
         UpdateValuesSpeed();
     }
@@ -28,14 +33,14 @@ public class UpgradeMenu : MonoBehaviour
     //Update the values on the HUD
     public void UpdateValuesHealth()
     {
-        healthText.text = "Max Health: " + PlayerData.MAX_PLAYER_HEALTH;
-        playerCoinsText.text = "Coins: " + PlayerData.playerCoins;
+        healthText.text = "Max Health: " + database.player.MAX_PLAYER_HEALTH;
+        playerCoinsText.text = "Coins: " + database.player.playerCoins;
     }
 
     public void UpdateValuesSpeed()
     {
-        speedText.text = "Speed: " + PlayerData.playerSpeed;
-        playerCoinsText.text = "Coins: " + PlayerData.playerCoins;
+        speedText.text = "Speed: " + database.player.playerSpeed;
+        playerCoinsText.text = "Coins: " + database.player.playerCoins;
     }
 
 
@@ -43,13 +48,13 @@ public class UpgradeMenu : MonoBehaviour
     public void HealthUpgrade()
     {
   
-        if (PlayerData.playerCoins >= 100)
+        if (database.player.playerCoins >= 100)
         {
-            PlayerData.playerCoins -= 100;
-            PlayerData.MAX_PLAYER_HEALTH++;
-            PlayerData.playerHealth = PlayerData.MAX_PLAYER_HEALTH;
+            database.player.playerCoins -= 100;
+            database.player.MAX_PLAYER_HEALTH++;
+            database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
             UpdateValuesHealth();
-            PlayerData.WriteSaveState();
+            database.setPlayerData();
         }
         else
         {
@@ -62,12 +67,12 @@ public class UpgradeMenu : MonoBehaviour
     public void SpeedUpgrade()
     {
        
-        if (PlayerData.playerCoins >= 75)
+        if (database.player.playerCoins >= 75)
         {
-            PlayerData.playerCoins -= 75;
-            PlayerData.playerSpeed += speedUpgradeAmount;
+            database.player.playerCoins -= 75;
+            database.player.playerSpeed += speedUpgradeAmount;
             UpdateValuesSpeed();
-            PlayerData.WriteSaveState();
+            database.setPlayerData();
         }
         else
         {

@@ -2448,11 +2448,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1012672338}
   m_CullTransparentMesh: 0
---- !u!1 &1016427352 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1255621957579898, guid: 87c64120ba66f9b46b4809ca121e2f07,
-    type: 2}
-  m_PrefabInternal: {fileID: 2126037635}
 --- !u!4 &1016427353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4730761265859964, guid: 87c64120ba66f9b46b4809ca121e2f07,
@@ -2680,7 +2675,7 @@ GameObject:
   - component: {fileID: 1170105711}
   m_Layer: 5
   m_Name: ExitGameButton
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3240,7 +3235,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.1b Beta
+  m_Text: 0.2 Beta
 --- !u!222 &1340850928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4289,7 +4284,6 @@ GameObject:
   - component: {fileID: 2017200031}
   - component: {fileID: 2017200034}
   - component: {fileID: 2017200033}
-  - component: {fileID: 2017200032}
   m_Layer: 5
   m_Name: DistanceCounter
   m_TagString: Untagged
@@ -4315,22 +4309,6 @@ RectTransform:
   m_AnchoredPosition: {x: 155, y: -70}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2017200032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2017200030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08998b81e88f604eb3d33b966ec8caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceCounter: {fileID: 0}
-  player: {fileID: 1016427352}
-  beginningPos: 0
-  currentPos: 0
-  multiplier: 0.1
 --- !u!114 &2017200033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,6 +4800,11 @@ Prefab:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[43].y
       value: 0.036810633
       objectReference: {fileID: 0}
+    - target: {fileID: 114580137183394730, guid: 87c64120ba66f9b46b4809ca121e2f07,
+        type: 2}
+      propertyPath: distanceCounter
+      value: 
+      objectReference: {fileID: 2017200033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c64120ba66f9b46b4809ca121e2f07, type: 2}
   m_IsPrefabAsset: 0

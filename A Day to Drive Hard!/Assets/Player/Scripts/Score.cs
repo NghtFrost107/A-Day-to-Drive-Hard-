@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using SQLite4Unity3d;
+
 public class Score  {
 
-    public string time;
-    public string date;
-    public int score;
+    [PrimaryKey, AutoIncrement]
+    public int scoreID { get; set; }
+    public string time { get; set; }
+    public string date { get; set; }
+    public int score { get; set; }
 
-    public Score(int _score)
-    {
-        time = System.DateTime.Now.ToShortTimeString();
-        date = System.DateTime.Now.ToShortDateString();
-        score = _score;
-    }
 }

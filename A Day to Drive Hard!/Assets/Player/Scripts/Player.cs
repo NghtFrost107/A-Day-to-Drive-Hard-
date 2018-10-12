@@ -12,9 +12,18 @@ public class Player : MonoBehaviour {
     public Text playerCoinCounter;
     public Text playerHealthCounter;
     public Text gameOverMessage;
-    
-	// Use this for initialization
-	void Start () {
+    public Text distanceCounter;
+
+    public float currentPos;
+    private bool playerDead = false;
+
+    private Database database;
+    void Awake()
+    {
+        database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+    }
+    // Use this for initialization
+    void Start () {
         SetHealthCounter();
         SetCoinCounter();
         
@@ -24,12 +33,22 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PlayerData.playerHealth <= 0)
+
+        
+        if (database.player.playerHealth <= 0)
         {
             gameOverMessage.text = "Out of Lives!\n" + "Game Over!\n" + "Returning To Main Menu!";
-            
-            //Return to main menu after a 5 second delay
-            Invoke("ReturnToMenu", 5);
+
+            if (!playerDead)
+            {
+                //Return to main menu after a 5 second delay
+                Invoke("ReturnToMenu", 5);
+                playerDead = true;
+            }
+        } else
+        {
+            currentPos = transform.GetChild(0).transform.position.x;
+            distanceCounter.text = "Distance Travelled: " + Mathf.Round(currentPos) + "m";
         }
 	}
 
@@ -38,9 +57,9 @@ public class Player : MonoBehaviour {
     {
         if (playerInvincible == false)
         {
-            PlayerData.playerHealth--;
+            database.player.playerHealth--;
             SetHealthCounter();
-            Debug.Log("Player health:" + PlayerData.playerHealth);
+            Debug.Log("Player health:" + database.player.playerHealth);
 
             playerInvincible = true;
         
@@ -53,7 +72,7 @@ public class Player : MonoBehaviour {
     // What to do if the player has collided with a Pickup
     public void PickupCollision(Collider2D col)
     {
-        PlayerData.playerCoins++;
+        database.player.playerCoins++;
         SetCoinCounter();
         Destroy(col.gameObject);
     }
@@ -61,8 +80,15 @@ public class Player : MonoBehaviour {
     //Returns Player to main menu
     void ReturnToMenu()
     {
-        PlayerData.playerHealth = PlayerData.MAX_PLAYER_HEALTH;
-        PlayerData.WriteSaveState();
+        database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
+       // PlayerData.WriteSaveState();
+        database.addScore(new Score()
+        {
+            time = System.DateTime.Now.ToShortTimeString(),
+            date = System.DateTime.Now.ToShortDateString(),
+            score = (int)Mathf.Round(currentPos)
+        });
+        database.setPlayerData();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
@@ -75,13 +101,13 @@ public class Player : MonoBehaviour {
     // Health Counter
     void SetHealthCounter()
     {
-        playerHealthCounter.text = "Health: " + PlayerData.playerHealth;
+        playerHealthCounter.text = "Health: " + database.player.playerHealth;
     }
 
     // Coin Counter
     void SetCoinCounter()
     {
-        playerCoinCounter.text = "Coins: " + PlayerData.playerCoins;
+        playerCoinCounter.text = "Coins: " + database.player.playerCoins;
     }
 
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - PickUp
+  - Game
+  - Database
   layers:
   - Default
   - TransparentFX
