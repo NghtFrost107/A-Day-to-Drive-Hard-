@@ -18,10 +18,6 @@ public class Database : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     void InitialiseDB()
     {
         connection = new SQLiteConnection(Application.persistentDataPath + "/" + databaseName);

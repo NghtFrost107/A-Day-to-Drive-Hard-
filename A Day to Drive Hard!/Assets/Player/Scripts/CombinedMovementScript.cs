@@ -38,6 +38,7 @@ public class CombinedMovementScript : MonoBehaviour
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
+    private bool stuntStarted;
     // Use this for initialization
     void Start ()
     {
@@ -54,10 +55,15 @@ public class CombinedMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //if (gameObject.transform.rotation.z < 10)
-       // {
-       //     Debug.Log("Car is at: " + gameObject.transform.rotation.z);
-       // }
+        if(Vector2.Dot(transform.up, Vector2.up) < 0) {
+            
+           // Debug.Log("Car is more upsidedown");
+            if(Vector2.Dot(transform.up, Vector2.up) < -0.85f)
+            {
+                Debug.Log("Car is almost upsidedown");
+            }
+        }
+
     }
 
     //all physics based assignment done here
