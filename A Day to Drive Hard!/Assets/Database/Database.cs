@@ -6,18 +6,29 @@ using System.IO;
 
 public class Database : MonoBehaviour {
 
-    private SQLiteConnection connection;
+    private static Database databaseObject;
 
+    private SQLiteConnection connection;
     public PlayerData player;
 
     private string databaseName = "DayToDriveHardDB.db";
 	// Use this for initialization
-	void Start () {
-        DontDestroyOnLoad(gameObject);
-        InitialiseDB();
-
+	void Awake() {
+        if (databaseObject == null)
+        {
+            databaseObject = this;
+            DontDestroyOnLoad(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
 	}
-	
+
+    void Start()
+    {
+        InitialiseDB();
+    }
+
     void InitialiseDB()
     {
         connection = new SQLiteConnection(Application.persistentDataPath + "/" + databaseName);

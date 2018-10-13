@@ -12,4 +12,9 @@ public class Score  {
     public string date { get; set; }
     public int score { get; set; }
 
+    public override string ToString()
+    {
+        return string.Format("{0,3}: {0,10}  {2} {3}",scoreID,score,time,date);
+    }
+
 }
