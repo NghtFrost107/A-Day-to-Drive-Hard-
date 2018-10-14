@@ -12,6 +12,8 @@ public class PlayerData
     public int playerHealth;
     public int playerSpeed { get; set; }
 
+    public float currentPosition;
+
     //Add more variables for more properties added to the car
 }
 

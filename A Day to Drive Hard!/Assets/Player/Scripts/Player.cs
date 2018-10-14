@@ -14,7 +14,6 @@ public class Player : MonoBehaviour {
     public Text gameOverMessage;
     public Text distanceCounter;
 
-    public float currentPos;
     private bool playerDead = false;
 
     private Database database;
@@ -47,8 +46,8 @@ public class Player : MonoBehaviour {
             }
         } else
         {
-            currentPos = transform.GetChild(0).transform.position.x;
-            distanceCounter.text = "Distance Travelled: " + Mathf.Round(currentPos) + "m";
+            database.player.currentPosition = transform.GetChild(0).transform.position.x;
+            distanceCounter.text = "Distance Travelled: " + Mathf.Round(database.player.currentPosition) + "m";
         }
 	}
 
@@ -81,14 +80,14 @@ public class Player : MonoBehaviour {
     void ReturnToMenu()
     {
         database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
-       // PlayerData.WriteSaveState();
-        database.addScore(new Score()
+        // PlayerData.WriteSaveState();
+        database.AddScore(new Score()
         {
             time = System.DateTime.Now.ToShortTimeString(),
             date = System.DateTime.Now.ToShortDateString(),
-            score = (int)Mathf.Round(currentPos)
+            score = (int)Mathf.Round(database.player.currentPosition)
         });
-        database.setPlayerData();
+        database.SetPlayerData();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 

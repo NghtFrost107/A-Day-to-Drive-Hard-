@@ -11,11 +11,12 @@ public class SceneController : MonoBehaviour {
 
         if (gameObject.tag == "Game")
         {
-            GameObject.Find("Database").GetComponent<Database>().addScore(new Score()
+            Database database = GameObject.Find("Database").GetComponent<Database>();
+            database.AddScore(new Score()
             {
                 time = System.DateTime.Now.ToShortTimeString(),
                 date = System.DateTime.Now.ToShortDateString(),
-                score = 11
+                score = Mathf.RoundToInt(database.player.currentPosition)
             });
         }
     }

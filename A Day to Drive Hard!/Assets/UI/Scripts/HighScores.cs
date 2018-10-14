@@ -5,26 +5,36 @@ using UnityEngine.UI;
 
 public class HighScores : MonoBehaviour {
 
-    public GameObject database;
-    public GameObject scorePanel;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Database database;
+    public Text scoresID;
+    public Text highscore;
+    public Text timestamp;
 
     public void ListScores()
     {
-        List<Score> playerScores = database.GetComponent<Database>().retrieveScores();
+        CheckIfDatabaseLoaded();
+        List<Score> playerScores = database.GetComponent<Database>().RetrieveScores();
 
         foreach (Score score in playerScores)
         {
-            scorePanel.GetComponent<Text>().text += score.ToString() + "\n";
+            highscore.text += score.score + "\n";
+            timestamp.text += score.time + " " + score.date + "\n";
+        }
+    }
+
+    public void DeleteScores()
+    {
+        CheckIfDatabaseLoaded();
+        database.GetComponent<Database>().EraseTable("Score");
+        highscore.text = "Score\n-------------------\n";
+        timestamp.text = "Time\n----------------------------------------------------\n";
+    }
+
+    private void CheckIfDatabaseLoaded() 
+    {
+        if (database == null)
+        {
+            database = Database.databaseObject;
         }
     }
 }

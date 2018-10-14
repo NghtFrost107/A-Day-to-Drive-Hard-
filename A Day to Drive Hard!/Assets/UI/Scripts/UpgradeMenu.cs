@@ -54,7 +54,7 @@ public class UpgradeMenu : MonoBehaviour
             database.player.MAX_PLAYER_HEALTH++;
             database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
             UpdateValuesHealth();
-            database.setPlayerData();
+            database.SetPlayerData();
         }
         else
         {
@@ -72,7 +72,7 @@ public class UpgradeMenu : MonoBehaviour
             database.player.playerCoins -= 75;
             database.player.playerSpeed += speedUpgradeAmount;
             UpdateValuesSpeed();
-            database.setPlayerData();
+            database.SetPlayerData();
         }
         else
         {

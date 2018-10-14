@@ -6,7 +6,7 @@ using System.IO;
 
 public class Database : MonoBehaviour {
 
-    private static Database databaseObject;
+    public static Database databaseObject;
 
     private SQLiteConnection connection;
     public PlayerData player;
@@ -36,11 +36,11 @@ public class Database : MonoBehaviour {
         connection.CreateTable<PlayerData>();
         connection.CreateTable<Score>();
 
-        retrievePlayerData();
+        RetrievePlayerData();
     }
 
 
-    public void retrievePlayerData()
+    public void RetrievePlayerData()
     {
         List<PlayerData> playerTable = connection.Query<PlayerData>("SELECT * FROM PlayerData", new object[0]);
 
@@ -61,20 +61,35 @@ public class Database : MonoBehaviour {
         }
     }
 
-    public List<Score> retrieveScores()
+    public List<Score> RetrieveScores()
     {
-        return connection.Query<Score>("SELECT * FROM Score", new object[0]);
+        return connection.Query<Score>("SELECT * FROM Score ORDER BY score DESC LIMIT 10", new object[0]);
     }
 
-    public void addScore(Score score)
+    public void AddScore(Score score)
     {
         connection.Insert(score);
     }
 
-    public void setPlayerData()
+    public void SetPlayerData()
     {
         connection.Delete<PlayerData>(0);
         connection.Insert(player);
+    }
+
+    public void EraseTable(string table)
+    {
+        switch(table)
+        {
+            case "Score":
+                {
+                    connection.DeleteAll<Score>();
+                }break;
+            case "PlayerData":
+                {
+                    connection.DeleteAll<PlayerData>();
+                } break;
+        }
     }
 }
 
