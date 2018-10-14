@@ -6,10 +6,11 @@ public class PlayerData
     public int ID { get; set; }
     public int playerCoins { get; set; }
     public int MAX_PLAYER_HEALTH { get; set; }
-    public int playerHealth;
     public int playerSpeed { get; set; }
 
+
     public float currentPosition;
+    public int playerHealth;
 
     //Add more variables for more properties added to the car
 }

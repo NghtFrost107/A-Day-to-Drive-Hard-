@@ -31,6 +31,7 @@ public class Database : MonoBehaviour {
     {
         connection = new SQLiteConnection(Application.persistentDataPath + "/" + databaseName);
 
+        //connection.DropTable<PlayerData>();
         connection.CreateTable<PlayerData>();
         connection.CreateTable<Score>();
 
