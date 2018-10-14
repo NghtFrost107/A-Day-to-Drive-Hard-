@@ -5,7 +5,6 @@ using UnityEngine;
 public class JumpScript : MonoBehaviour
 {
     private bool canJump = true;
-    private float jumpStart = 0f;
     //private Collider myCollider;
     // public float distanceToGround = 0f;
     
@@ -41,7 +40,7 @@ public class JumpScript : MonoBehaviour
         if(canJump) // && isGrounded())
         {
             // Vector2(Right Velocity, Up Velocity)
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(5, 10f);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(8, 10f);
             canJump = false;
 
             Invoke("jump", 2);

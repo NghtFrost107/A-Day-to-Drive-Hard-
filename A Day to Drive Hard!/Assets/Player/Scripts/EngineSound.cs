@@ -5,6 +5,10 @@ public class EngineSound : MonoBehaviour
 {
     //audiosource reference
     private AudioSource carSound;
+    public int engineVolume;
+    public int musicVolume;
+
+
 
     //the range for audio source pitch
     private const float lowPtich = 0.5f;
@@ -38,5 +42,17 @@ public class EngineSound : MonoBehaviour
         float pitchFactor = Mathf.Abs(forwardSpeed * reductionFactor * userInput);
         //clamp the calculated pitch factor between lowPitch and highPitch
         carSound.pitch = Mathf.Clamp(pitchFactor, lowPtich, highPitch);
+
+
+    }
+
+    public void getEngineVolume()
+    {
+
+    }
+
+    public void getMusicVolume()
+    {
+
     }
 }
