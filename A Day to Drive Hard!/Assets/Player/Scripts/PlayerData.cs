@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.IO;
-
-using SQLite4Unity3d;
+﻿using SQLite4Unity3d;
 
 public class PlayerData
 {

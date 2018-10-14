@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +14,9 @@ public class HighScores : MonoBehaviour {
         CheckIfDatabaseLoaded();
         List<Score> playerScores = database.GetComponent<Database>().RetrieveScores();
 
+        highscore.text = "Score\n-------------------\n";
+        timestamp.text = "Time\n----------------------------------------------------\n";
+
         foreach (Score score in playerScores)
         {
             highscore.text += score.score + "\n";
@@ -26,8 +28,7 @@ public class HighScores : MonoBehaviour {
     {
         CheckIfDatabaseLoaded();
         database.GetComponent<Database>().EraseTable("Score");
-        highscore.text = "Score\n-------------------\n";
-        timestamp.text = "Time\n----------------------------------------------------\n";
+        ListScores();
     }
 
     private void CheckIfDatabaseLoaded() 

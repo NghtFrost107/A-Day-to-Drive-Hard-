@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.IO;
 
 public class Player : MonoBehaviour {
 
@@ -80,7 +77,6 @@ public class Player : MonoBehaviour {
     void ReturnToMenu()
     {
         database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
-        // PlayerData.WriteSaveState();
         database.AddScore(new Score()
         {
             time = System.DateTime.Now.ToShortTimeString(),

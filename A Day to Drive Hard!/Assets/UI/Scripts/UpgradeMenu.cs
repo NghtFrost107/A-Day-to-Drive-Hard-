@@ -25,7 +25,6 @@ public class UpgradeMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       // PlayerData.ReadSaveState();
         UpdateValuesHealth();
         UpdateValuesSpeed();
     }

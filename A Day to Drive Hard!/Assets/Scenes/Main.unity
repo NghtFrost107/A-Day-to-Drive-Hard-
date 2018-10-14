@@ -1035,18 +1035,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1095120731739952, guid: 158b1a628c443d049b56d3f38cb9f88f,
     type: 2}
   m_PrefabInternal: {fileID: 731779386}
---- !u!114 &351162775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 351162774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c37b76035d1e643ab3230e42ca058f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 892183317}
 --- !u!114 &351162778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,6 +2223,7 @@ GameObject:
   - component: {fileID: 1081668013}
   - component: {fileID: 1081668012}
   - component: {fileID: 1081668011}
+  - component: {fileID: 1081668014}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -2300,8 +2289,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 351162775}
-        m_MethodName: showHidePanel
+      - m_Target: {fileID: 1081668014}
+        m_MethodName: ChangePanelState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2347,6 +2336,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081668009}
   m_CullTransparentMesh: 0
+--- !u!114 &1081668014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1081668009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bd0c26b018ad547b378e410db0abe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToTrack: {fileID: 892183317}
 --- !u!1 &1109232544 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1055279699621996, guid: d3580d8b448c47442a176f813c3d2efd,
@@ -4085,6 +4086,7 @@ GameObject:
   - component: {fileID: 2029815763}
   - component: {fileID: 2029815762}
   - component: {fileID: 2029815761}
+  - component: {fileID: 2029815764}
   m_Layer: 5
   m_Name: PauseMenuButton
   m_TagString: Untagged
@@ -4150,8 +4152,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 351162775}
-        m_MethodName: showHidePanel
+      - m_Target: {fileID: 2029815764}
+        m_MethodName: ChangePanelState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4197,6 +4199,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2029815759}
   m_CullTransparentMesh: 0
+--- !u!114 &2029815764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029815759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bd0c26b018ad547b378e410db0abe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToTrack: {fileID: 892183317}
 --- !u!1001 &2126037635
 Prefab:
   m_ObjectHideFlags: 0
