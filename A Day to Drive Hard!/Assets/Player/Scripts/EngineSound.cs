@@ -5,9 +5,9 @@ public class EngineSound : MonoBehaviour
 {
     //audiosource reference
     private AudioSource carSound;
-    public int engineVolume;
-    public int musicVolume;
-
+    private AudioSource musicSound;
+    public float carVolume;
+    public float musicVolume;
 
 
     //the range for audio source pitch
@@ -46,7 +46,7 @@ public class EngineSound : MonoBehaviour
 
     }
 
-    public void getEngineVolume()
+    public void getCarVolume()
     {
 
     }

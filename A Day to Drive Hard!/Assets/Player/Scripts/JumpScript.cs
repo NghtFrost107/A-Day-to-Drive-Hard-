@@ -23,7 +23,7 @@ public class JumpScript : MonoBehaviour
         if (canJump && Input.GetKeyDown("j")) // && isGrounded())
         {
             // Vector2(Right Velocity, Up Velocity)
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(5, 10f);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(8, 10f);
             canJump = false;
 
             Invoke("jump", 2);
