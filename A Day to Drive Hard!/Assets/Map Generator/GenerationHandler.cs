@@ -43,7 +43,7 @@ public class GenerationHandler : MonoBehaviour {
                     section2.removeAllObstacles();
                 }
                 section2.GenerateMap(section1.boundary[section1.boundary.Length - 1]); //Create new section 
-                //section2.addObstacles(obstacles);
+                section2.addObstacles(obstacles);
                 s2Generated = true;
                 sectionNumber += 1;
             }
@@ -54,7 +54,7 @@ public class GenerationHandler : MonoBehaviour {
                 section1.GetComponent<MeshGenerator>().ClearMesh();
                 section1.removeAllObstacles();
                 section1.GenerateMap(section2.boundary[section2.boundary.Length - 1]);
-                //section1.addObstacles(obstacles);
+                section1.addObstacles(obstacles);
                 s2Generated = false;
                 sectionNumber += 1;
             }
