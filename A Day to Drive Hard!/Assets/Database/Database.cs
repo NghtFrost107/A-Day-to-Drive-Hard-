@@ -8,6 +8,7 @@ public class Database : MonoBehaviour {
 
     private SQLiteConnection connection;
     public PlayerData player;
+    public Score score;
 
     private string databaseName = "DayToDriveHardDB.db";
 	// Use this for initialization
@@ -31,7 +32,7 @@ public class Database : MonoBehaviour {
     {
         connection = new SQLiteConnection(Application.persistentDataPath + "/" + databaseName);
 
-        //connection.DropTable<PlayerData>();
+        //connection.DropTable<PlayerData>();   <------forgotten what i was doing with this
         connection.CreateTable<PlayerData>();
         connection.CreateTable<Score>();
 
@@ -50,7 +51,8 @@ public class Database : MonoBehaviour {
                 playerCoins = 500,
                 MAX_PLAYER_HEALTH = 5,
                 playerHealth = 5,
-                playerSpeed = 2000
+                playerSpeed = 2000,
+                totalDistanceTravelled = 0          //<-----added this 
             };
         }
         else
@@ -89,6 +91,13 @@ public class Database : MonoBehaviour {
                     connection.DeleteAll<PlayerData>();
                 } break;
         }
+    }
+
+
+    //is tthis where i put it?
+    public void totalDistance()
+    {
+        player.totalDistanceTravelled = player.totalDistanceTravelled + score.score;
     }
 }
 
