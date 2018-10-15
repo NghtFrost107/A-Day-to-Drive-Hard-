@@ -155,11 +155,26 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
+    public void addClouds(Sprite[] clouds)
+    {
+        System.Random random = new System.Random();
+
+        for(int i = 0; i < random.Next(50);i++)
+        {
+            GameObject cloud = new GameObject("Cloud");
+            cloud.AddComponent<SpriteRenderer>().sprite = clouds[random.Next(clouds.Length - 1)];
+            cloud.transform.position = boundary[random.Next(1, boundary.Length - 1)].topLeft.position + new Vector3(0, 15, 0);
+            //Instantiate(cloud, boundary[random.Next(1, boundary.Length - 1)].topLeft.position + new Vector3(0, 15, 0), Quaternion.identity);
+            obstaclesSpawned.Add(cloud);
+        }
+    }
+
+
     public void removeAllObstacles()
     {
         foreach(GameObject obstacle in obstaclesSpawned)
         {
-            GameObject.Destroy(obstacle);
+            Destroy(obstacle);
         }
     }
 }
