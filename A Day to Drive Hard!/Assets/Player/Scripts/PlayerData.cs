@@ -7,7 +7,7 @@ public class PlayerData
     public int playerCoins { get; set; }
     public int MAX_PLAYER_HEALTH { get; set; }
     public int playerSpeed { get; set; }
-
+    public int totalDistanceTravel { get; set; }
 
     public float currentPosition;
     public int playerHealth;
