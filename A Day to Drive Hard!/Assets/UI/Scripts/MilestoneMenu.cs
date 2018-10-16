@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MilestoneMenu : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private Image completedTick;
+
+    private Database database;
+    void Awake()
+    {
+        database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+    }
+
+    /*
+     * if condition is met display the tick and disbale button colour
+     * 
+     */
+
+    public void milestoneMet()
+    {
+
+    }
 }
