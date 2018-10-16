@@ -325,18 +325,18 @@ PolygonCollider2D:
       - {x: 1.3968678, y: -0.19622016}
       - {x: 1.4956055, y: -0.19912744}
       - {x: 1.6063786, y: -0.22926974}
-      - {x: 1.7000008, y: -0.2870431}
-      - {x: 1.7820263, y: -0.37103963}
-      - {x: 1.8334103, y: -0.469692}
-      - {x: 1.8568192, y: -0.53450704}
-      - {x: 1.8836346, y: -0.507916}
-      - {x: 1.9004478, y: -0.4738176}
-      - {x: 1.919672, y: -0.40871596}
-      - {x: 1.946804, y: -0.3341682}
-      - {x: 1.9805374, y: -0.27907443}
-      - {x: 2.0224228, y: -0.23439431}
-      - {x: 2.0180283, y: 0.0012114048}
-      - {x: 1.9026489, y: 0.043521404}
+      - {x: 1.5966796, y: -0.19790131}
+      - {x: 1.5565997, y: -0.13041097}
+      - {x: 1.5794371, y: -0.20903426}
+      - {x: 1.4990996, y: -0.16992012}
+      - {x: 1.4520262, y: -0.12043713}
+      - {x: 1.5079242, y: -0.1278607}
+      - {x: 1.5970355, y: -0.19503035}
+      - {x: 1.5649413, y: -0.15772301}
+      - {x: 1.5608468, y: -0.14030772}
+      - {x: 1.5584308, y: -0.118122086}
+      - {x: 1.5593209, y: -0.03540118}
+      - {x: 1.5617623, y: 0.05020499}
       - {x: 0.22878647, y: 0.043521404}
       - {x: 0.08230972, y: 0.14583182}
       - {x: -0.5, y: 0.5433681}
@@ -350,14 +350,14 @@ PolygonCollider2D:
       - {x: -2.0535984, y: 0.34874463}
       - {x: -2.1781178, y: 0.25194573}
       - {x: -2.3566742, y: 0.042259216}
-      - {x: -2.6811085, y: 0.04117155}
-      - {x: -2.742342, y: 0.027803183}
-      - {x: -2.7948074, y: 0.013417482}
-      - {x: -2.8667355, y: -0.03997922}
-      - {x: -2.9233665, y: -0.109999895}
-      - {x: -2.9178238, y: -0.3599999}
-      - {x: -2.9011517, y: -0.42445612}
-      - {x: -2.8666096, y: -0.47006273}
+      - {x: -2.5114946, y: 0.04033605}
+      - {x: -2.6078286, y: 0.04117091}
+      - {x: -2.6201882, y: 0.036810633}
+      - {x: -2.6292162, y: 0.02737204}
+      - {x: -2.6309965, y: -0.00036120412}
+      - {x: -2.6374307, y: -0.1306784}
+      - {x: -2.640762, y: -0.22801994}
+      - {x: -2.610804, y: -0.34671938}
       - {x: -2.451849, y: -0.5281949}
       - {x: -2.4103622, y: -0.54931617}
       - {x: -2.353611, y: -0.5655606}
@@ -483,7 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b64056a31009a24b882f3bfa42550f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToGround: 0
 --- !u!114 &114469996066710562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -495,6 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d239eeae335ca4aa9ce3bc81478760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carVolume: 0
+  musicVolume: 0
 --- !u!114 &114559123187669292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b64056a31009a24b882f3bfa42550f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToGround: 0
 --- !u!114 &114580137183394730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,7 +553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b64056a31009a24b882f3bfa42550f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToGround: 0
 --- !u!114 &114746101164103226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -712,7 +711,7 @@ WheelJoint2D:
   m_GameObject: {fileID: 1255621957579898}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 50479679174641176}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -720,9 +719,9 @@ WheelJoint2D:
   m_Anchor: {x: -1.93, y: -0.9}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_Suspension:
-    m_DampingRatio: 0.7
-    m_Frequency: 2
-    m_Angle: 90
+    m_DampingRatio: 1
+    m_Frequency: 5
+    m_Angle: 270
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -735,7 +734,7 @@ WheelJoint2D:
   m_GameObject: {fileID: 1255621957579898}
   m_Enabled: 1
   serializedVersion: 4
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 50187214012780082}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -743,9 +742,9 @@ WheelJoint2D:
   m_Anchor: {x: 1.44, y: -0.9}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_Suspension:
-    m_DampingRatio: 0.7
-    m_Frequency: 2
-    m_Angle: 90
+    m_DampingRatio: 1
+    m_Frequency: 5
+    m_Angle: 270
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

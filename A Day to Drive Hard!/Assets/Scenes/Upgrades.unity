@@ -320,6 +320,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 26815438}
   m_CullTransparentMesh: 0
+--- !u!1 &135077210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 135077211}
+  - component: {fileID: 135077213}
+  - component: {fileID: 135077212}
+  m_Layer: 5
+  m_Name: Background1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &135077211
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135077210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 705371320}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000032663, y: 66.99998}
+  m_SizeDelta: {x: 638.6, y: 284.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &135077212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135077210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &135077213
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 135077210}
+  m_CullTransparentMesh: 0
 --- !u!1 &154931201
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +805,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 905994124}
+  - {fileID: 135077211}
   - {fileID: 874180651}
   - {fileID: 2075094746}
   m_Father: {fileID: 1101167333}
@@ -774,7 +845,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 705371320}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -820,6 +891,75 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 874180650}
+  m_CullTransparentMesh: 0
+--- !u!1 &905994123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905994124}
+  - component: {fileID: 905994126}
+  - component: {fileID: 905994125}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &905994124
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905994123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 705371320}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.049978, y: 67}
+  m_SizeDelta: {x: 663.9, y: 310}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &905994125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905994123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &905994126
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905994123}
   m_CullTransparentMesh: 0
 --- !u!1 &914976232
 GameObject:
@@ -1297,7 +1437,7 @@ RectTransform:
   m_Father: {fileID: 474809272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.44387388}
+  m_AnchorMin: {x: 0, y: 0.4907108}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -1538,12 +1678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
-  healthText: {fileID: 2141917860}
-  notEnoughCoins: {fileID: 874180652}
+  thisUpgrade: 0
+  upgradeText: {fileID: 0}
   costText: {fileID: 1624217211}
-  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &1285971996
 GameObject:
@@ -1797,12 +1935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
-  healthText: {fileID: 2141917860}
-  notEnoughCoins: {fileID: 0}
+  thisUpgrade: 0
+  upgradeText: {fileID: 0}
   costText: {fileID: 1624217211}
-  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &1555841244
 GameObject:
@@ -1879,8 +2015,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1067312603}
   m_HandleRect: {fileID: 1067312602}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.5561261
+  m_Value: 1
+  m_Size: 0.5092892
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1988,7 +2124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cost: 100'
+  m_Text: 'Cost:'
 --- !u!222 &1624217212
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2158,18 +2294,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1651724007}
-        m_MethodName: HealthUpgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1651724007}
-        m_MethodName: UpdateValuesHealth
+        m_MethodName: ApplyUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2226,12 +2351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
-  healthText: {fileID: 2141917860}
-  notEnoughCoins: {fileID: 0}
+  thisUpgrade: 5
+  upgradeText: {fileID: 2141917860}
   costText: {fileID: 1624217211}
-  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &1658333403
 GameObject:
@@ -2300,7 +2423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cost 75
+  m_Text: 'Cost:'
 --- !u!222 &1658333406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2421,7 +2544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 587, y: -635.15}
+  m_AnchoredPosition: {x: 587, y: -635.1501}
   m_SizeDelta: {x: 1174, y: 1270.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691487331
@@ -2655,18 +2778,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920566355}
-        m_MethodName: SpeedUpgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1920566355}
-        m_MethodName: UpdateValuesSpeed
+        m_MethodName: ApplyUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2723,12 +2835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b7bb02ec12b443a045d10639aad9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpgradeAmount: 2000
   notEnoughCoinsPanel: {fileID: 705371319}
-  healthText: {fileID: 2141917860}
-  notEnoughCoins: {fileID: 0}
+  thisUpgrade: 10
+  upgradeText: {fileID: 154931203}
   costText: {fileID: 1658333405}
-  speedText: {fileID: 154931203}
   playerCoinsText: {fileID: 609772401}
 --- !u!1 &2017704865
 GameObject:
@@ -2891,6 +3001,7 @@ GameObject:
   - component: {fileID: 2075094749}
   - component: {fileID: 2075094748}
   - component: {fileID: 2075094747}
+  - component: {fileID: 2075094750}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -2910,7 +3021,7 @@ RectTransform:
   m_Children:
   - {fileID: 1851241973}
   m_Father: {fileID: 705371320}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2956,8 +3067,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1280770131}
-        m_MethodName: showNotEnoughCoinsPanel
+      - m_Target: {fileID: 2075094750}
+        m_MethodName: ChangePanelState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3003,6 +3114,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2075094745}
   m_CullTransparentMesh: 0
+--- !u!114 &2075094750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2075094745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bd0c26b018ad547b378e410db0abe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToTrack: {fileID: 705371319}
 --- !u!1 &2141917858
 GameObject:
   m_ObjectHideFlags: 0

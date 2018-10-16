@@ -163,8 +163,7 @@ public class MapGenerator : MonoBehaviour {
         {
             GameObject cloud = new GameObject("Cloud");
             cloud.AddComponent<SpriteRenderer>().sprite = clouds[random.Next(clouds.Length - 1)];
-            cloud.transform.position = boundary[random.Next(1, boundary.Length - 1)].topLeft.position + new Vector3(0, 15, 0);
-            //Instantiate(cloud, boundary[random.Next(1, boundary.Length - 1)].topLeft.position + new Vector3(0, 15, 0), Quaternion.identity);
+            cloud.transform.position = boundary[random.Next(1, boundary.Length - 1)].topLeft.position + new Vector3(0, random.Next(10,20), 0);
             obstaclesSpawned.Add(cloud);
         }
     }

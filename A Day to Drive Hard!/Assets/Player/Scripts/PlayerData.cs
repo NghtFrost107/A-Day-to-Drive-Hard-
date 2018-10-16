@@ -4,10 +4,10 @@ public class PlayerData
 {
     [PrimaryKey]
     public int ID { get; set; }
-    public int playerCoins { get; set; }
+    public int PlayerCoins { get; set; }
     public int MAX_PLAYER_HEALTH { get; set; }
-    public int playerSpeed { get; set; }
-    public int totalDistanceTravelled { get; set; }
+    public int PlayerSpeed { get; set; }
+    public int LifetimeDistance { get; set; }
 
     public float currentPosition;
     public int playerHealth;

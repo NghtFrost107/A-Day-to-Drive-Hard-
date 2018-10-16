@@ -32,7 +32,7 @@ public class Database : MonoBehaviour {
     {
         connection = new SQLiteConnection(Application.persistentDataPath + "/" + databaseName);
 
-        //connection.DropTable<PlayerData>();   <------forgotten what i was doing with this
+        //connection.DropTable<PlayerData>(); 
         connection.CreateTable<PlayerData>();
         connection.CreateTable<Score>();
 
@@ -48,11 +48,11 @@ public class Database : MonoBehaviour {
         {
             player = new PlayerData()
             {
-                playerCoins = 500,
-                MAX_PLAYER_HEALTH = 5,
-                playerHealth = 5,
-                playerSpeed = 2000,
-                totalDistanceTravelled = 0          //<-----added this 
+                PlayerCoins = 20,
+                MAX_PLAYER_HEALTH = 3,
+                playerHealth = 3,
+                PlayerSpeed = 2000,
+                LifetimeDistance = 0          //<-----added this 
             };
         }
         else
@@ -97,7 +97,7 @@ public class Database : MonoBehaviour {
     //is tthis where i put it?
     public void totalDistance()
     {
-        player.totalDistanceTravelled = player.totalDistanceTravelled + score.score;
+        player.LifetimeDistance = player.LifetimeDistance + score.score;
     }
 }
 

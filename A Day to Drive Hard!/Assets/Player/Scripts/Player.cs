@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
     // What to do if the player has collided with a Pickup
     public void PickupCollision(Collider2D col)
     {
-        database.player.playerCoins++;
+        database.player.PlayerCoins++;
         SetCoinCounter();
         Destroy(col.gameObject);
     }
@@ -77,12 +77,12 @@ public class Player : MonoBehaviour {
     void ReturnToMenu()
     {
         database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
+        database.player.LifetimeDistance += (int)Mathf.Round(database.player.currentPosition);
         database.AddScore(new Score()
         {
             time = System.DateTime.Now.ToShortTimeString(),
             date = System.DateTime.Now.ToShortDateString(),
             score = (int)Mathf.Round(database.player.currentPosition)
-            //add current score to total (score/distance travelled)                           <---------  help here not too sure if this is a where im suppose to put it
         });
         database.SetPlayerData();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour {
     // Coin Counter
     void SetCoinCounter()
     {
-        playerCoinCounter.text = "Coins: " + database.player.playerCoins;
+        playerCoinCounter.text = "Coins: " + database.player.PlayerCoins;
     }
 
 }

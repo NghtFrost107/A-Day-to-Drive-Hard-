@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 
+public enum Upgrades
+{
+    HEALTH = 5,
+    SPEED = 10,
+    GRIP = 3
+    //Future upgrades here
+}
 public class UpgradeMenu : MonoBehaviour
 {
-    public int speedUpgradeAmount = 2000;
-
     public GameObject notEnoughCoinsPanel;
-    int counter = 1;
-    
-    public Text healthText;
-    public Text notEnoughCoins;
+
+    public Upgrades thisUpgrade;
+
+    public Text upgradeText;
     public Text costText;
-    public Text speedText;
     public Text playerCoinsText;
 
+    private int upgradeCost;
     private Database database;
     void Awake()
     {
@@ -25,79 +27,54 @@ public class UpgradeMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        UpdateValuesHealth();
-        UpdateValuesSpeed();
-    }
-   
-    //Update the values on the HUD
-    public void UpdateValuesHealth()
-    {
-        healthText.text = "Max Health: " + database.player.MAX_PLAYER_HEALTH;
-        playerCoinsText.text = "Coins: " + database.player.playerCoins;
+        setHUD();
     }
 
-    public void UpdateValuesSpeed()
+    public void setHUD()
     {
-        speedText.text = "Speed: " + database.player.playerSpeed;
-        playerCoinsText.text = "Coins: " + database.player.playerCoins;
-    }
-
-
-    // When pressed will check coins, deduct coins and apply upgrade, write out to save
-    public void HealthUpgrade()
-    {
-  
-        if (database.player.playerCoins >= 100)
+        switch(thisUpgrade)
         {
-            database.player.playerCoins -= 100;
-            database.player.MAX_PLAYER_HEALTH++;
-            database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
-            UpdateValuesHealth();
+            case Upgrades.HEALTH:
+                {
+                    upgradeCost = database.player.MAX_PLAYER_HEALTH * (int)Upgrades.HEALTH;
+                    upgradeText.text = "Max Health: " + database.player.MAX_PLAYER_HEALTH;
+                    
+                } break;
+            case Upgrades.SPEED:
+                {
+                    upgradeCost = (database.player.PlayerSpeed/1000) * (int)Upgrades.SPEED;
+                    upgradeText.text = "Speed: " + database.player.PlayerSpeed;
+                } break;
+        }
+        playerCoinsText.text = "Coins: " + database.player.PlayerCoins;
+        costText.text = "Cost: " + upgradeCost;
+    }
+    public void ApplyUpgrade()
+    {
+        if (database.player.PlayerCoins >= upgradeCost)
+        {
+            database.player.PlayerCoins -= upgradeCost;
+            switch (thisUpgrade)
+            {
+                case Upgrades.HEALTH:
+                    {
+                        database.player.MAX_PLAYER_HEALTH++;
+                        database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
+                    }
+                    break;
+                case Upgrades.SPEED:
+                    {
+                        database.player.PlayerSpeed += 1000;
+                    }
+                    break;
+            }
+            setHUD();
             database.SetPlayerData();
         }
         else
         {
-            showNotEnoughCoinsPanel();
+            notEnoughCoinsPanel.SetActive(true);
         }
 
-    }
-
-    // When pressed will check coins, deduct coins and apply upgrade, write out to save
-    public void SpeedUpgrade()
-    {
-       
-        if (database.player.playerCoins >= 75)
-        {
-            database.player.playerCoins -= 75;
-            database.player.playerSpeed += speedUpgradeAmount;
-            UpdateValuesSpeed();
-            database.SetPlayerData();
-        }
-        else
-        {
-            showNotEnoughCoinsPanel();
-        }
-      
-
-    }
-
-    // Placeholder function for Grip Upgrade
-    public void GripUpgrade()
-    {
-        // Nothing here yet
-    }
-
-    // Show "Not Enough Coins" panel
-    public void showNotEnoughCoinsPanel()
-    {
-        counter++;
-        if (counter % 2 == 1)
-        {
-            notEnoughCoinsPanel.gameObject.SetActive(false);
-        }
-        else
-        {
-            notEnoughCoinsPanel.gameObject.SetActive(true);
-        }
-    }
+    } 
 }

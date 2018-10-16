@@ -10,7 +10,7 @@ public class JumpScript : MonoBehaviour
     
 
 	// Use this for initialization
-	void Start()
+	/*void Start()
     {
         //myCollider = GetComponent<Collider>();
 	}
@@ -28,7 +28,7 @@ public class JumpScript : MonoBehaviour
 
             Invoke("jump", 2);
         }
-    }
+    }*/
 
     //public bool isGrounded()
     //{
@@ -40,7 +40,7 @@ public class JumpScript : MonoBehaviour
         if(canJump) // && isGrounded())
         {
             // Vector2(Right Velocity, Up Velocity)
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(8, 10f);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 10f);
             canJump = false;
 
             Invoke("jump", 2);

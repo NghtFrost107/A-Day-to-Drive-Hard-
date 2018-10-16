@@ -12,6 +12,8 @@ public class SceneController : MonoBehaviour {
         if (gameObject.tag == "Game")
         {
             Database database = GameObject.Find("Database").GetComponent<Database>();
+            database.player.LifetimeDistance += Mathf.RoundToInt(database.player.currentPosition);
+            database.SetPlayerData();
             database.AddScore(new Score()
             {
                 time = System.DateTime.Now.ToShortTimeString(),
