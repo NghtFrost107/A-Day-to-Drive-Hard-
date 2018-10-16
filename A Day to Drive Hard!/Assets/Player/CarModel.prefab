@@ -523,6 +523,9 @@ MonoBehaviour:
   playerHealthCounter: {fileID: 0}
   gameOverMessage: {fileID: 0}
   distanceCounter: {fileID: 0}
+  carBody: {fileID: 212768065238267784}
+  backWheel: {fileID: 212878245024325858}
+  frontWheel: {fileID: 212338386525461336}
 --- !u!114 &114654855927269146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -564,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4458e1978b01842b9f9bd8e0070c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerProperties: {fileID: 114580137183394730}
+  player: {fileID: 114580137183394730}
 --- !u!212 &212338386525461336
 SpriteRenderer:
   m_ObjectHideFlags: 1

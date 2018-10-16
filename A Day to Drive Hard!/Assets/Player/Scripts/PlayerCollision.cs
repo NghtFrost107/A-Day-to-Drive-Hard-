@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public Player playerProperties;
+    public Player player;
 
     // What initially happens when the player collides with an object
     private void OnTriggerEnter2D(Collider2D other)
@@ -12,13 +12,18 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             //Call ObstacleCollision in playerProperties script
-            playerProperties.ObstacleCollision();
+            player.ObstacleCollision();
         }
 
         if (other.gameObject.CompareTag("PickUp"))
         {
             //TODO: Make a player collided with pickup method in playerProperties Class
-            playerProperties.PickupCollision(other);
+            player.PickupCollision(other);
+        }
+
+        if (other.gameObject.CompareTag("Shield"))
+        {
+            player.ShieldCollision(other);
         }
     }
 }

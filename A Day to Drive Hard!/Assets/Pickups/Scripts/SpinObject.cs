@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinCollect : MonoBehaviour {
-
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
+public class SpinObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()

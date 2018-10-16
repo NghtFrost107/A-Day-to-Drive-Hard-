@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - Game
   - Database
+  - Shield
   layers:
   - Default
   - TransparentFX

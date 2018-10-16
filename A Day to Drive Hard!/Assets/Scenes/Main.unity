@@ -720,6 +720,7 @@ MonoBehaviour:
   - {fileID: 1343272618643802, guid: 2a19e6493eb760d48b8ad0616a7f1297, type: 2}
   - {fileID: 1986331493038772, guid: 96cbcbc20f0817e4d923e72b514a098b, type: 2}
   - {fileID: 1187152936786334, guid: 5c88b70be6535f04889de65d988b0176, type: 2}
+  - {fileID: 1172813877727122, guid: 67834ce538df53944b658ab21b31bc58, type: 2}
   clouds:
   - {fileID: 21300000, guid: ab9a31669277bdd4693bc48435978bc8, type: 3}
   - {fileID: 21300000, guid: 6b6d81e02fb12e54787efee701b8ca97, type: 3}

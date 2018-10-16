@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
     public bool playerInvincible;
-
     public Text playerCoinCounter;
     public Text playerHealthCounter;
     public Text gameOverMessage;
     public Text distanceCounter;
+    public SpriteRenderer carBody;
+    public SpriteRenderer backWheel;
+    public SpriteRenderer frontWheel;
 
     private bool playerDead = false;
 
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour {
         SetHealthCounter();
         SetCoinCounter();
         
-        //Setting the gameover message to blank so it appears hidden untill the player runs out of lives
+        //starts game with gameover message hidden
         gameOverMessage.text = "";
 	}
 	
@@ -37,8 +39,8 @@ public class Player : MonoBehaviour {
 
             if (!playerDead)
             {
-                //Return to main menu after a 5 second delay
-                Invoke("ReturnToMenu", 5);
+                //Return to main menu after a 3 second delay
+                Invoke("ReturnToMenu", 3);
                 playerDead = true;
             }
         } else
@@ -57,19 +59,27 @@ public class Player : MonoBehaviour {
             SetHealthCounter();
             Debug.Log("Player health:" + database.player.playerHealth);
 
-            playerInvincible = true;
-        
-            //Calling PlayerSetDamageable after a 3 second delay
-            Invoke("PlayerSetDamageable", 3); 
+            PlayerSetInvincible(3);
         }
         
     }
 
-    // What to do if the player has collided with a Pickup
+    //Player Collides with pickup
     public void PickupCollision(Collider2D col)
     {
         database.player.PlayerCoins++;
         SetCoinCounter();
+        Destroy(col.gameObject);
+    }
+
+    //Player collides with shield powerup
+    public void ShieldCollision(Collider2D col)
+    {
+
+        Debug.Log("player hit shield");
+        //Set Player Invincible for 10 secs
+        PlayerSetInvincible(10);
+
         Destroy(col.gameObject);
     }
 
@@ -88,10 +98,40 @@ public class Player : MonoBehaviour {
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
-    // Invincibility Bool
+    //Sets playerinvincible for a time
+    void PlayerSetInvincible(int waitTime)
+    {
+        playerInvincible = true;
+
+        //Calls FlashSprite every 33.3 milliseconds
+        InvokeRepeating("FlashSprite", 0.0f, 0.3f); 
+
+        //Call PlayerSetDamageable after int waitTime in seconds
+        Invoke("PlayerSetDamageable", waitTime);
+    }
+
+    //Sets the player damageable
     void PlayerSetDamageable()
     {
         playerInvincible = false;
+        CancelInvoke("FlashSprite"); //Stops sprite flashing
+    }
+
+    //Flashes Sprite
+    void FlashSprite()
+    {
+        if (carBody.color == Color.white)
+        {
+            carBody.color = Color.clear;
+            frontWheel.color = Color.clear;
+            backWheel.color = Color.clear;
+        }
+        else
+        {
+            carBody.color = Color.white;
+            frontWheel.color = Color.white;
+            backWheel.color = Color.white;
+        }
     }
 
     // Health Counter
