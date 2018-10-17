@@ -9,6 +9,7 @@ TagManager:
   - Game
   - Database
   - Shield
+  - Heart
   layers:
   - Default
   - TransparentFX

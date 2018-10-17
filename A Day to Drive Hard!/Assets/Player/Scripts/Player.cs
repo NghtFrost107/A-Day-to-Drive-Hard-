@@ -75,11 +75,19 @@ public class Player : MonoBehaviour {
     //Player collides with shield powerup
     public void ShieldCollision(Collider2D col)
     {
+        CancelInvoke(); //Gets rid of any leftover invokes from previous collisions
 
-        Debug.Log("player hit shield");
         //Set Player Invincible for 10 secs
         PlayerSetInvincible(10);
 
+        Destroy(col.gameObject);
+    }
+
+    //Player collides with heart powerup
+    public void HeartCollision(Collider2D col)
+    {
+        database.player.playerHealth++;
+        SetHealthCounter();
         Destroy(col.gameObject);
     }
 
@@ -103,7 +111,7 @@ public class Player : MonoBehaviour {
     {
         playerInvincible = true;
 
-        //Calls FlashSprite every 33.3 milliseconds
+        //Calls FlashSprite every 33.3 milliseconds for duration of invincibility
         InvokeRepeating("FlashSprite", 0.0f, 0.3f); 
 
         //Call PlayerSetDamageable after int waitTime in seconds
@@ -145,5 +153,4 @@ public class Player : MonoBehaviour {
     {
         playerCoinCounter.text = "Coins: " + database.player.PlayerCoins;
     }
-
 }

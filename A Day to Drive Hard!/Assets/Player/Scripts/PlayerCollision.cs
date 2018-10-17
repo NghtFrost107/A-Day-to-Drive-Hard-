@@ -17,13 +17,17 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("PickUp"))
         {
-            //TODO: Make a player collided with pickup method in playerProperties Class
             player.PickupCollision(other);
         }
 
         if (other.gameObject.CompareTag("Shield"))
         {
             player.ShieldCollision(other);
+        }
+
+        if (other.gameObject.CompareTag("Heart"))
+        {
+            player.HeartCollision(other);
         }
     }
 }
