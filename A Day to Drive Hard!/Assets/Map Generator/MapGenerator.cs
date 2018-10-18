@@ -144,7 +144,7 @@ public class MapGenerator : MonoBehaviour {
         
 
         obstaclesSpawned = new List<GameObject>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             GameObject obstacleToSpawn = obstacles[random.Next(obstacles.Length)];
             int squareIndex = random.Next(1, boundary.Length - 1);
             if (boundary[squareIndex - 1].y == boundary[squareIndex + 1].y)

@@ -1,6 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum Flip {
+    FRONTFLIP,
+    BACKFLIP,
+    NOFLIP        
+}
 
 public class CombinedMovementScript : MonoBehaviour
 {
@@ -34,11 +41,15 @@ public class CombinedMovementScript : MonoBehaviour
     public Transform frontWheel;
     public Rigidbody2D rb2d;
 
+    public Text stuntText;
+    public Transform canvasObject;
+
     public bool accelerateIsPressed;
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
-    private bool stuntStarted;
+    private Flip flipStatus;
+    private bool halfway;
     // Use this for initialization
     void Start ()
     {
@@ -55,17 +66,101 @@ public class CombinedMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Vector2.Dot(transform.up, Vector2.up) < 0) {
-            
-           // Debug.Log("Car is more upsidedown");
-            if(Vector2.Dot(transform.up, Vector2.up) < -0.85f)
+        float currentAngle = gameObject.transform.eulerAngles.z;
+        if (currentAngle <= 270 && currentAngle > 180)
+        {
+            if(flipStatus == Flip.NOFLIP)
             {
-                Debug.Log("Car is almost upsidedown");
+                flipStatus = Flip.FRONTFLIP;
+            }
+            
+            if(flipStatus == Flip.BACKFLIP)
+            {
+                halfway = true;
+            }
+
+            
+        }
+        else if (currentAngle >= 90 && currentAngle <= 180)
+        {
+            if (flipStatus == Flip.NOFLIP)
+            {
+                flipStatus = Flip.BACKFLIP;
+            }
+            if (flipStatus == Flip.FRONTFLIP)
+            {
+                halfway = true;
             }
         }
+        else if(flipStatus != Flip.NOFLIP)
+        {
+            switch (flipStatus)
+            {
+                case Flip.FRONTFLIP:
+                    {
+                        if(currentAngle <= 90 && halfway)
+                        {
+                            stuntText.text = "Full Front Flip!";
+                        } else if (halfway)
+                        {
+                            stuntText.text = "Half Front Flip!";
+                        } else
+                        {
+                            stuntText.text = "90 Degree Front Flip!";
+                        } break;
+                    }
+                case Flip.BACKFLIP:
+                    {
+                        if (currentAngle >= 270 && halfway)
+                        {
+                            stuntText.text = "Full Back Flip!";
+                        }
+                        else if (halfway)
+                        {
+                            stuntText.text = "Half Back Flip!";
+                        }
+                        else
+                        {
+                            stuntText.text = "90 Degree Back Flip!";
+                        }
+                        break;
+                    }
+            }
+            
+            StartCoroutine(FadeInOutText(Instantiate(stuntText, canvasObject)));
+            flipStatus = Flip.NOFLIP;
+            halfway = false;
+            
 
+        }
     }
 
+    IEnumerator FadeInOutText(Text textToFade)
+    {
+        for (float f = 0f; f < 1f; f += 0.1f) {
+            textToFade.transform.position += new Vector3(0, 1, 0);
+            Color textColour = stuntText.color;
+            textColour.a = f;
+            textToFade.color = textColour;
+            yield return new WaitForSeconds(.02f);
+        }
+
+        for(int i = 0; i < 10; i++)
+        {
+            textToFade.transform.position += new Vector3(0, 1, 0);
+            yield return new WaitForSeconds(.04f);
+        }
+
+        for (float f = 1f; f > 0f; f -= 0.1f)
+        {
+            textToFade.transform.position += new Vector3(0, 1, 0);
+            Color textColour = stuntText.color;
+            textColour.a = f;
+            textToFade.color = textColour;
+            yield return new WaitForSeconds(.02f);
+        }
+        Destroy(textToFade.gameObject);
+    }
     //all physics based assignment done here
     void FixedUpdate()
     {
