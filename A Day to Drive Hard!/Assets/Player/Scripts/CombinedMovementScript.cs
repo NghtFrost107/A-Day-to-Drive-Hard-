@@ -101,12 +101,15 @@ public class CombinedMovementScript : MonoBehaviour
                         if(currentAngle <= 90 && halfway)
                         {
                             stuntText.text = "Full Front Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.fullFlips++;
                         } else if (halfway)
                         {
                             stuntText.text = "Half Front Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.halfFlips++;
                         } else
                         {
-                            stuntText.text = "90 Degree Front Flip!";
+                            stuntText.text = "Quarter Front Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.quarterFlips++;
                         } break;
                     }
                 case Flip.BACKFLIP:
@@ -114,14 +117,17 @@ public class CombinedMovementScript : MonoBehaviour
                         if (currentAngle >= 270 && halfway)
                         {
                             stuntText.text = "Full Back Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.fullFlips++;
                         }
                         else if (halfway)
                         {
                             stuntText.text = "Half Back Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.halfFlips++;
                         }
                         else
                         {
-                            stuntText.text = "90 Degree Back Flip!";
+                            stuntText.text = "Quarter Back Flip!";
+                            GameObject.FindGameObjectWithTag("Database").GetComponent<Database>().player.quarterFlips++;
                         }
                         break;
                     }

@@ -32,24 +32,35 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
-        if (database.player.playerHealth <= 0)
+        if (!playerDead)
         {
-            gameOverMessage.text = "Out of Lives!\n" + "Game Over!\n" + "Returning To Main Menu!";
-
-            if (!playerDead)
+            if (database.player.playerHealth <= 0)
             {
-                //Return to main menu after a 3 second delay
-                Invoke("ReturnToMenu", 3);
-                playerDead = true;
+                EndScreen("You ran out of lives!");
             }
-        } else
-        {
-            database.player.currentPosition = transform.GetChild(0).transform.position.x;
-            distanceCounter.text = "Distance Travelled: " + Mathf.Round(database.player.currentPosition) + "m";
+            else
+            {
+                database.player.currentPosition = transform.GetChild(0).transform.position.x;
+                distanceCounter.text = "Distance Travelled: " + Mathf.Round(database.player.currentPosition) + "m";
+            }
         }
 	}
 
+    public void EndScreen(string reasonForExit)
+    {
+        playerDead = true;
+        gameOverMessage.gameObject.SetActive(true);
+        database.player.score = Mathf.RoundToInt(database.player.currentPosition) + database.player.fullFlips * 10 + database.player.halfFlips * 5 + database.player.quarterFlips * 2;
+        gameOverMessage.text = reasonForExit + "\n\n" +
+            "Distance Travelled: " + Mathf.RoundToInt(database.player.currentPosition) + "m\n\n" +
+            "Full Flips: x" + database.player.fullFlips + " x 10 = " + database.player.fullFlips * 10 + "\n\n" +
+            "Half Flips: x" + database.player.halfFlips + " x 5 = " + database.player.halfFlips * 5 + "\n\n" +
+            "Quarter Flips: x" + database.player.quarterFlips + " x 2 = " + database.player.quarterFlips * 2 + "\n\n" +
+            "Total Score: " + database.player.score;
+
+        //Return to main menu after a 3 second delay
+        Invoke("ReturnToMenu", 5);
+    }
     //What to do if the player has collided with an obstacle
     public void ObstacleCollision()
     {
@@ -100,9 +111,11 @@ public class Player : MonoBehaviour {
         {
             time = System.DateTime.Now.ToShortTimeString(),
             date = System.DateTime.Now.ToShortDateString(),
-            score = (int)Mathf.Round(database.player.currentPosition)
+            distance = Mathf.RoundToInt(database.player.currentPosition),
+            score = database.player.score
         });
         database.SetPlayerData();
+        database.player.resetCurrentGameStatistics();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
