@@ -23,7 +23,7 @@ public class HighScores : MonoBehaviour {
         {
             highscore.text += score.score + "\n";
             timestamp.text += score.time + " " + score.date + "\n";
-            distance.text += score.distance + "\n";
+            distance.text += score.distance + "m\n";
         }
     }
 

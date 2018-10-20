@@ -8,7 +8,6 @@ public class Database : MonoBehaviour {
 
     private SQLiteConnection connection;
     public PlayerData player;
-    public Score score;
 
     private string databaseName = "DayToDriveHardDB.db";
 	// Use this for initialization
@@ -92,13 +91,6 @@ public class Database : MonoBehaviour {
                     connection.DeleteAll<PlayerData>();
                 } break;
         }
-    }
-
-
-    //is tthis where i put it?
-    public void totalDistance()
-    {
-        player.LifetimeDistance = player.LifetimeDistance + score.score;
     }
 }
 

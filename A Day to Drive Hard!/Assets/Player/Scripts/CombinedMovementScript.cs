@@ -48,7 +48,7 @@ public class CombinedMovementScript : MonoBehaviour
     public bool decelerateIsPressed;
     public bool brakeIsPressed;
 
-    private Flip flipStatus;
+    private Flip flipStatus = Flip.NOFLIP;
     private bool halfway;
     // Use this for initialization
     void Start ()
