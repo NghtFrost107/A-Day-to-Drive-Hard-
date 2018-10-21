@@ -141,11 +141,11 @@ public class CombinedMovementScript : MonoBehaviour
         }
     }
 
-    IEnumerator FadeInOutText(Text textToFade)
+    public static IEnumerator FadeInOutText(Text textToFade)
     {
         for (float f = 0f; f < 1f; f += 0.1f) {
             textToFade.transform.position += new Vector3(0, 1, 0);
-            Color textColour = stuntText.color;
+            Color textColour = textToFade.color;
             textColour.a = f;
             textToFade.color = textColour;
             yield return new WaitForSeconds(.02f);
@@ -156,11 +156,11 @@ public class CombinedMovementScript : MonoBehaviour
             textToFade.transform.position += new Vector3(0, 1, 0);
             yield return new WaitForSeconds(.04f);
         }
-
+        
         for (float f = 1f; f > 0f; f -= 0.1f)
         {
             textToFade.transform.position += new Vector3(0, 1, 0);
-            Color textColour = stuntText.color;
+            Color textColour = textToFade.color;
             textColour.a = f;
             textToFade.color = textColour;
             yield return new WaitForSeconds(.02f);
