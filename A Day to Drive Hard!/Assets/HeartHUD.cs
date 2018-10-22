@@ -22,7 +22,7 @@ public class HeartHUD : MonoBehaviour {
         }
         catch (System.IndexOutOfRangeException e)
         {
-
+            Debug.Log(e, player);
         }
         
     }
