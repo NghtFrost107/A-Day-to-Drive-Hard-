@@ -8,6 +8,7 @@ public class Milestone{
     private string title;
     private string description;
     private bool unlocked;
+    private int condition;
     private GameObject milestoneRef;
     private List<Milestone> dependencies = new List<Milestone>();
     private string child;
@@ -18,10 +19,11 @@ public class Milestone{
         set { child = value; }
     }
 
-    public Milestone(string title, string description, GameObject milestoneRef)
+    public Milestone(string title, string description,int condition, GameObject milestoneRef)
     {
         this.title = title;
         this.description = description;
+        this.condition = condition;
         this.unlocked = false;
         this.milestoneRef = milestoneRef;
 
@@ -62,6 +64,11 @@ public class Milestone{
     public void LoadMilestone()
     {
         unlocked = PlayerPrefs.GetInt(title) == 1 ? true:false;
-        milestoneRef.GetComponent<Image>().sprite = MilestonesManager.Instance.unlockedSprite;
+
+        if(unlocked)
+        {
+            milestoneRef.GetComponent<Image>().sprite = MilestonesManager.Instance.unlockedSprite;
+        }
+        
     }
 }
