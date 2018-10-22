@@ -1,4 +1,5 @@
 ﻿using SQLite4Unity3d;
+using System.Collections.Generic;
 
 public class PlayerData
 {
@@ -15,6 +16,9 @@ public class PlayerData
     public int halfFlips;
     public int quarterFlips;
     public int playerHealth;
+
+    //stores all the milestones for easy acces as well
+    public Dictionary<string, Milestone> milestonesDictionary = new Dictionary<string, Milestone>();
 
     public void resetCurrentGameStatistics()
     {

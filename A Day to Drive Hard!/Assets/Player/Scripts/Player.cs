@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     public SpriteRenderer shieldOverlay;
 
     private bool playerDead = false;
-
+    private MilestonesManager milestones;
     private Database database;
     void Awake()
     {
@@ -55,6 +55,10 @@ public class Player : MonoBehaviour {
             frontWheel.color = Color.white;
             backWheel.color = Color.white;
         }
+
+
+        milestones.checkMilestones();
+
 	}
 
     public void EndScreen(string reasonForExit)

@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class MilestonesManager : MonoBehaviour {
 
-    public GameObject milestonePrefabLocked;
-    public GameObject milestonePrefabUnlocked;
+    public GameObject milestonePrefab;
     public Sprite unlockedSprite;
 
     private static MilestonesManager instance;
@@ -23,23 +22,17 @@ public class MilestonesManager : MonoBehaviour {
         }
     }
 
-    
-
-    //stores all the milestones for easy acces as well
-    public Dictionary<string, Milestone> milestones = new Dictionary<string, Milestone>();
+    public Dictionary<string, Milestone> milestonesDictionary = new Dictionary<string, Milestone>();
 
     private Database database;
+    private PlayerData player;
 
     // Use this for initialization
     void Start () {
 
         setMiletones();
-        database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
-        Console.WriteLine(database.player.score);
-
-
-
-}
+        checkMilestones();
+    }
     
     public void setMiletones()
     {
@@ -53,11 +46,11 @@ public class MilestonesManager : MonoBehaviour {
     public void CreateMilestone(string category, string title, string description, int condition, string[] dependencies =null)
     {
 
-        GameObject milestone = (GameObject)Instantiate(milestonePrefabLocked);
+        GameObject milestone = (GameObject)Instantiate(milestonePrefab);
   
         Milestone newMilestone = new Milestone(title, description, condition, milestone);
         //add to dictionary
-        milestones.Add(title, newMilestone);
+        player.milestonesDictionary.Add(title, newMilestone);
         SetMilestoneInfo(category, milestone, title, description);
 
 /*
@@ -85,12 +78,12 @@ public class MilestonesManager : MonoBehaviour {
 
     public void EarnMilestone(string title)
     {
-        milestones[title].EarnMilestone();
+        database.player.milestonesDictionary[title].EarnMilestone();
     }
 
     public void checkMilestones()
     {
-        foreach (KeyValuePair<string, Milestone> pair in milestones)
+        foreach (KeyValuePair<string, Milestone> pair in player.milestonesDictionary)
         {
             if (database.player.score >= 250)
             {
