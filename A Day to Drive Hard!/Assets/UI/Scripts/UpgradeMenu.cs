@@ -11,6 +11,7 @@ public enum Upgrades
 public class UpgradeMenu : MonoBehaviour
 {
     public GameObject notEnoughCoinsPanel;
+    public GameObject maxHealthPanel;
 
     public Upgrades thisUpgrade;
 
@@ -58,8 +59,16 @@ public class UpgradeMenu : MonoBehaviour
             {
                 case Upgrades.HEALTH:
                     {
-                        database.player.MAX_PLAYER_HEALTH++;
-                        database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
+                        if (database.player.MAX_PLAYER_HEALTH <= 10)
+                        {
+                            database.player.MAX_PLAYER_HEALTH++;
+                            database.player.playerHealth = database.player.MAX_PLAYER_HEALTH;
+                        }
+                        else
+                        {
+                            maxHealthPanel.SetActive(true);
+                        }
+                        
                     }
                     break;
                 case Upgrades.SPEED:
