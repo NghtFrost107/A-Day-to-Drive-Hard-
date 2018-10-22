@@ -52,7 +52,7 @@ public class MilestonesManager : MonoBehaviour {
 
         //add to dictionary
         milestones.Add(title, newMilestone);
-
+/*
         if(dependencies != null)
         {
             foreach(string milestoneTitle in dependencies)
@@ -62,7 +62,7 @@ public class MilestonesManager : MonoBehaviour {
                 newMilestone.addDependency(dependency);
             }
         }
-
+*/
 
     }
 
