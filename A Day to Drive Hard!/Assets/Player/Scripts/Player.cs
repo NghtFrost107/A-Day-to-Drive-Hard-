@@ -48,6 +48,13 @@ public class Player : MonoBehaviour {
                 distanceCounter.text = "Distance Travelled: " + Mathf.Round(database.player.currentPosition) + "m";
             }
         }
+
+        if (playerInvincible == false)
+        {
+            carBody.color = Color.white;
+            frontWheel.color = Color.white;
+            backWheel.color = Color.white;
+        }
 	}
 
     public void EndScreen(string reasonForExit)
@@ -143,6 +150,11 @@ public class Player : MonoBehaviour {
     //Sets the player damageable
     void PlayerSetDamageable()
     {
+        //Resetting the color so the player is not stuck invisible
+        carBody.color = Color.white;
+        frontWheel.color = Color.white;
+        backWheel.color = Color.white;
+
         playerInvincible = false;
         shieldOverlay.enabled = false;
         CancelInvoke("FlashSprite"); //Stops sprite flashing
