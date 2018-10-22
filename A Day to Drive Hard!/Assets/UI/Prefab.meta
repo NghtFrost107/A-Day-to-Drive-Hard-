@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:A Day to Drive Hard!/Assets/UI/Prefab.meta
 guid: 155ba38c37c8a1f4dae438e2ba5669f9
+=======
+guid: 85b94e3b04b51e54989c9542ffd12298
+>>>>>>> bfaccfea58ceec0c76c48b13e9a9c23787660fc0:A Day to Drive Hard!/Assets/UI/Prefab.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
