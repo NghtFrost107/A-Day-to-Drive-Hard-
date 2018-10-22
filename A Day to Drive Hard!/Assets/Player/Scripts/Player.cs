@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     public SpriteRenderer carBody;
     public SpriteRenderer backWheel;
     public SpriteRenderer frontWheel;
+    public SpriteRenderer shieldOverlay;
 
     private bool playerDead = false;
 
@@ -27,6 +28,9 @@ public class Player : MonoBehaviour {
         
         //starts game with gameover message hidden
         gameOverMessage.text = "";
+
+        //Disable the shieldOverlay on startup
+        shieldOverlay.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -86,12 +90,9 @@ public class Player : MonoBehaviour {
     //Player collides with shield powerup
     public void ShieldCollision(Collider2D col)
     {
-        CancelInvoke(); //Gets rid of any leftover invokes from previous collisions
-
-        //Set Player Invincible for 10 secs
-        PlayerSetInvincible(10);
-
+        playerInvincible = true;
         Destroy(col.gameObject);
+        ShieldPowerUp(10);
     }
 
     //Player collides with heart powerup
@@ -119,6 +120,14 @@ public class Player : MonoBehaviour {
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
+    void ShieldPowerUp(int waitTime)
+    {
+        shieldOverlay.enabled = true;
+        playerInvincible = true;
+
+        Invoke("PlayerSetDamageable", waitTime);
+    }
+
     //Sets playerinvincible for a time
     void PlayerSetInvincible(int waitTime)
     {
@@ -135,6 +144,7 @@ public class Player : MonoBehaviour {
     void PlayerSetDamageable()
     {
         playerInvincible = false;
+        shieldOverlay.enabled = false;
         CancelInvoke("FlashSprite"); //Stops sprite flashing
     }
 

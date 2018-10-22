@@ -4576,12 +4576,6 @@ Prefab:
       objectReference: {fileID: 2017200033}
     - target: {fileID: 114654855927269146, guid: 87c64120ba66f9b46b4809ca121e2f07,
         type: 2}
-      propertyPath: stuntText
-      value: 
-      objectReference: {fileID: 114247019274862206, guid: 9effbd19aca2cb8499b0bbce4d7e2ecb,
-        type: 2}
-    - target: {fileID: 114654855927269146, guid: 87c64120ba66f9b46b4809ca121e2f07,
-        type: 2}
       propertyPath: canvasObject
       value: 
       objectReference: {fileID: 810701913}
