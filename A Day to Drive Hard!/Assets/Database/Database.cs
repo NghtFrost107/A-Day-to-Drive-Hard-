@@ -16,6 +16,7 @@ public class Database : MonoBehaviour {
         {
             databaseObject = this;
             DontDestroyOnLoad(gameObject);
+            InitialiseDB();
         } else
         {
             Destroy(gameObject);
@@ -24,7 +25,7 @@ public class Database : MonoBehaviour {
 
     void Start()
     {
-        InitialiseDB();
+        
     }
 
     void InitialiseDB()
@@ -52,7 +53,8 @@ public class Database : MonoBehaviour {
                 MAX_PLAYER_HEALTH = 3,
                 playerHealth = 3,
                 PlayerSpeed = 2000,
-                LifetimeDistance = 0          //<-----added this 
+                LifetimeDistance = 0,         //<-----added this 
+                Milestones = 0
             };
         }
         else

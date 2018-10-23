@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Milestone{
+public class Milestone {
 
-    private string title;
-    private string description;
-    private bool unlocked;
+    public Milestones milestone;
+    public string title;
+    public string description;
+    public bool Unlocked { get; private set; }
     private int condition;
-    private GameObject milestoneRef;
     private List<Milestone> dependencies = new List<Milestone>();
     private string child;
 
@@ -19,13 +19,12 @@ public class Milestone{
         set { child = value; }
     }
 
-    public Milestone(string title, string description,int condition, GameObject milestoneRef)
+    public Milestone(Milestones milestone, string title, string description, int condition, bool unlocked)
     {
         this.title = title;
         this.description = description;
         this.condition = condition;
-        this.unlocked = false;
-        this.milestoneRef = milestoneRef;
+        Unlocked = unlocked;
 
         LoadMilestone();
     }
@@ -38,10 +37,9 @@ public class Milestone{
     public bool EarnMilestone()
     {
         //makes sure that all previous achievements are unlocked
-        if (!unlocked && !dependencies.Exists(x => x.unlocked == false))
+        if (!Unlocked && !dependencies.Exists(x => x.Unlocked == false))
         {
-            milestoneRef.GetComponent<Image>().sprite = MilestonesManager.Instance.unlockedSprite;
-            SaveMilestone(true);
+            Unlocked = true;
 
             if (child != null)
             {
@@ -52,23 +50,9 @@ public class Milestone{
         return false;
     }
 
-    public void SaveMilestone(bool value)
-    {
-        unlocked = value;
-        //save milestone data locked/unlocked
-        PlayerPrefs.SetInt(title, value ? 1 : 0);
-        PlayerPrefs.Save();
-
-    }
-
     public void LoadMilestone()
     {
-        unlocked = PlayerPrefs.GetInt(title) == 1 ? true:false;
 
-        if(unlocked)
-        {
-            milestoneRef.GetComponent<Image>().sprite = MilestonesManager.Instance.unlockedSprite;
-        }
         
     }
 }

@@ -2005,6 +2005,50 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661874407}
   m_CullTransparentMesh: 0
+--- !u!1 &664650512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664650514}
+  - component: {fileID: 664650513}
+  m_Layer: 0
+  m_Name: Milestones
+  m_TagString: Milestone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &664650513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664650512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071a88009da309847bd219a23977df58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  milestonePrefab: {fileID: 1148280543186416, guid: 16626e5b6f515564c845f39fb5f5b644,
+    type: 2}
+  unlockedSprite: {fileID: 21300000, guid: 9c12082521e2e2e4898bbd05b58cb34a, type: 3}
+  database: {fileID: 1365789923}
+--- !u!4 &664650514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664650512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 732.3746, y: 33.85309, z: 3.249495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &764243117
 GameObject:
   m_ObjectHideFlags: 0

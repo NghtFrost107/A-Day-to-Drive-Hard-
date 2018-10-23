@@ -9,6 +9,7 @@ public class PlayerData
     public int MAX_PLAYER_HEALTH { get; set; }
     public int PlayerSpeed { get; set; }
     public int LifetimeDistance { get; set; }
+    public int Milestones { get; set; }
 
     public int score;
     public float currentPosition;
@@ -16,9 +17,6 @@ public class PlayerData
     public int halfFlips;
     public int quarterFlips;
     public int playerHealth;
-
-    //stores all the milestones for easy acces as well
-    public Dictionary<string, Milestone> milestonesDictionary = new Dictionary<string, Milestone>();
 
     public void resetCurrentGameStatistics()
     {

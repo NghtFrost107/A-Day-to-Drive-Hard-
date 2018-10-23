@@ -10,6 +10,7 @@ TagManager:
   - Database
   - Shield
   - Heart
+  - Milestone
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     void Awake()
     {
         database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+        milestones = GameObject.FindGameObjectWithTag("Milestone").GetComponent<MilestonesManager>();
     }
     // Use this for initialization
     void Start () {
@@ -55,10 +56,6 @@ public class Player : MonoBehaviour {
             frontWheel.color = Color.white;
             backWheel.color = Color.white;
         }
-
-
-       // milestones.checkMilestones();
-
 	}
 
     public void EndScreen(string reasonForExit)
@@ -127,6 +124,7 @@ public class Player : MonoBehaviour {
             distance = Mathf.RoundToInt(database.player.currentPosition),
             score = database.player.score
         });
+        milestones.checkMilestones();
         database.SetPlayerData();
         database.player.resetCurrentGameStatistics();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
