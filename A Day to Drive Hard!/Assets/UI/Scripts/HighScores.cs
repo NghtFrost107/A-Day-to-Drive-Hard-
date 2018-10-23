@@ -15,9 +15,9 @@ public class HighScores : MonoBehaviour {
         CheckIfDatabaseLoaded();
         List<Score> playerScores = database.GetComponent<Database>().RetrieveScores();
 
-        highscore.text = "Score\n---------------\n";
-        timestamp.text = "Time\n--------------------------------------------------\n";
-        distance.text = "Distance\n---------------";
+        highscore.text = "Score\n-------------\n";
+        timestamp.text = "Time\n----------------------------------------------\n";
+        distance.text = "Distance\n-------------";
 
         foreach (Score score in playerScores)
         {

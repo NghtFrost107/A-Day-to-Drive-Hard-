@@ -394,7 +394,7 @@ MonoBehaviour:
   scoresID: {fileID: 661874409}
   highscore: {fileID: 378641404}
   timestamp: {fileID: 494993798}
-  distance: {fileID: 0}
+  distance: {fileID: 515757833}
 --- !u!114 &69414644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'Score
 
-    ---------------
+    -------------
 
 '
 --- !u!222 &378641405
@@ -1311,7 +1311,7 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'Time
 
-    --------------------------------------------------
+    ----------------------------------------------
 
 '
 --- !u!222 &494993799
@@ -1536,7 +1536,7 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'Distance
 
-    ---------------
+    -------------
 
 '
 --- !u!222 &515757834
@@ -1975,7 +1975,7 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'ID
 
-    ---------
+    --------
 
     1.
 

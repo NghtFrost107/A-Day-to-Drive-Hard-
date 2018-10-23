@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
             else
             {
                 database.player.currentPosition = transform.GetChild(0).transform.position.x;
-                distanceCounter.text = "Distance Travelled: " + Mathf.Round(database.player.currentPosition) + "m";
+                distanceCounter.text = "" + Mathf.Round(database.player.currentPosition) + "m";
             }
         }
 
@@ -191,6 +191,6 @@ public class Player : MonoBehaviour {
     // Coin Counter
     void SetCoinCounter()
     {
-        playerCoinCounter.text = "Coins: " + database.player.PlayerCoins;
+        playerCoinCounter.text = "" + database.player.PlayerCoins;
     }
 }
