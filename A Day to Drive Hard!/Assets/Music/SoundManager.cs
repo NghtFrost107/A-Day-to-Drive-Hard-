@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour {
 
     void Update()
     {
-        carEngine.volume = carEngineSlide.value;
-        musicSource.volume = musicSlide.value;
+        //carEngine.volume = carEngineSlide.value;
+       // musicSource.volume = musicSlide.value;
     }
 }
