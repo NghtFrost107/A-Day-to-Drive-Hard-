@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayEEBGM : MonoBehaviour {
 
     public GameObject carModel;
+    public Text AHHH;
+    public Transform parentCanvas;
     public float positionY;
 
 	// Use this for initialization
@@ -23,6 +26,11 @@ public class PlayEEBGM : MonoBehaviour {
             MMBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
             GPBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
             EEBGM.Instance().gameObject.GetComponent<AudioSource>().Play();
+        } else if (positionY < -850)
+        {
+            Text AH = Instantiate(AHHH, parentCanvas);
+            AH.transform.SetAsFirstSibling();
+            StartCoroutine(CombinedMovementScript.FadeInOutText(AH,90));
         }
     }
 }

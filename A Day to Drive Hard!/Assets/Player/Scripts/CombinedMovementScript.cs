@@ -133,7 +133,7 @@ public class CombinedMovementScript : MonoBehaviour
                     }
             }
 
-            StartCoroutine(FadeInOutText(Instantiate(stuntText, canvasObject)));
+            StartCoroutine(FadeInOutText(Instantiate(stuntText, canvasObject), 1));
             flipStatus = Flip.NOFLIP;
             halfway = false;
             
@@ -141,10 +141,10 @@ public class CombinedMovementScript : MonoBehaviour
         }
     }
 
-    public static IEnumerator FadeInOutText(Text textToFade)
+    public static IEnumerator FadeInOutText(Text textToFade, int positionChange)
     {
         for (float f = 0f; f < 1f; f += 0.1f) {
-            textToFade.transform.position += new Vector3(0, 1, 0);
+            textToFade.transform.position += new Vector3(0, positionChange, 0);
             Color textColour = textToFade.color;
             textColour.a = f;
             textToFade.color = textColour;
@@ -153,13 +153,13 @@ public class CombinedMovementScript : MonoBehaviour
 
         for(int i = 0; i < 10; i++)
         {
-            textToFade.transform.position += new Vector3(0, 1, 0);
+            textToFade.transform.position += new Vector3(0, positionChange, 0);
             yield return new WaitForSeconds(.04f);
         }
         
         for (float f = 1f; f > 0f; f -= 0.1f)
         {
-            textToFade.transform.position += new Vector3(0, 1, 0);
+            textToFade.transform.position += new Vector3(0, positionChange, 0);
             Color textColour = textToFade.color;
             textColour.a = f;
             textToFade.color = textColour;

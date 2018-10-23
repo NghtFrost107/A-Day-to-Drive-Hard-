@@ -24,7 +24,7 @@ public class FadeTest{
         test.a = 0;
         fadeInText.GetComponent<Text>().color = test;
 
-        CombinedMovementScript.FadeInOutText(fadeInText.GetComponent<Text>());
+        CombinedMovementScript.FadeInOutText(fadeInText.GetComponent<Text>(),1);
 
         Assert.GreaterOrEqual(fadeInText.GetComponent<Text>().color.a, 0.9f);
     }
@@ -46,7 +46,7 @@ public class FadeTest{
         test.a = 0;
         fadeInText.GetComponent<Text>().color = test;
 
-        CombinedMovementScript.FadeInOutText(fadeInText.GetComponent<Text>());
+        CombinedMovementScript.FadeInOutText(fadeInText.GetComponent<Text>(),1);
 
         Assert.LessOrEqual(fadeInText.GetComponent<Text>().color.a, 0.1f);
     }
