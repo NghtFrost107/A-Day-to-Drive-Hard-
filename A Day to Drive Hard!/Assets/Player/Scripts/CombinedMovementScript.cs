@@ -132,7 +132,7 @@ public class CombinedMovementScript : MonoBehaviour
                         break;
                     }
             }
-            
+
             StartCoroutine(FadeInOutText(Instantiate(stuntText, canvasObject)));
             flipStatus = Flip.NOFLIP;
             halfway = false;

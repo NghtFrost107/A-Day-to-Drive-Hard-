@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
         }
 
 
-        milestones.checkMilestones();
+       // milestones.checkMilestones();
 
 	}
 
