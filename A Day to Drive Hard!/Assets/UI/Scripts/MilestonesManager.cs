@@ -43,9 +43,9 @@ public class MilestonesManager : MonoBehaviour {
     
     public void setMiletones()
     {
-        CreateMilestone(Milestones.JUST_THE_START, "Milestones", "Just the Start:", "Score a total of 250 points in a single run", 250);
-        CreateMilestone(Milestones.BECOMING_A_PRO, "Milestones", "Becoming a pro:", "Score a total of 500 points in a single run", 500, new string[] { "Just the Start" });
-        CreateMilestone(Milestones.CHAMPION, "Milestones", "Champion:", "Score a total of 1000 points in a single run", 1000, new string[] { "Just the Start", "Becoming a Pro" });
+        CreateMilestone(Milestones.JUST_THE_START, "Milestones", "Just the Start:", "Score a total of 700 points in a single run", 700);
+        CreateMilestone(Milestones.BECOMING_A_PRO, "Milestones", "Becoming a pro:", "Score a total of 1500 points in a single run", 1500, new string[] { "Just the Start" });
+        CreateMilestone(Milestones.CHAMPION, "Milestones", "Champion:", "Score a total of 2000 points in a single run", 2000, new string[] { "Just the Start", "Becoming a Pro" });
         CreateMilestone(Milestones.ROAD_TRIP, "Milestones", "Road Trip:", "Travel a total of 2000m", 2000);
         CreateMilestone(Milestones.AROUND_THE_WORLD, "Milestones", "Around the World:", "Travel a total of 7000m", 7000, new string[] { "Road Trip" });
     }
@@ -100,17 +100,17 @@ public class MilestonesManager : MonoBehaviour {
 
     public void checkMilestones()
     {
-        if (database.player.score >= 250)
+        if (database.player.score >= 700)
         {
             EarnMilestone("Just the Start:");
             database.player.Milestones |= (int)Milestones.JUST_THE_START;
         }
-        if (database.player.score >= 500)
+        if (database.player.score >= 1500)
         {
             EarnMilestone("Becoming a pro:");
             database.player.Milestones |= (int)Milestones.BECOMING_A_PRO;
         }
-        if (database.player.score >= 1000)
+        if (database.player.score >= 2000)
         {
             EarnMilestone("Champion:");
             database.player.Milestones |= (int)Milestones.CHAMPION;
