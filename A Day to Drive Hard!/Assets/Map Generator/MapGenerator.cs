@@ -11,11 +11,12 @@ public class MapGenerator : MonoBehaviour {
     int xOffset = 0;
 
     public Square[] boundary;
-    public List<GameObject> obstaclesSpawned;
+    public List<GameObject> obstaclesSpawned = new List<GameObject>();
 
     public string seed;
     public bool useRandomSeed;
 
+    System.Random random = new System.Random();
     /*
      * Handles the creation of the terrain. Including determining the terrain shape, creating meshes and applying collision points
      */
@@ -138,18 +139,19 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    public void addObstacles(GameObject[] obstacles)
+    public void addObstacles(GameObject[] obstacles, int frequency)
     {
-        System.Random random = new System.Random();
         
-
-        obstaclesSpawned = new List<GameObject>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < frequency; i++) {
             GameObject obstacleToSpawn = obstacles[random.Next(obstacles.Length)];
             int squareIndex = random.Next(1, boundary.Length - 1);
             if (boundary[squareIndex - 1].y == boundary[squareIndex + 1].y)
             {
-                obstaclesSpawned.Add(Instantiate(obstacleToSpawn, boundary[squareIndex].topLeft.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity));
+                if (boundary[squareIndex].objectOnSquare == null)
+                {
+                    obstaclesSpawned.Add(Instantiate(obstacleToSpawn, boundary[squareIndex].topLeft.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity));
+                    boundary[squareIndex].objectOnSquare = obstacleToSpawn;
+                }
             }
             
         }
@@ -157,8 +159,6 @@ public class MapGenerator : MonoBehaviour {
 
     public void addClouds(Sprite[] clouds)
     {
-        System.Random random = new System.Random();
-
         for(int i = 0; i < random.Next(50);i++)
         {
             GameObject cloud = new GameObject("Cloud");

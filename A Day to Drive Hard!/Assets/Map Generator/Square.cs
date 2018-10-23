@@ -10,6 +10,8 @@ public class Square {
     public int x; //Coordinates from start of section generated (Bottom Left = 0,0)
     public int y;
 
+    public GameObject objectOnSquare;
+
     public Square (int cordX, int cordY)
     {
         x = cordX;

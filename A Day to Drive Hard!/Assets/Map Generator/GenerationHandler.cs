@@ -15,6 +15,7 @@ public class GenerationHandler : MonoBehaviour {
     public GameObject car;
     public GameObject carCamera;
     public GameObject[] obstacles;
+    public GameObject[] powerups;
     public Sprite[] clouds;
 
     // Use this for initialization
@@ -22,7 +23,8 @@ public class GenerationHandler : MonoBehaviour {
         section1 = transform.GetChild(0).gameObject.GetComponent<MapGenerator>();
         section2 = transform.GetChild(1).gameObject.GetComponent<MapGenerator>();
         section1.GenerateMap(null);
-        section1.addObstacles(obstacles);
+        //section1.addObstacles(obstacles,40);
+        section1.addObstacles(powerups, 5);
         section1.addClouds(clouds);
 
         if (car != null)
@@ -45,7 +47,8 @@ public class GenerationHandler : MonoBehaviour {
                     section2.removeAllObstacles();
                 }
                 section2.GenerateMap(section1.boundary[section1.boundary.Length - 1]); //Create new section 
-                section2.addObstacles(obstacles);
+                section2.addObstacles(obstacles,35);
+                section2.addObstacles(powerups, 5);
                 section2.addClouds(clouds);
                 s2Generated = true;
                 sectionNumber += 1;
@@ -57,7 +60,8 @@ public class GenerationHandler : MonoBehaviour {
                 section1.GetComponent<MeshGenerator>().ClearMesh();
                 section1.removeAllObstacles();
                 section1.GenerateMap(section2.boundary[section2.boundary.Length - 1]);
-                section1.addObstacles(obstacles);
+                section1.addObstacles(obstacles,35);
+                section1.addObstacles(powerups, 5);
                 section1.addClouds(clouds);
                 s2Generated = false;
                 sectionNumber += 1;
