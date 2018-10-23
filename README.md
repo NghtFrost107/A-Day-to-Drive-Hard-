@@ -19,7 +19,8 @@ Development Started: 20th August 2018.
 Sprint 1 Ended: 24th September 2018
 Sprint 2 Ended: 23rd October 2018
 
-*Only works on Android*
+*Only works on Android Version 7.0 or Higher (API Level 24+). Lower version have not been tested*
+
 Installation Instructions:
 1. Located in the main github directory will be a .apk file. Download it.
 2. Load up your Android device, plug it into the computer and load the .apk file into a directory you can access.
