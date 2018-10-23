@@ -17,7 +17,7 @@ public class HighScores : MonoBehaviour {
 
         highscore.text = "Score\n-------------\n";
         timestamp.text = "Time\n----------------------------------------------\n";
-        distance.text = "Distance\n-------------";
+        distance.text = "Distance\n-------------\n";
 
         foreach (Score score in playerScores)
         {
