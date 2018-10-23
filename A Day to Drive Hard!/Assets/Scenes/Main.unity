@@ -862,6 +862,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2126037637}
+          m_MethodName: isGoingRight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -1554,8 +1565,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 23bba82ffb4863544bd40083bcf0b94f, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3961,6 +3972,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2126037637}
+          m_MethodName: isGoingLeft
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -5012,6 +5034,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1255621957579898, guid: 87c64120ba66f9b46b4809ca121e2f07,
     type: 2}
   m_PrefabInternal: {fileID: 2126037635}
+--- !u!114 &2126037637 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469996066710562, guid: 87c64120ba66f9b46b4809ca121e2f07,
+    type: 2}
+  m_PrefabInternal: {fileID: 2126037635}
+  m_Script: {fileID: 11500000, guid: d5d239eeae335ca4aa9ce3bc81478760, type: 3}
 --- !u!82 &2126037638 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82175578844851802, guid: 87c64120ba66f9b46b4809ca121e2f07,

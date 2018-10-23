@@ -19,6 +19,10 @@ public class EngineSound : MonoBehaviour
 
     //Rigidbody2D carRigidbody;
     private float userInput;
+
+    private static bool goingRight;
+    private static bool goingLeft;
+
     //wheeljoint2d reference
     WheelJoint2D wj;
 
@@ -34,7 +38,22 @@ public class EngineSound : MonoBehaviour
     void FixedUpdate()
     {
         //get the userInput
-        userInput = Input.GetAxis("Horizontal");
+        if (goingRight)
+        {
+            userInput = getRightValue();
+            notGoingLeft();
+        }
+        else if (goingLeft)
+        {
+            userInput = getLeftValue();
+            notGoingRight();
+        }
+        else
+        {
+            userInput = carIsIdle();
+        }
+
+        //userInput = Input.GetAxis("Horizontal");
         //get the absolute value of jointSpeed
         float forwardSpeed = Mathf.Abs(wj.jointSpeed);
         //float forwardSpeed = transform.InverseTransformDirection(carRigidbody.velocity).x;
@@ -42,17 +61,40 @@ public class EngineSound : MonoBehaviour
         float pitchFactor = Mathf.Abs(forwardSpeed * reductionFactor * userInput);
         //clamp the calculated pitch factor between lowPitch and highPitch
         carSound.pitch = Mathf.Clamp(pitchFactor, lowPtich, highPitch);
-
-
     }
 
-    public void getCarVolume()
+    public void isGoingRight()
     {
-
+        goingRight = true;
     }
 
-    public void getMusicVolume()
+    public void notGoingRight()
     {
+        goingRight = false;
+    }
 
+    public void isGoingLeft()
+    {
+        goingLeft = true;
+    }
+
+    public void notGoingLeft()
+    {
+        goingLeft = false;
+    }
+
+    public float getRightValue()
+    {
+        return 1.0f;
+    }
+
+    public float getLeftValue()
+    {
+        return -1.0f;
+    }
+
+    public float carIsIdle()
+    {
+        return 0.0f;
     }
 }

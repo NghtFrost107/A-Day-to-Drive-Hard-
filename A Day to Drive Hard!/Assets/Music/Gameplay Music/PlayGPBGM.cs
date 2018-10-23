@@ -7,12 +7,13 @@ public class PlayGPBGM : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        //if (!GPBGM.Instance().gameObject.GetComponent<AudioSource>().isPlaying)
-        //{
+        if (!GPBGM.Instance().gameObject.GetComponent<AudioSource>().isPlaying)
+        {
             MMBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
             GPBGM.Instance().gameObject.GetComponent<AudioSource>().Play();
+            GPBGM.Instance().gameObject.GetComponent<AudioSource>().volume = MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume;
             EEBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
-        //}
+        }
 	}
 	
 	// Update is called once per frame

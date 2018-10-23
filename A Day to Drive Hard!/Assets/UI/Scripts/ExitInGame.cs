@@ -9,8 +9,8 @@ public class ExitInGame : MonoBehaviour {
 
 	public void BackToMenu()
     {
-         pausePanel.SetActive(false);
-        
-         player.GetComponent<Player>().EndScreen("You exited the game!");
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+        player.GetComponent<Player>().EndScreen("You exited the game!");
     }
 }
