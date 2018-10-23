@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayGPBGM : MonoBehaviour {
 
@@ -11,13 +12,11 @@ public class PlayGPBGM : MonoBehaviour {
         {
             MMBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
             GPBGM.Instance().gameObject.GetComponent<AudioSource>().Play();
-            GPBGM.Instance().gameObject.GetComponent<AudioSource>().volume = MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume;
             EEBGM.Instance().gameObject.GetComponent<AudioSource>().Stop();
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
 }

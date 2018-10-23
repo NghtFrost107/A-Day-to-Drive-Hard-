@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour {
     public void LoadSceneOnClick(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

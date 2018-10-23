@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class MusicSliderValueTranslate : MonoBehaviour {
 
-    public Slider musicSlider;
+    private static Slider musicSlider;
+    public static Slider Instance()
+    {
+        return musicSlider;
+    }
 
 	// Use this for initialization
 	void Start ()
     {
         musicSlider = GetComponent<Slider>();
-        musicSlider.value = MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume;
 	}
 	
 	// Update is called once per frame

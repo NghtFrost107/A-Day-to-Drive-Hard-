@@ -14,7 +14,6 @@ public class PlayEEBGM : MonoBehaviour {
 	void Start ()
     {
         positionY = 0.0f;
-        EEBGM.Instance().gameObject.GetComponent<AudioSource>().volume = GPBGM.Instance().gameObject.GetComponent<AudioSource>().volume;
     }
 
     // Update is called once per frame

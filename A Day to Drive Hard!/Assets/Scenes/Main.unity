@@ -2327,57 +2327,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853539166}
   m_CullTransparentMesh: 0
---- !u!1 &866299621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 866299623}
-  - component: {fileID: 866299622}
-  m_Layer: 5
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &866299622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 866299621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776778e77eb244c4ca37c779923678c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carEngine: {fileID: 2126037638}
-  mainMenuMusic: {fileID: 485649149}
-  inGameMusic: {fileID: 485649149}
-  easterEggMusic: {fileID: 394948156}
-  carEngineSlide: {fileID: 1862110558}
-  musicSlide: {fileID: 1332627338}
---- !u!224 &866299623
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 866299621}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 482, y: 271}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &892183317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,6 +3325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332627337}
   - component: {fileID: 1332627338}
+  - component: {fileID: 1332627339}
   m_Layer: 5
   m_Name: Music Volume Slider
   m_TagString: Untagged
@@ -3463,6 +3413,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1332627339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332627336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27ac860b74fac54f9294880ab12e631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1340850925
 GameObject:
   m_ObjectHideFlags: 0
