@@ -77,10 +77,11 @@ public class Player : MonoBehaviour {
         Invoke("ReturnToMenu", 5);
     }
     //What to do if the player has collided with an obstacle
-    public void ObstacleCollision()
+    public void ObstacleCollision(Collider2D col)
     {
         if (playerInvincible == false)
         {
+            Destroy(col.gameObject);
             database.player.playerHealth--;
             SetHealthCounter();
             Debug.Log("Player health:" + database.player.playerHealth);

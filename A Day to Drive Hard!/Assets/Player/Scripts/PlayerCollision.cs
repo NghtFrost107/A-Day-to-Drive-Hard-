@@ -12,7 +12,7 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             //Call ObstacleCollision in playerProperties script
-            player.ObstacleCollision();
+            player.ObstacleCollision(other);
         }
 
         if (other.gameObject.CompareTag("PickUp"))
