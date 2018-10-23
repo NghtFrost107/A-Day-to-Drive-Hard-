@@ -6,12 +6,18 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour {
 
     public AudioSource carEngine;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
-    public static Slider carEngineSlide;
-    public static Slider musicSlide;
+    public AudioSource mainMenuMusic;                 //Drag a reference to the audio source which will play the music.
+    public AudioSource inGameMusic;
+    public AudioSource easterEggMusic;
+    public Slider carEngineSlide;
+    public Slider musicSlide;
     public static SoundManager instance;     //Allows other scripts to call functions from SoundManager.             
-    
 
+    private void Start()
+    {
+        instance.carEngineSlide.value = instance.carEngine.volume;
+        instance.musicSlide.value = instance.mainMenuMusic.volume = instance.inGameMusic.volume = instance.easterEggMusic.volume;
+    }
 
     void Awake()
     {
@@ -32,10 +38,14 @@ public class SoundManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    public SoundManager Instance()
+    {
+        return instance;
+    }
 
     void FixedUpdate()
     {
-        carEngine.volume = carEngineSlide.value;
-        musicSource.volume = musicSlide.value;
+        instance.carEngine.volume = instance.carEngineSlide.value;
+        instance.mainMenuMusic.volume = instance.inGameMusic.volume = instance.easterEggMusic.volume = instance.musicSlide.value;
     }
 }

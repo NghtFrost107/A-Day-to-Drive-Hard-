@@ -2344,7 +2344,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carEngine: {fileID: 2126037638}
-  musicSource: {fileID: 485649149}
+  mainMenuMusic: {fileID: 0}
+  inGameMusic: {fileID: 485649149}
+  easterEggMusic: {fileID: 394948156}
   carEngineSlide: {fileID: 1862110558}
   musicSlide: {fileID: 1332627338}
 --- !u!224 &866299623
