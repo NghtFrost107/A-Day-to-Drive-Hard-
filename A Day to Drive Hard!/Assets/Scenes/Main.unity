@@ -416,7 +416,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 55.25, y: -200}
-  m_SizeDelta: {x: 280, y: 60}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &77010148
 MonoBehaviour:
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carEngine: {fileID: 2126037638}
-  mainMenuMusic: {fileID: 0}
+  mainMenuMusic: {fileID: 485649149}
   inGameMusic: {fileID: 485649149}
   easterEggMusic: {fileID: 394948156}
   carEngineSlide: {fileID: 1862110558}
@@ -2559,7 +2559,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 55.25, y: -30}
-  m_SizeDelta: {x: 280, y: 60}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081668011
 MonoBehaviour:
@@ -2705,7 +2705,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 55.25, y: -285}
-  m_SizeDelta: {x: 280, y: 60}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170105708
 MonoBehaviour:
@@ -3638,7 +3638,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 55.25, y: -115}
-  m_SizeDelta: {x: 280, y: 60}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393629605
 MonoBehaviour:
