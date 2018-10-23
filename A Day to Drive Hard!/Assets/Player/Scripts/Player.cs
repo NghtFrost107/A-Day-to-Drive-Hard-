@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                database.player.currentPosition = transform.GetChild(0).transform.position.x;
+                database.player.currentPosition = transform.GetChild(0).transform.position.x - 13; //13 Is the starting position of the car in the world
                 distanceCounter.text = "" + Mathf.Round(database.player.currentPosition) + "m";
             }
         }
