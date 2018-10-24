@@ -2,28 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour {
 
-    public AudioSource carEngine;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource mainMenuMusic;                 //Drag a reference to the audio source which will play the music.
-    public AudioSource inGameMusic;
-    public AudioSource easterEggMusic;
-    public Slider carEngineSlide;
-    public Slider musicSlide;
-    private static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
+    private static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager. 
 
-    private void Start()
-    {
-        instance.musicSlide.value = MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume;
-        instance.carEngineSlide.value = carEngineSlide.value;
-
-        instance.carEngine.volume = instance.carEngineSlide.value;
-        MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-        GPBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-        EEBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-    }
-
+    public AudioClip mainMenuMusic;
+                
     void Awake()
     {
         //Check if there is already an instance of SoundManager
@@ -44,16 +30,21 @@ public class SoundManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        GetComponent<AudioSource>().clip = mainMenuMusic;
+        GetComponent<AudioSource>().Play();
+    }
+
+    public void PlayMusic(AudioClip music)
+    {
+        GetComponent<AudioSource>().clip = music;
+        GetComponent<AudioSource>().Play();
+    }
     public static SoundManager Instance()
     {
         return instance;
     }
 
-    void Update()
-    {
-        instance.carEngine.volume = instance.carEngineSlide.value;
-        MMBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-        GPBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-        EEBGM.Instance().gameObject.GetComponent<AudioSource>().volume = instance.musicSlide.value;
-    }
+
 }

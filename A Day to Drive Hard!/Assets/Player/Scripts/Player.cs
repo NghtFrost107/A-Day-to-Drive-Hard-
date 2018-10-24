@@ -14,6 +14,12 @@ public class Player : MonoBehaviour {
     public SpriteRenderer frontWheel;
     public SpriteRenderer shieldOverlay;
 
+    //Easter egg stuff
+    public AudioClip easterEgg;
+    bool easterEggPlaying = false;
+    public Text AHHH;
+    public Transform parentCanvas;
+
     private bool playerDead = false;
     private MilestonesManager milestones;
     private Database database;
@@ -56,7 +62,19 @@ public class Player : MonoBehaviour {
             frontWheel.color = Color.white;
             backWheel.color = Color.white;
         }
-	}
+
+        if(transform.GetChild(0).transform.position.y < -45 && !easterEggPlaying)
+        {
+            SoundManager.Instance().PlayMusic(easterEgg);
+            easterEggPlaying = true;
+        }
+        else if (transform.GetChild(0).transform.position.y < -850)
+        {
+            Text AH = Instantiate(AHHH, parentCanvas);
+            AH.transform.SetAsFirstSibling();
+            StartCoroutine(CombinedMovementScript.FadeInOutText(AH, 90));
+        }
+    }
 
     public void EndScreen(string reasonForExit)
     {
@@ -127,6 +145,8 @@ public class Player : MonoBehaviour {
         milestones.checkMilestones();
         database.SetPlayerData();
         database.player.resetCurrentGameStatistics();
+        SoundManager.Instance().GetComponent<AudioSource>().clip = SoundManager.Instance().mainMenuMusic;
+        SoundManager.Instance().GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
